@@ -67,7 +67,6 @@ CREATE TABLE IF NOT EXISTS `vehiculos` (
   `modelo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `tipo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_1sakesykudfm65xwe6eboc3o8` (`tipo`),
   UNIQUE KEY `UK_widpc0i9uotdrlq5xxlklr0d` (`matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
