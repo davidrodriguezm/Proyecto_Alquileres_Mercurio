@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Vehiculo</title>
+</head>
+<body>
+	<header th:insert="fragments/parts::menu"></header><br>
+	<form action="#" th:action="@{/addVehiculo}" th:object="${vehiculo}" method="post">
+		<label for="matricula" >Matricula</label> 
+		<input type="text" id="matricula" name="matricula" th:field="*{matricula}" required>
+		<br><br>
+		<label for="modelo" >Modelo</label>
+		<input type="text"  id="modelo" name="modelo" th:field="*{modelo}" required>
+		<br><br>
+		<label for="tipo">Tipo</label>
+		<select name="tipo" id="tipo" th:field="*{tipo}" required>
+			<option th:value="Monovolumen" >Monovolumen</option>
+			<option th:value="Furgoneta" >Furgoneta</option>
+			<option th:value="MiniCamion" >Mini camión</option>
+		</select>
+		<br><br>
+		<label for="consumo" >Consumo</label>
+		<select name="idPropietario" id="consumo" th:field="*{consumo}" required>
+			<option th:value="Gasolina" >Gasolina</option>
+			<option th:value="Diesel" >Diesel</option>
+			<option th:value="Hibrido" >Hibrido</option>
+			<option th:value="Electrico" >Eléctrico</option>
+		</select>
+		<br><br>
+		<label for="consumo" >Estado</label>
+		<select name="estado" id="estado" th:field="*{estado}" required>
+			<option th:value="disponible" >Disponible</option>
+			<option th:value="Ocupado" >Ocupado</option>
+			<option th:value="Averiado" >Averiado</option>			
+			<option th:value="Revision" >Revisión</option>
+		</select>
+		<br><br>
+		<input type="submit" class="" value="ENVIAR" />
+	</form>
+
+</body>
+</html>

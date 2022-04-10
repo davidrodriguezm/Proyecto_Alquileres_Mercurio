@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista vehiculos</title>
+</head>
+<body>
+	<header th:insert="fragments/parts::menu"></header><br>
+	<table class="">
+		<thead class="">
+			<tr>
+				<th>ID</th>
+				<th>Matricula</th>
+				<th>Modelo</th>
+				<th>Tipo</th>
+				<th>Consumo</th>
+				<th>Estado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="v : ${vehiculos}">
+				<td th:text="${v.id}"></td>
+				<td th:text="${v.matricula}"></td>
+				<td th:text="${v.modelo}"></td>
+				<td th:text="${v.tipo}"></td>
+				<td th:text="${v.consumo}"></td>
+				<td th:text="${v.estado}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

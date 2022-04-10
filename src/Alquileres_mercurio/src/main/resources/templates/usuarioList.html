@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista personas</title>
+</head>
+<body>
+	<header th:insert="fragments/parts::menu"></header><br>
+	<table class="">
+		<thead class="">
+			<tr>
+				<th>ID</th>
+				<th>DNI</th>
+				<th>Nombre</th>
+				<th>Telefono</th>
+				<th>Rol</th>
+				<th>email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="u : ${usuarios}">
+				<td th:text="${u.id}"></td>
+				<td th:text="${u.dni}"></td>
+				<td th:text="${u.nombre}"></td>
+				<td th:text="${u.telefono}"></td>
+				<td th:text="${u.role}"></td>
+				<td th:text="${u.email}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

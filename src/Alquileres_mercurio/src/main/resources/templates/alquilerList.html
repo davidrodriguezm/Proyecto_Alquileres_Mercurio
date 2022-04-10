@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Alquileres</title>
+</head>
+<body>
+	<header th:insert="fragments/parts::menu"></header><br>
+	<table class="">
+		<thead class="">
+			<tr>
+				<th>ID</th>
+				<th>Cliente</th>
+				<th>Vehiculo</th>
+				<th>Fecha de inicio</th>
+				<th>Fecha de fin</th>
+				<th>Pago</th>
+				<th>Comentario</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="a : ${alquileres}">
+				<td th:text="${a.id}"></td>
+				<td th:text="${a.cliente.nombre}"></td>
+				<td th:text="${a.vehiculo.matricula}"></td>
+				<td th:text="${a.getInicioFormato()}"></td>
+				<td th:text="${a.getFinFormato()}"></td>
+				<td th:text="${a.pago}"></td>
+				<td th:text="${a.comentario}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
