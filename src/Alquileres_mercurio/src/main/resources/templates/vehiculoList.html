@@ -15,6 +15,7 @@
 				<th>Tipo</th>
 				<th>Consumo</th>
 				<th>Estado</th>
+				<th>Alquilar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +26,7 @@
 				<td th:text="${v.tipo}"></td>
 				<td th:text="${v.consumo}"></td>
 				<td th:text="${v.estado}"></td>
+				<td><a th:href="@{|/addAlquilerCliente?id=${v.id}|}">Ir</a></td>
 			</tr>
 		</tbody>
 	</table>

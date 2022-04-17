@@ -44,4 +44,8 @@ public class AlquilerService {
 		} else
 			return false;
 	}
+	
+	public List<Alquiler> getAlquilersIncomplete() {		
+		return alquilerRepo.findByPagoIsNull(); 	
+	}
 }

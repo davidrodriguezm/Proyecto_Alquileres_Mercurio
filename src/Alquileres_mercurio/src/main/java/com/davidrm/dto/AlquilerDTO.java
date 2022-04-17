@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class AlquilerDTO implements Serializable {
+	private Long id;
 	private Long idCliente;
 	private Long idVehiculo;
 	
@@ -22,29 +23,16 @@ public class AlquilerDTO implements Serializable {
 
 	public AlquilerDTO() {}
 
-	public AlquilerDTO(Long idCliente, Long idVehiculo, LocalDate fecha_inicio, LocalDate fecha_fin) {
-		this.idCliente = idCliente;
-		this.idVehiculo = idVehiculo;
-		this.fecha_inicio = fecha_inicio;
-		this.fecha_fin = fecha_fin;
+	public AlquilerDTO(Long id) {
+		this.id = id;
 	}
 
-	public AlquilerDTO(Long idCliente, Long idVehiculo, LocalDate fecha_inicio, LocalDate fecha_fin, Double pago) {
-		this.idCliente = idCliente;
-		this.idVehiculo = idVehiculo;
-		this.fecha_inicio = fecha_inicio;
-		this.fecha_fin = fecha_fin;
-		this.pago = pago;
+	public Long getId() {
+		return id;
 	}
 
-	public AlquilerDTO(Long idCliente, Long idVehiculo, LocalDate fecha_inicio, LocalDate fecha_fin, Double pago,
-			String comentario) {
-		this.idCliente = idCliente;
-		this.idVehiculo = idVehiculo;
-		this.fecha_inicio = fecha_inicio;
-		this.fecha_fin = fecha_fin;
-		this.pago = pago;
-		this.comentario = comentario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getIdCliente() {

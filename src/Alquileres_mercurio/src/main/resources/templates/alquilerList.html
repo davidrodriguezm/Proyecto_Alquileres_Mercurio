@@ -16,6 +16,7 @@
 				<th>Fecha de fin</th>
 				<th>Pago</th>
 				<th>Comentario</th>
+				<th>editar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,7 @@
 				<td th:text="${a.getFinFormato()}"></td>
 				<td th:text="${a.pago}"></td>
 				<td th:text="${a.comentario}"></td>
+				<td><a th:href="@{|/editAlquiler?id=${a.id}|}">Ir</a></td>
 			</tr>
 		</tbody>
 	</table>

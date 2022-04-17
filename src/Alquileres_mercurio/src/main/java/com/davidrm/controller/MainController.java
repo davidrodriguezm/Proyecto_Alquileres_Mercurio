@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.davidrm.dto.VehiculoDTO;
 import com.davidrm.dto.UsuarioDTO;
@@ -87,7 +88,7 @@ public class MainController {
 	
 	@GetMapping("/alquileres")
 	public String alquilerList(Model model){
-		model.addAttribute("alquileres", alquilerSer.getAllAlquilers());
+		model.addAttribute("alquileres", alquilerSer.getAlquilersIncomplete());
 		return "alquilerList";	
 	}
 	
@@ -102,6 +103,62 @@ public class MainController {
 	@PostMapping("/addAlquiler")
 	public String addAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
 		String dirige = "redirect:/addAlquiler";
+		if (alqDTO != null) {
+			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
+			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
+			
+			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),
+								alqDTO.getFecha_fin(), alqDTO.getPago(), alqDTO.getComentario());
+				
+			vehiculo.addAlquiler(alquiler);
+			cliente.addAlquiler(alquiler);
+			
+			alquilerSer.insertarAlquiler(alquiler);
+			dirige = "redirect:/alquileres";
+		}
+		return dirige;
+	}
+	
+	@GetMapping("/editAlquiler")
+	public String editAlquilerGet(Model model,@RequestParam(required=false,name="id") Long id) {
+		String dirige = "redirect:/alquileres";
+		if (id != null && alquilerSer.findAlquilerById(id) != null) {
+			model.addAttribute("alquilerDTO", new AlquilerDTO(id));
+			dirige = "editAlquiler";
+		}
+		return dirige;
+	}
+	
+	@PostMapping("/editAlquiler")
+	public String editAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
+		String dirige = "redirect:/editAlquiler";
+		if (alqDTO != null) {			
+			Alquiler alquiler = alquilerSer.findAlquilerById(alqDTO.getId());
+			
+			alquiler.setComentario(alqDTO.getComentario());
+			alquiler.setPago(alqDTO.getPago());
+			
+			if (alqDTO.getFecha_fin() != null) alquiler.setFecha_fin(alqDTO.getFecha_fin());			
+			
+			alquilerSer.actualizarAlquiler(alquiler);
+			dirige = "redirect:/alquileres";
+		}
+		return dirige;
+	}
+	
+	@GetMapping("/addAlquilerCliente")
+	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
+		String dirige = "redirect:/alquileres";
+		if (idVehiculo != null && alquilerSer.findAlquilerById(idVehiculo) != null) {
+			model.addAttribute("alquilerDTO", new AlquilerDTO(idVehiculo));
+			dirige = "addAlquilerCliente";
+		}
+		return dirige;
+	}
+	
+	@PostMapping("/addAlquilerCliente")
+	public String addAlquilerClientePost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
+		String dirige = "redirect:/addAlquilerCliente";
 		if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
