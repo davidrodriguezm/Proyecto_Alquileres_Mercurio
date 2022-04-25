@@ -3,7 +3,8 @@ package com.davidrm.dto;
 import java.io.Serializable;
 
 
-public class VehiculoDTO implements Serializable {	
+public class VehiculoDTO implements Serializable {
+	private Long id;
 	private String matricula;
 	private String modelo;
 	private String tipo;
@@ -12,12 +13,29 @@ public class VehiculoDTO implements Serializable {
 	
 	public VehiculoDTO() {}
 
+	public VehiculoDTO(Long id, String matricula, String modelo, String tipo, String consumo, String estado) {
+		this.id = id;
+		this.matricula = matricula;
+		this.modelo = modelo;
+		this.tipo = tipo;
+		this.consumo = consumo;
+		this.estado = estado;
+	}
+
 	public VehiculoDTO(String matricula, String modelo, String tipo, String consumo, String estado) {
 		this.matricula = matricula;
 		this.modelo = modelo;
 		this.tipo = tipo;
 		this.consumo = consumo;
 		this.estado = estado;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getMatricula() {

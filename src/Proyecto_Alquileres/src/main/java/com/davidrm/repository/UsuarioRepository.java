@@ -11,5 +11,7 @@ import com.davidrm.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Optional<Usuario> findByDni(String dni);
+	
+	public Optional<Usuario> findByEmail(String email);
 
 }

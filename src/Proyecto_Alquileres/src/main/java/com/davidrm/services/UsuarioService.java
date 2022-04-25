@@ -24,12 +24,16 @@ public class UsuarioService {
 	}
 	
 	public Usuario findUsuarioByDni(String dni) {		
-		return usuarioRepo.findByDni(dni).get();
+		return usuarioRepo.findByDni(dni).orElse(null);
+	}
+	
+	public Usuario findUsuarioByEmail(String email) {		
+		return usuarioRepo.findByEmail(email).orElse(null);
 	}
 	
 	public Usuario insertarUsuario(Usuario usuario) {
-//		if (usuario != null && findUsuarioByDni(usuario.getDni()) == null)
-		if (usuario != null)
+		if (usuario != null && findUsuarioByDni(usuario.getDni()) == null && findUsuarioByEmail(usuario.getEmail()) == null)
+//		if (usuario != null)
 			return usuarioRepo.save(usuario);			
 		else
 			return null;

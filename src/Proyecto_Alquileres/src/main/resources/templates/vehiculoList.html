@@ -16,6 +16,8 @@
 				<th>Consumo</th>
 				<th>Estado</th>
 				<th>Alquilar</th>
+				<th>Eliminar</th>
+				<th>Editar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +29,8 @@
 				<td th:text="${v.consumo}"></td>
 				<td th:text="${v.estado}"></td>
 				<td><a th:href="@{|/addAlquilerCliente?id=${v.id}|}">Ir</a></td>
+				<td><a th:href="@{|/deleteVehiculo?id=${v.id}|}">Borrar</a></td>
+				<td><a th:href="@{|/editVehiculo?id=${v.id}|}">Editar</a></td>
 			</tr>
 		</tbody>
 	</table>

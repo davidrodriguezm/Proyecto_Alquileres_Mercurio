@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -67,6 +68,30 @@ public class MainController {
 		return "vehiculoList";	
 	}
 	
+	@GetMapping("/editVehiculo")
+	public String editVehiculoGet(@RequestParam(required=false,name="id") Long id, Model model) {
+		String dirige = "redirect:/vehiculos";
+		if (id != null && vehiculoSer.findVehiculoById(id) != null) {
+			model.addAttribute("id", id);
+			model.addAttribute("vehiculo", new VehiculoDTO());
+			dirige = "editVehiculo";
+		}
+		
+		return dirige;
+	}
+	
+	@PostMapping("/editVehiculo")
+	public String editVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
+		String dirige = "redirect:/editVehiculo";
+		if (vehiDTO != null) {
+			Vehiculo vehiculo = vehiculoSer.findVehiculoById(vehiDTO.getId());
+			vehiculo.setEstado(vehiDTO.getEstado());
+			vehiculoSer.actualizarVehiculo(vehiculo);
+			dirige = "redirect:/vehiculos";
+		}
+		return dirige;
+	}
+	
 	@GetMapping("/addVehiculo")
 	public String addVehiculoGet(Model model) {
 		model.addAttribute("vehiculo", new VehiculoDTO());
@@ -84,6 +109,13 @@ public class MainController {
 			dirige = "redirect:/vehiculos";
 		}
 		return dirige;
+	}
+	
+	@GetMapping("/deleteVehiculo")
+	public String deleteVehiculoGet(@RequestParam(required=false,name="id") Long id, Model model) {
+		Vehiculo vehiculo = vehiculoSer.findVehiculoById(id);
+		vehiculoSer.borrarVehiculo(vehiculo);
+		return "redirect:/vehiculos";
 	}
 	
 	@GetMapping("/alquileres")
