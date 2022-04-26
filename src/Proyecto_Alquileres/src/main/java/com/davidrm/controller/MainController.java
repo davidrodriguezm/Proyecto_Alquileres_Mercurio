@@ -43,15 +43,15 @@ public class MainController {
 		return "usuarioList";	
 	}
 	
-	@GetMapping("/addUsuario")
+	@GetMapping("/usuario-add")
 	public String addUsuarioGet(Model model) {
 		model.addAttribute("usuario", new UsuarioDTO());
 		return "addUsuario";
 	}
 	
-	@PostMapping("/addUsuario")
+	@PostMapping("/usuario-add")
 	public String addUsuarioPost(@ModelAttribute UsuarioDTO usuDTO, Model model) {		
-		String dirige = "redirect:/addusuario";
+		String dirige = "redirect:/usuario-add";
 		if (usuDTO != null) {
 			Usuario usuario = new Usuario(usuDTO.getDni(), usuDTO.getEmail(), usuDTO.getNombre(),
 										"USER", usuDTO.getTelefono(), usuDTO.getPassword());
@@ -68,7 +68,7 @@ public class MainController {
 		return "vehiculoList";	
 	}
 	
-	@GetMapping("/editVehiculo")
+	@GetMapping("/vehiculo-edit")
 	public String editVehiculoGet(@RequestParam(required=false,name="id") Long id, Model model) {
 		String dirige = "redirect:/vehiculos";
 		if (id != null && vehiculoSer.findVehiculoById(id) != null) {
@@ -80,9 +80,9 @@ public class MainController {
 		return dirige;
 	}
 	
-	@PostMapping("/editVehiculo")
+	@PostMapping("/vehiculo-edit")
 	public String editVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
-		String dirige = "redirect:/editVehiculo";
+		String dirige = "redirect:/vehiculo-edit";
 		if (vehiDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(vehiDTO.getId());
 			vehiculo.setEstado(vehiDTO.getEstado());
@@ -92,15 +92,15 @@ public class MainController {
 		return dirige;
 	}
 	
-	@GetMapping("/addVehiculo")
+	@GetMapping("/vehiculo-add")
 	public String addVehiculoGet(Model model) {
 		model.addAttribute("vehiculo", new VehiculoDTO());
 		return "addVehiculo";
 	}
 	
-	@PostMapping("/addVehiculo")
+	@PostMapping("/vehiculo-add")
 	public String addVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
-		String dirige = "redirect:/addVehiculo";
+		String dirige = "redirect:/vehiculo-add";
 		if (vehiDTO != null) {
 			Vehiculo vehiculo = new Vehiculo(vehiDTO.getMatricula(), vehiDTO.getModelo(),
 							vehiDTO.getTipo(), vehiDTO.getConsumo(), vehiDTO.getEstado());
@@ -111,7 +111,7 @@ public class MainController {
 		return dirige;
 	}
 	
-	@GetMapping("/deleteVehiculo")
+	@GetMapping("/vehiculo-delete")
 	public String deleteVehiculoGet(@RequestParam(required=false,name="id") Long id, Model model) {
 		Vehiculo vehiculo = vehiculoSer.findVehiculoById(id);
 		vehiculoSer.borrarVehiculo(vehiculo);
@@ -124,7 +124,7 @@ public class MainController {
 		return "alquilerList";	
 	}
 	
-	@GetMapping("/addAlquiler")
+	@GetMapping("/alquiler-add")
 	public String addAlquilerGet(Model model) {
 		model.addAttribute("alquiler", new AlquilerDTO());
 		model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
@@ -132,9 +132,9 @@ public class MainController {
 		return "addAlquiler";
 	}
 	
-	@PostMapping("/addAlquiler")
+	@PostMapping("/alquiler-add")
 	public String addAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
-		String dirige = "redirect:/addAlquiler";
+		String dirige = "redirect:/alquiler-add";
 		if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
@@ -151,7 +151,7 @@ public class MainController {
 		return dirige;
 	}
 	
-	@GetMapping("/editAlquiler")
+	@GetMapping("/alquiler-edit")
 	public String editAlquilerGet(Model model,@RequestParam(required=false,name="id") Long id) {
 		String dirige = "redirect:/alquileres";
 		if (id != null && alquilerSer.findAlquilerById(id) != null) {
@@ -161,9 +161,9 @@ public class MainController {
 		return dirige;
 	}
 	
-	@PostMapping("/editAlquiler")
+	@PostMapping("/alquiler-edit")
 	public String editAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
-		String dirige = "redirect:/editAlquiler";
+		String dirige = "redirect:/alquiler-editr";
 		if (alqDTO != null) {			
 			Alquiler alquiler = alquilerSer.findAlquilerById(alqDTO.getId());
 			
@@ -178,7 +178,7 @@ public class MainController {
 		return dirige;
 	}
 	
-	@GetMapping("/addAlquilerCliente")
+	@GetMapping("/alquiler-cliente-add")
 	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
 		String dirige = "redirect:/alquileres";
 		if (idVehiculo != null && alquilerSer.findAlquilerById(idVehiculo) != null) {
@@ -188,15 +188,14 @@ public class MainController {
 		return dirige;
 	}
 	
-	@PostMapping("/addAlquilerCliente")
+	@PostMapping("/alquiler-cliente-add")
 	public String addAlquilerClientePost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
-		String dirige = "redirect:/addAlquilerCliente";
+		String dirige = "redirect:/alquiler-cliente-add";
 		if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
 			
-			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),
-								alqDTO.getFecha_fin(), alqDTO.getPago(), alqDTO.getComentario());
+			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),alqDTO.getFecha_fin());
 				
 			vehiculo.addAlquiler(alquiler);
 			cliente.addAlquiler(alquiler);

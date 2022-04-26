@@ -6,7 +6,7 @@
 </head>
 <body>
 	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{/addAlquiler}" th:object="${alquiler}" method="post">
+	<form action="#" th:action="@{alquiler-cliente-add}" th:object="${alquiler}" method="post">
 		<label for="idVehiculo" >Vehiculo</label>
 		<select name="idVehiculo" id="idVehiculo" th:field="*{idVehiculo}" required>
 			<option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula}"></option>

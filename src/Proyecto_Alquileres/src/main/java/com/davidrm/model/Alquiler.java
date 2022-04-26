@@ -63,6 +63,14 @@ public class Alquiler implements Serializable {
 		this.pago = pago;
 		this.comentario = comentario;
 	}
+	
+
+	public Alquiler(Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin) {
+		this.cliente = cliente;
+		this.vehiculo = vehiculo;
+		this.fecha_inicio = fecha_inicio;
+		this.fecha_fin = fecha_fin;
+	}
 
 	public Alquiler(Long id, Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin,
 			Double pago, String comentario) {

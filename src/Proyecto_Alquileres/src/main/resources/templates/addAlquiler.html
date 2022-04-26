@@ -6,7 +6,7 @@
 </head>
 <body>
 	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{/addAlquiler}" th:object="${alquiler}" method="post">
+	<form action="#" th:action="@{alquiler-add}" th:object="${alquiler}" method="post">
 		<label for="idVehiculo" >Vehiculo</label>
 		<select name="idVehiculo" id="idVehiculo" th:field="*{idVehiculo}" required>
 			<option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula}"></option>
@@ -23,12 +23,12 @@
 		<label for="fecha_fin" >Fecha de fin</label>
 		<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}" required>
 		<br><br>
-<!-- 		<label for="pago">Pago</label> -->
-<!-- 		<input type="number"  id="pago" name="pago" th:field="*{pago}" step="0.01" required > -->
-<!-- 		<br><br> -->
-<!-- 		<label for="comentario">Comentario</label><br> -->
-<!-- 		<textarea th:field="*{comentario}" name="comentario" rows="8" cols="40" required></textarea> -->
-<!-- 		<br><br> -->
+		<label for="pago">Pago</label>
+		<input type="number"  id="pago" name="pago" th:field="*{pago}" step="0.01" required >
+		<br><br>
+		<label for="comentario">Comentario</label><br>
+		<textarea th:field="*{comentario}" name="comentario" rows="8" cols="40" required></textarea>
+		<br><br>
 		<input type="submit" class="" value="ENVIAR" />
 	</form>
 

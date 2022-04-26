@@ -6,7 +6,7 @@
 </head>
 <body>
 	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{/addVehiculo}" th:object="${vehiculo}" method="post">
+	<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post">
 		<label for="id">Id</label>
 		<input type="number" id="id" name="id" th:field="*{id}" th:value="{id}" readonly required>
 		<br><br>
