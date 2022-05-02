@@ -45,35 +45,34 @@ public class Alquiler implements Serializable {
 	
 	@Column(name="comentario")
 	private String comentario;
+	
+	@Column(name="estado",nullable=false)
+	private String estado;
 
 	public Alquiler() {}
-
-	public Alquiler(LocalDate fecha_inicio, LocalDate fecha_fin, String comentario) {
-		this.fecha_inicio = fecha_inicio;
-		this.fecha_fin = fecha_fin;
-		this.comentario = comentario;
-	}
 	
-	public Alquiler(Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin, Double pago,
-			String comentario) {
+	public Alquiler(Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin, 
+			Double pago, String comentario, String estado) {
 		this.cliente = cliente;
 		this.vehiculo = vehiculo;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
 		this.pago = pago;
 		this.comentario = comentario;
+		this.estado = estado;
 	}
 	
-
-	public Alquiler(Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin) {
+	public Alquiler(Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin, 
+			String estado) {
 		this.cliente = cliente;
 		this.vehiculo = vehiculo;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
+		this.estado = estado;
 	}
 
 	public Alquiler(Long id, Usuario cliente, Vehiculo vehiculo, LocalDate fecha_inicio, LocalDate fecha_fin,
-			Double pago, String comentario) {
+			Double pago, String comentario, String estado) {
 		this.id = id;
 		this.cliente = cliente;
 		this.vehiculo = vehiculo;
@@ -81,6 +80,7 @@ public class Alquiler implements Serializable {
 		this.fecha_fin = fecha_fin;
 		this.pago = pago;
 		this.comentario = comentario;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -139,6 +139,14 @@ public class Alquiler implements Serializable {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getInicioFormato() {

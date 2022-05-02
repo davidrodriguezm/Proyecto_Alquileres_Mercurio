@@ -33,7 +33,7 @@ public class RestControllerVehiculo {
 	private VehiculoService vehiculoSer;
 
 	@GetMapping("/vehiculos")
-	public List<VehiculoDTO> vehiculoList(Model model){
+	public ResponseEntity<?> vehiculoList(Model model){
 		List<Vehiculo> vehiculos = vehiculoSer.getAllVehiculos();
 		List<VehiculoDTO> vreturn = new ArrayList<>();
 				
@@ -42,7 +42,7 @@ public class RestControllerVehiculo {
 			vreturn.add(vc);
 		});
 		
-		return vreturn;	
+		return new ResponseEntity(vreturn, HttpStatus.OK);	
 	}
 	
 	@GetMapping("/vehiculo/{id}")
@@ -52,22 +52,18 @@ public class RestControllerVehiculo {
 		
 		try {
 			vehiculo = vehiculoSer.findVehiculoById(id);
-		} catch(DataAccessException e) {
-			response.put("mensaje", "Error al realizar la consulta en la base de datos");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch(DataAccessException e) {			
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		if(vehiculo == null) {
-			response.put("mensaje", "El vehiculo ID: ".concat(id.toString().concat(" no existe en la base de datos!")));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			return new ResponseEntity(response, HttpStatus.NOT_FOUND);
 		}
 		
 		VehiculoDTO vreturn = new VehiculoDTO(vehiculo.getId(),vehiculo.getMatricula(),vehiculo.getModelo(),
 				vehiculo.getTipo(),vehiculo.getConsumo(),vehiculo.getEstado());
 		
-		return new ResponseEntity<VehiculoDTO>(vreturn, HttpStatus.OK);
+		return new ResponseEntity(vreturn, HttpStatus.OK);
 	}
 	
 	@PostMapping("/vehiculo-add")
@@ -75,8 +71,7 @@ public class RestControllerVehiculo {
 		Map<String, Object> response = new HashMap<>();
 		
 		if(vehiculo == null) {
-			response.put("mensaje", "No se enviaron datos del vehiculo: ");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		VehiculoDTO vreturn = null;
 		
@@ -88,14 +83,11 @@ public class RestControllerVehiculo {
 			vreturn = new VehiculoDTO(vNew.getId(), vNew.getMatricula(), vNew.getModelo(), vNew.getTipo(), 
 					vNew.getConsumo(), vNew.getEstado());
 		} catch(DataAccessException e) {
-			response.put("mensaje", "Error al realizar el insert en la base de datos");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		response.put("mensaje", "El vehiculo ha sido creado con éxito!");
-		response.put("vehiculo", vreturn);
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+
+		return new ResponseEntity(response, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/vehiculo-edit/{id}")
@@ -106,9 +98,7 @@ public class RestControllerVehiculo {
 		Map<String, Object> response = new HashMap<>();
 		
 		if (vehiculoActual == null) {
-			response.put("mensaje", "Error: no se pudo editar, el vehiculo ID: "
-					.concat(id.toString().concat(" no existe en la base de datos!")));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			return new ResponseEntity(response, HttpStatus.NOT_FOUND);
 		}
 
 		try {
@@ -120,15 +110,10 @@ public class RestControllerVehiculo {
 					vUp.getTipo(),vUp.getConsumo(),vUp.getEstado());
 			
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al actualizar el vehiculo en la base de datos");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		response.put("mensaje", "El vehiculo ha sido actualizado con éxito!");
-		response.put("vehiculo", vreturn);
-
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		
+		return new ResponseEntity(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/vehiculo-delete/{id}")
@@ -137,25 +122,16 @@ public class RestControllerVehiculo {
 		
 		Vehiculo vehiculo = vehiculoSer.findVehiculoById(id);
 		
-		if (vehiculo == null) {
-			response.put("mensaje", "Error: no se pudo borrar, el vehiculo ID: "
-					.concat(id.toString().concat(" no existe en la base de datos!")));
-			
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-		}
-		
-		
+		if (vehiculo == null) {			
+			return new ResponseEntity(response, HttpStatus.NOT_FOUND);
+		}		
 		try {
 		    vehiculoSer.borrarVehiculo(vehiculo);
 		} catch (DataAccessException e) {
-			response.put("mensaje", "Error al eliminar el vehiculo de la base de datos");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		response.put("mensaje", "El vehiculo eliminado con éxito!");
-		
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
+		return new ResponseEntity(response, HttpStatus.NO_CONTENT);
 	}
 
 }

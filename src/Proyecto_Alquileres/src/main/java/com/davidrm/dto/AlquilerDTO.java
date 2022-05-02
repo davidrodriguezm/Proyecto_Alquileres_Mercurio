@@ -18,8 +18,9 @@ public class AlquilerDTO implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_fin;
 	
-	private Double pago;	
+	private Double pago;
 	private String comentario;
+	private String estado;
 
 	public AlquilerDTO() {}
 
@@ -81,6 +82,14 @@ public class AlquilerDTO implements Serializable {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 }

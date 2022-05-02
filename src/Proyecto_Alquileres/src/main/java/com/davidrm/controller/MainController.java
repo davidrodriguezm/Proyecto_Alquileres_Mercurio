@@ -120,7 +120,7 @@ public class MainController {
 	
 	@GetMapping("/alquileres")
 	public String alquilerList(Model model){
-		model.addAttribute("alquileres", alquilerSer.getAlquilersIncomplete());
+		model.addAttribute("alquileres", alquilerSer.getAllAlquileres());
 		return "alquilerList";	
 	}
 	
@@ -139,8 +139,8 @@ public class MainController {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
 			
-			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),
-								alqDTO.getFecha_fin(), alqDTO.getPago(), alqDTO.getComentario());
+			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(), alqDTO.getFecha_fin(), 
+					alqDTO.getPago(), alqDTO.getComentario(), alqDTO.getEstado());
 				
 			vehiculo.addAlquiler(alquiler);
 			cliente.addAlquiler(alquiler);
@@ -169,6 +169,7 @@ public class MainController {
 			
 			alquiler.setComentario(alqDTO.getComentario());
 			alquiler.setPago(alqDTO.getPago());
+			alquiler.setEstado(alqDTO.getEstado());
 			
 			if (alqDTO.getFecha_fin() != null) alquiler.setFecha_fin(alqDTO.getFecha_fin());			
 			
@@ -179,10 +180,13 @@ public class MainController {
 	}
 	
 	@GetMapping("/alquiler-cliente-add")
-	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
-		String dirige = "redirect:/alquileres";
+	public String addAlquilerClienteGet(Model model,@RequestParam(required=true,name="id") Long idVehiculo) {
+		String dirige = "redirect:/vehiculos";
 		if (idVehiculo != null && alquilerSer.findAlquilerById(idVehiculo) != null) {
-			model.addAttribute("alquilerDTO", new AlquilerDTO(idVehiculo));
+			AlquilerDTO alquilerDTO = new AlquilerDTO();
+			alquilerDTO.setIdVehiculo(idVehiculo);
+			
+			model.addAttribute("alquilerDTO", alquilerDTO);
 			dirige = "addAlquilerCliente";
 		}
 		return dirige;
@@ -195,7 +199,8 @@ public class MainController {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
 			
-			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),alqDTO.getFecha_fin());
+			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),alqDTO.getFecha_fin(),
+					"Reserva");
 				
 			vehiculo.addAlquiler(alquiler);
 			cliente.addAlquiler(alquiler);

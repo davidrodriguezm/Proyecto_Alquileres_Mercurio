@@ -16,7 +16,7 @@ public class VehiculoService {
 	public VehiculoService() {}
 
 	public Vehiculo findVehiculoById(Long id) {		
-		return vehiculoRepo.findById(id).get();
+		return vehiculoRepo.findById(id).orElse(null);
 	}
 	
 	public List<Vehiculo> getAllVehiculos() {		

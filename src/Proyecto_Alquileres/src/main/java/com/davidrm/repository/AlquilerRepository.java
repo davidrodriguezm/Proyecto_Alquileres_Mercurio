@@ -12,5 +12,7 @@ import com.davidrm.model.Alquiler;
 public interface AlquilerRepository extends JpaRepository<Alquiler, Long> {
 	
 	public List<Alquiler> findByPagoIsNull();
+	
+	public List<Alquiler> findByEstado(String estado);
 
 }

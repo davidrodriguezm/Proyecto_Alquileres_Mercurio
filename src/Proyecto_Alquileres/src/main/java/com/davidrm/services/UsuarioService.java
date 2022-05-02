@@ -16,7 +16,7 @@ public class UsuarioService {
 	public UsuarioService() {}
 
 	public Usuario findUsuarioById(Long id) {		
-		return usuarioRepo.findById(id).get();
+		return usuarioRepo.findById(id).orElse(null);
 	}
 	
 	public List<Usuario> getAllUsuarios() {

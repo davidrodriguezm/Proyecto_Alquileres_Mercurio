@@ -16,10 +16,10 @@ public class AlquilerService {
 	public AlquilerService() {}
 
 	public Alquiler findAlquilerById(Long id) {		
-		return alquilerRepo.findById(id).get();
+		return alquilerRepo.findById(id).orElse(null);
 	}
 	
-	public List<Alquiler> getAllAlquilers() {		
+	public List<Alquiler> getAllAlquileres() {		
 		return alquilerRepo.findAll(); 	
 	}
 	
@@ -47,5 +47,9 @@ public class AlquilerService {
 	
 	public List<Alquiler> getAlquilersIncomplete() {		
 		return alquilerRepo.findByPagoIsNull(); 	
+	}
+	
+	public List<Alquiler> getEstado(String estado) {		
+		return alquilerRepo.findByEstado(estado); 	
 	}
 }
