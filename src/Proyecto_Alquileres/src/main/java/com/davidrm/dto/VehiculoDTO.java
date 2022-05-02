@@ -13,6 +13,10 @@ public class VehiculoDTO implements Serializable {
 	
 	public VehiculoDTO() {}
 
+	public VehiculoDTO(Long id) {
+		this.id = id;
+	}
+
 	public VehiculoDTO(Long id, String matricula, String modelo, String tipo, String consumo, String estado) {
 		this.id = id;
 		this.matricula = matricula;

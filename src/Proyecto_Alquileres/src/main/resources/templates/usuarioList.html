@@ -14,7 +14,8 @@
 				<th>Nombre</th>
 				<th>Telefono</th>
 				<th>Rol</th>
-				<th>email</th>
+				<th>Email</th>
+				<th>editar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +26,7 @@
 				<td th:text="${u.telefono}"></td>
 				<td th:text="${u.role}"></td>
 				<td th:text="${u.email}"></td>
+				<td><a th:href="@{|/usuario-edit?id=${u.id}|}">Editar</a></td>
 			</tr>
 		</tbody>
 	</table>

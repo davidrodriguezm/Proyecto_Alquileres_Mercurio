@@ -8,7 +8,7 @@
 	<header th:insert="fragments/parts::menu"></header><br>
 	<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post">
 		<label for="id">Id</label>
-		<input type="number" id="id" name="id" th:field="*{id}" th:value="{id}" readonly required>
+		<input type="number" id="id" name="id" th:field="*{id}" readonly required>
 		<br><br>
 		<label for="estado" >Estado</label>
 		<select name="estado" id="estado" th:field="*{estado}" required>

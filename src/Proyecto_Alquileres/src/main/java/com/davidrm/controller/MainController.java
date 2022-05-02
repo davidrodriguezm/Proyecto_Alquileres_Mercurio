@@ -1,6 +1,7 @@
 package com.davidrm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String inicio(){
-		return "inicio";	
+		return "index";	
 	}
 	
 	@GetMapping("/usuarios")
@@ -54,9 +55,34 @@ public class MainController {
 		String dirige = "redirect:/usuario-add";
 		if (usuDTO != null) {
 			Usuario usuario = new Usuario(usuDTO.getDni(), usuDTO.getEmail(), usuDTO.getNombre(),
-										"USER", usuDTO.getTelefono(), usuDTO.getPassword());
+										"ROLE_USER", usuDTO.getTelefono(), 
+										new BCryptPasswordEncoder(15).encode(usuDTO.getPassword()), true);
 			
 			usuarioSer.insertarUsuario(usuario);
+			dirige = "redirect:/usuarios";
+		}
+		return dirige;
+	}
+	
+	@GetMapping("/usuario-edit")
+	public String editUsuarioGet(@RequestParam(required=false,name="id") Long id, Model model) {
+		String dirige = "redirect:/usuarios";	
+		if (id != null && usuarioSer.findUsuarioById(id) != null) {
+			model.addAttribute("usuario", new UsuarioDTO(id));
+			dirige = "editUsuario";
+		}	
+		return dirige;
+	}
+	
+	@PostMapping("/usuario-edit")
+	public String editUsuarioPost(@ModelAttribute UsuarioDTO usuDTO, Model model) {		
+		String dirige = "redirect:/usuario-edit";
+		if (usuDTO != null) {
+			Usuario usuario = usuarioSer.findUsuarioById(usuDTO.getId());
+			usuario.setPassword(new BCryptPasswordEncoder(15).encode(usuDTO.getPassword()));
+			usuario.setTelefono(usuDTO.getTelefono());
+			
+			usuarioSer.actualizarUsuario(usuario);
 			dirige = "redirect:/usuarios";
 		}
 		return dirige;
@@ -72,11 +98,9 @@ public class MainController {
 	public String editVehiculoGet(@RequestParam(required=false,name="id") Long id, Model model) {
 		String dirige = "redirect:/vehiculos";
 		if (id != null && vehiculoSer.findVehiculoById(id) != null) {
-			model.addAttribute("id", id);
-			model.addAttribute("vehiculo", new VehiculoDTO());
+			model.addAttribute("vehiculo", new VehiculoDTO(id));
 			dirige = "editVehiculo";
-		}
-		
+		}	
 		return dirige;
 	}
 	
@@ -180,7 +204,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/alquiler-cliente-add")
-	public String addAlquilerClienteGet(Model model,@RequestParam(required=true,name="id") Long idVehiculo) {
+	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
 		String dirige = "redirect:/vehiculos";
 		if (idVehiculo != null && alquilerSer.findAlquilerById(idVehiculo) != null) {
 			AlquilerDTO alquilerDTO = new AlquilerDTO();

@@ -41,18 +41,37 @@ public class Usuario implements Serializable {
 	@Column(name="password",nullable=false)
 	private String password;
 	
+	@Column(nullable=false,columnDefinition="BOOLEAN")	
+	private boolean activo;
+	
 	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL,orphanRemoval = true)
 	private Set<Alquiler> alquileres = new HashSet<>();
 
 	public Usuario() {}
 
-	public Usuario(String dni, String email, String nombre, String role, String telefono, String password) {
+	public Usuario(Long id, String dni, String email, String nombre, String role, String telefono, String password,
+			boolean activo) {
+		super();
+		this.id = id;
 		this.dni = dni;
 		this.email = email;
 		this.nombre = nombre;
 		this.role = role;
 		this.telefono = telefono;
 		this.password = password;
+		this.activo = activo;
+	}
+
+	public Usuario(String dni, String email, String nombre, String role, String telefono, String password,
+			boolean activo) {
+		super();
+		this.dni = dni;
+		this.email = email;
+		this.nombre = nombre;
+		this.role = role;
+		this.telefono = telefono;
+		this.password = password;
+		this.activo = activo;
 	}
 
 	public Long getId() {
@@ -109,6 +128,14 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	public Set<Alquiler> getAlquileres() {

@@ -3,7 +3,8 @@ package com.davidrm.dto;
 import java.io.Serializable;
 
 
-public class UsuarioDTO implements Serializable {	
+public class UsuarioDTO implements Serializable {
+	private Long id;
 	private String dni;
 	private String email;
 	private String nombre;
@@ -11,7 +12,11 @@ public class UsuarioDTO implements Serializable {
     private String telefono;
 	private String password;
 		
-	public UsuarioDTO() {}
+	public UsuarioDTO() {}	
+
+	public UsuarioDTO(Long id) {
+		this.id = id;
+	}
 
 	public UsuarioDTO(String dni, String email, String nombre, String telefono, String password) {
 		this.dni = dni;
@@ -19,6 +24,14 @@ public class UsuarioDTO implements Serializable {
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.password = password;
+	}	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDni() {

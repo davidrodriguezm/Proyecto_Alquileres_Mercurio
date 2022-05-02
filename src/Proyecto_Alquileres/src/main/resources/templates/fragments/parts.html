@@ -7,5 +7,11 @@
 		<li style="margin-left: 15px;"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></li>
 		<li style="margin-left: 15px;"><a th:href="@{/alquileres}">Lista de Alquileres</a></li>
 		<li style="margin-left: 15px;"><a th:href="@{/alquiler-add}">Añade un Alquiler</a></li>
+		<li style="margin-left: 15px;" sec:authorize="!isAuthenticated()" class="nav-item">
+			<a class="nav-link text-white" th:href="@{/login}">Login</a>
+		</li>
+		<li style="margin-left: 15px;" sec:authorize="isAuthenticated()" class="nav-item">
+			<a class="nav-link text-white" th:href="@{/logout}">logout</a>
+		</li>
 	</ul>
 </nav>

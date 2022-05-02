@@ -20,12 +20,13 @@ USE `alquileres_mercurio`;
 -- Volcando estructura para tabla alquileres_mercurio.alquileres
 CREATE TABLE IF NOT EXISTS `alquileres` (
   `id` bigint NOT NULL,
-  `comentario` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fecha_fin` date NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `pago` double DEFAULT NULL,
   `id_cliente` bigint DEFAULT NULL,
   `id_vehiculo` bigint DEFAULT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `pago` double DEFAULT NULL,
+  `comentario` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `estado` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKc0pat9t160g6dj3xvm1x66mcx` (`id_cliente`),
   KEY `FKhglefsdc22bii9ak42yyxnoo7` (`id_vehiculo`),
@@ -48,27 +49,28 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `dni` varchar(9) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_kfsp0s1tflm1cwlj8idhqsad0` (`email`),
   UNIQUE KEY `UK_ggd9d47p8x7m0ajavk1ayuyqs` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla alquileres_mercurio.vehiculos
 CREATE TABLE IF NOT EXISTS `vehiculos` (
   `id` bigint NOT NULL AUTO_INCREMENT,
+  `matricula` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modelo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `consumo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `matricula` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `modelo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `tipo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_widpc0i9uotdrlq5xxlklr0d` (`matricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
