@@ -1,6 +1,8 @@
 package com.davidrm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,11 @@ public class MainController {
 	@GetMapping("/")
 	public String inicio(){
 		return "index";	
+	}
+	
+	@GetMapping("/login-user")
+	public String login(){
+		return "login";	
 	}
 	
 	@GetMapping("/usuarios")
@@ -206,19 +213,28 @@ public class MainController {
 	@GetMapping("/alquiler-cliente-add")
 	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
 		String dirige = "redirect:/vehiculos";
-		if (idVehiculo != null && alquilerSer.findAlquilerById(idVehiculo) != null) {
-			AlquilerDTO alquilerDTO = new AlquilerDTO();
-			alquilerDTO.setIdVehiculo(idVehiculo);
-			
-			model.addAttribute("alquilerDTO", alquilerDTO);
-			dirige = "addAlquilerCliente";
-		}
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioSer.findUsuarioByEmail(auth.getName());
+		
+		if (usuario != null) {
+			if (idVehiculo != null && vehiculoSer.findVehiculoById(idVehiculo) != null) {
+				AlquilerDTO alquilerDTO = new AlquilerDTO();
+				alquilerDTO.setIdVehiculo(idVehiculo);
+				alquilerDTO.setIdCliente(usuario.getId());
+				
+				model.addAttribute("alquilerDTO", alquilerDTO);
+				dirige = "addAlquilerCliente";
+			}
+		} else dirige = "redirect:/";
+		
 		return dirige;
 	}
 	
 	@PostMapping("/alquiler-cliente-add")
 	public String addAlquilerClientePost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
 		String dirige = "redirect:/alquiler-cliente-add";
+		
 		if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());

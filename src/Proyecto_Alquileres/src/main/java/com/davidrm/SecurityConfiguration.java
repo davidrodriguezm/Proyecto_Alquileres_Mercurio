@@ -22,7 +22,6 @@ import com.davidrm.services.JPAUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-
 	/* Obtengo una refencia al SINGLENTON del userDetailsService	 * 
 	 */
 	@Autowired
@@ -31,7 +30,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	/* MÉTODO PARA AUTENTIFICAR LOS USUARIOS */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
 		//La autentificación JPA no está incluido tenemos que configurarla nosotros
 		//Creando nuestro propio servicio que nos permita obtener la información del usuario
 		auth.userDetailsService(userDetailsService);
@@ -41,21 +39,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 * MÉTODO PARA ESTABLECER AUTORIZACION - A QUÉ PUEDO ACCEDER
 	 */
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		
-		/* URL con información sobre ANT MATCHERS
-		 * https://www.baeldung.com/spring-security-expressions */
-		http.authorizeRequests()
-		.antMatchers("/*").permitAll()
-		.antMatchers("/admin").hasRole("ADMIN")
-		.antMatchers("/user").hasRole("USER")
-		.and()
-		.formLogin();		
+	protected void configure(HttpSecurity http) throws Exception {					 
+			/* URL con información sobre ANT MATCHERS
+			 * https://www.baeldung.com/spring-security-expressions */
+			http
+			.csrf().disable()//logout con get
+			.authorizeRequests()
+			.antMatchers("/*").permitAll()
+			.antMatchers("/admin").hasRole("ADMIN")
+			.antMatchers("/user").hasRole("USER")
+			.and()
+			.formLogin()
+				.loginPage("/login-user")
+				.loginProcessingUrl("/perform_login")
+				.defaultSuccessUrl("/", true)
+				.failureUrl("/login-user?error=true")
+				.and()
+				.logout()
+				.logoutUrl("/perform_logout")
+				.deleteCookies("JSESSIONID")
+				.logoutSuccessUrl("/");
 	}
 	
-	/*
-	 * ESTABLECEMOS EL PASSWORD ENCODER. FUERZA 15 (de 4 a 31)
-	 */
 	@Bean
     public PasswordEncoder getPasswordEncoder() {         
 		return new BCryptPasswordEncoder(15);

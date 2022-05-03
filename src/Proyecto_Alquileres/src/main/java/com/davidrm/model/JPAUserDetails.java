@@ -14,19 +14,16 @@ public class JPAUserDetails implements UserDetails{
 	private boolean activo;
 	private List<GrantedAuthority> authorities;
 	
-	public JPAUserDetails(Usuario usuario) {
-		
-		this.usuario = usuario.getNombre();
+	public JPAUserDetails(Usuario usuario) {		
+		this.usuario = usuario.getEmail();
 		this.password = usuario.getPassword();
 		this.activo = usuario.isActivo();
 		this.authorities = new ArrayList<>();				
-		this.authorities.add(new SimpleGrantedAuthority(usuario.getRole()));
-		
+		this.authorities.add(new SimpleGrantedAuthority(usuario.getRole()));		
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
+	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		return this.authorities;
 	}
 
@@ -59,7 +56,5 @@ public class JPAUserDetails implements UserDetails{
 	public boolean isEnabled() {
 		return this.activo;
 	}	
-	
-
-	
+		
 }

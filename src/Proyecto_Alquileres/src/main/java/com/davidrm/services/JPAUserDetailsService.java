@@ -18,21 +18,12 @@ public class JPAUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		//Obtengo el usuario
 		Usuario user = usuarioSer.findUsuarioByEmail(username);
-		
-		
-		//Si el usuario no existe debo devolver una excepción
-		if (user == null) {
-			throw new UsernameNotFoundException("Not found:"+ username);
-		}
-		
-		//Adapto la información del usuario al UserDetails que es lo que debe devolver el método
-		JPAUserDetails userDetails = new JPAUserDetails(user);
-		return userDetails;
-		
-	}
 
+		if (user == null) throw new UsernameNotFoundException("Not found:"+ username);
+		
+		JPAUserDetails userDetails = new JPAUserDetails(user);
+		return userDetails;		
+	}
 
 }
