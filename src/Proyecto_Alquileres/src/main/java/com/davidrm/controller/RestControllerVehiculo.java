@@ -31,6 +31,58 @@ public class RestControllerVehiculo {
 	
 	@Autowired
 	private VehiculoService vehiculoSer;
+	
+	@GetMapping("/estado-vehiculos")
+	public ResponseEntity<?> estadoVehiculo(Model model){			
+		Map<String, Integer> respuesta = new HashMap<>();
+		Integer disponible = 0;
+		Integer alquilado = 0;
+		Integer revision = 0;
+		Integer averiado = 0;
+		
+		List<Vehiculo> vehiculos = vehiculoSer.getAllVehiculos();
+		
+		for ( Vehiculo v: vehiculos) {
+			if (v.getEstado().equalsIgnoreCase("Disponible")) disponible++;
+			
+			if (v.getEstado().equalsIgnoreCase("Alquilado")) alquilado++;
+			
+			if (v.getEstado().equalsIgnoreCase("Revisión")) revision++;
+			
+			if (v.getEstado().equalsIgnoreCase("Averiado")) averiado++;
+		}
+		
+		respuesta.put("disponible", disponible);
+		respuesta.put("alquilado", alquilado);
+		respuesta.put("revision", revision);
+		respuesta.put("averiado", averiado);
+				
+		return new ResponseEntity(respuesta, HttpStatus.OK);	
+	}
+	
+	@GetMapping("/tipos-vehiculo")
+	public ResponseEntity<?> tiposVehiculo(Model model){			
+		Map<String, Integer> respuesta = new HashMap<>();
+		Integer mono = 0;
+		Integer furgo = 0;
+		Integer mini = 0;
+		
+		List<Vehiculo> vehiculos = vehiculoSer.getAllVehiculos();
+		
+		for ( Vehiculo v: vehiculos) {
+			if (v.getTipo().equalsIgnoreCase("monovolumen")) mono++;
+			
+			if (v.getTipo().equalsIgnoreCase("Furgoneta")) furgo++;
+			
+			if (v.getTipo().equalsIgnoreCase("Mini Camión")) mini++;
+		}
+		
+		respuesta.put("miniCamion", mini);
+		respuesta.put("furgoneta", furgo);
+		respuesta.put("monovolumen", mono);
+				
+		return new ResponseEntity(respuesta, HttpStatus.OK);	
+	}
 
 	@GetMapping("/vehiculos")
 	public ResponseEntity<?> vehiculoList(Model model){
@@ -46,7 +98,7 @@ public class RestControllerVehiculo {
 	}
 	
 	@GetMapping("/vehiculo/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id) {	
+	public ResponseEntity<?> getVehiculo(@PathVariable Long id) {	
 		Vehiculo vehiculo = null;
 		Map<String, Object> response = new HashMap<>();
 		
@@ -67,7 +119,7 @@ public class RestControllerVehiculo {
 	}
 	
 	@PostMapping("/vehiculo-add")
-	public ResponseEntity<?> create(@RequestBody VehiculoDTO vehiculo) {
+	public ResponseEntity<?> createVehiculo(@RequestBody VehiculoDTO vehiculo) {
 		Map<String, Object> response = new HashMap<>();
 		
 		if(vehiculo == null) {
@@ -91,7 +143,7 @@ public class RestControllerVehiculo {
 	}
 	
 	@PutMapping("/vehiculo-edit/{id}")
-	public ResponseEntity<?> update(@RequestBody VehiculoDTO vehiculo, @PathVariable Long id) {
+	public ResponseEntity<?> updateVehiculo(@RequestBody VehiculoDTO vehiculo, @PathVariable Long id) {
 		Vehiculo vehiculoActual = vehiculoSer.findVehiculoById(id);
 
 		VehiculoDTO vreturn = null;
@@ -117,7 +169,7 @@ public class RestControllerVehiculo {
 	}
 	
 	@DeleteMapping("/vehiculo-delete/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {	
+	public ResponseEntity<?> deleteVehiculo(@PathVariable Long id) {	
 		Map<String, Object> response = new HashMap<>();
 		
 		Vehiculo vehiculo = vehiculoSer.findVehiculoById(id);

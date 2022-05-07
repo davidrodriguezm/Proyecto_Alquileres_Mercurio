@@ -23,13 +23,8 @@ public class VehiculoService {
 		return vehiculoRepo.findAll(); 	
 	}
 	
-	public Vehiculo findVehiculoByMatricula(String matricula) {		
-		return vehiculoRepo.findByMatricula(matricula).orElse(null);
-	}
-	
 	public Vehiculo insertarVehiculo(Vehiculo vehiculo) {
 		if (vehiculo != null && findVehiculoByMatricula(vehiculo.getMatricula()) == null)
-//		if (vehiculo != null)
 			return vehiculoRepo.save(vehiculo);			
 		else
 			return null;
@@ -48,6 +43,14 @@ public class VehiculoService {
 			return true;
 		} else
 			return false;
+	}
+	
+	public Vehiculo findVehiculoByMatricula(String matricula) {		
+		return vehiculoRepo.findByMatricula(matricula).orElse(null);
+	}
+	
+	public List<Vehiculo> findVehiculosByTipo(String tipo) {		
+		return vehiculoRepo.findByTipo(tipo).orElse(null);
 	}
 
 }

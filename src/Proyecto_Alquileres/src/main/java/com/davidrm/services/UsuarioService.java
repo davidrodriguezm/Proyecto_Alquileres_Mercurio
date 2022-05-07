@@ -33,7 +33,6 @@ public class UsuarioService {
 	
 	public Usuario insertarUsuario(Usuario usuario) {
 		if (usuario != null && findUsuarioByDni(usuario.getDni()) == null && findUsuarioByEmail(usuario.getEmail()) == null)
-//		if (usuario != null)
 			return usuarioRepo.save(usuario);			
 		else
 			return null;

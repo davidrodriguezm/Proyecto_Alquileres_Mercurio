@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <script defer type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script defer src="/js/estadisticas.js"></script>
 <title>Inicio</title>
 </head>
 <body>
 	<header th:insert="fragments/parts::menu"></header><br>
 	<h1>Hola <span sec:authentication="name"></span></h1>
 	<h1>Bienvenido elige una operación a realizar en el menú</h1>
+	<br><br>
+	<h3>Elige un tipo de Vehículo</h3>
+	<ul>
+		<li><a th:href="@{/vehiculos?tipo=Monovolumen}">Monovolumen</a></li>
+		<li><a th:href="@{/vehiculos?tipo=Furgoneta}">Furgoneta</a></li>
+		<li><a th:href="@{|/vehiculos?tipo=Mini Camión|}">Mini Camión</a></li>	
+	</ul>
+    <br><br>
+    <div id="piechart" style="width: 600px; height: 400px;"></div>
+    <div id="donutchart" style="width: 600px; height: 400px;"></div>
+	
 
 </body>
 </html>
