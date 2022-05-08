@@ -1,7 +1,7 @@
 <nav th:fragment="menu">
 	<ul style="list-style: none; Display: flex;">
 		<li style="margin-left: 15px;"><a th:href="@{/}">Inicio</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/usuarios}">Lista de Usuario</a></li>
+		<li style="margin-left: 15px;"><a th:href="@{/usuarios}">Lista de Usuarios</a></li>
 		<li style="margin-left: 15px;"><a th:href="@{/usuario-add}">Añade un Usuario</a></li>
 		<li style="margin-left: 15px;"><a th:href="@{/vehiculos}">Lista de Vehiculos</a></li>
 		<li style="margin-left: 15px;"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></li>
@@ -11,7 +11,90 @@
 			<a class="nav-link text-white" th:href="@{/login-user}">Login</a>
 		</li>
 		<li style="margin-left: 15px;" sec:authorize="isAuthenticated()" class="nav-item">
-			<a class="nav-link text-white" th:href="@{/perform_logout}">logout</a>
+			<a class="nav-link text-white" th:href="@{/logout-user}">Logout</a>
 		</li>
 	</ul>
 </nav>
+
+<header th:fragment="header">
+	<a th:href="@{/}"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a>   
+    <nav>
+    	<h2 class="enlace">
+        	<a th:href="@{/vehiculos}">Vehículos</a>
+        </h2>
+        <h2 class="enlace">
+        	<a th:href="@{/alquileres}">Alquileres</a>
+        </h2>
+        <h2 class="enlace">
+        	<a th:href="@{/usuarios}">Usuarios</a>
+        </h2>
+		<h2 class="enlace">
+        	<a th:href="@{/usuario-add}">Registrarse</a>
+        </h2>
+		<h2 class="enlace" sec:authorize="!isAuthenticated()">
+        	<a th:href="@{/login-user}">Login</a>
+        </h2>
+        <h2 class="enlace" sec:authorize="isAuthenticated()">
+        	<a th:href="@{/logout-user}">Logout</a>
+        </h2>
+	</nav>
+</header>
+
+<section class="portada" th:fragment="portada">
+	<h1>Tu transporte de confianza<br>a un precio accesible</h1>
+	<img src="/img/coche1.jpg" class="normal" alt="Portada">
+	<img src="/img/coche1_2.jpg" class="reducida" alt="Portada">
+</section>
+
+<aside th:fragment="aside">
+	<section>
+		<article class="ofertas bloque">
+			<h2 class="resaltado" >Ofertas:</h2>
+			<p>Alquile coche una semana por solo 150 €.</p>
+			<p>Plan especializado para empresas con descuentos de asta 35 %.</p>
+			<p>Alquile 3 vehículos por mes con 20 % de descuento.</p>
+			<p>Llévese un mini camión para una mudanza 2 días por 60 €.</p>
+		</article>
+		<article class="info bloque">
+			<h2 class="resaltado" >Reservas Online:</h2>
+			<p>
+				En cualquier momento, desde cualquier lugar, tendrás acceso al catálogo completo de vehículos, 
+				con confirmación de disponibilidad y con <b>promociones exclusivas</b> en todos nuestros vehículos, 
+				en especial el alquiler de furgonetas.
+			</p>
+		</article>
+		<article class="info bloque">
+			<h2 class="resaltado" >Alquiler flexible:</h2>
+				<p>
+					Para <b>1 día</b> o para períodos <b>superiores a los 30 días</b>, nos adaptamos a ti. 
+					La mejor elección para una escapada de fin de semana, un viaje de largo 
+					distancia o un traslado temporal en tu puesto de trabajo.
+				</p>
+		</article>
+		<article class="info bloque">
+			<h2 class="resaltado" >Movilidad para tu negocio:</h2>
+			<p>
+				Una amplia oferta de vehículos industriales y de transporte de mercancías: <b>furgonetas</b>, <b>furgones abiertos</b>, 
+				<b>mini camiones</b> y <b>coches</b>. Te ofrece mos lo que tu negocio necesita con la experiencia más de 
+				20 años de especialización en el sector del transporte por carretera.
+			</p>
+		</article>	
+	</section>
+</aside>
+
+<footer th:fragment="footer">
+	<article class="contacto">
+		<p> <span class="resaltado" >Teléfono:</span> 999 666 777, +34 666 888 222.</p>
+		<p> <span class="resaltado" >Correo:</span> AlquileresMercurio@hotmail.com.</p>
+		<p>
+			<span class="resaltado" >Punto de recogida:</span> Sevilla, calle León, número 13, 
+			<a href="https://www.google.com/maps/@37.389276,-5.9767151,15.19z" target="_blank">
+			<b>ubicación</b>.</a>
+        </p>
+	</article>
+	<article class="horario">
+		<p><span class="resaltado" >Horario</span> de atención en sede.</p>
+		<p> <span class="resaltado" >De lunes a viernes:</span> 08:00h - 15:30h, 17:00h - 21:30h.</p>
+		<p> <span class="resaltado" >Sábado y domingo:</span> 08:30h - 15:30h, 17:00h - 20:30h.</p>
+	</article> 
+</footer>

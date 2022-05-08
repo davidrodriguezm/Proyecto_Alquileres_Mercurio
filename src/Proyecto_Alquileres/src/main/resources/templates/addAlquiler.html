@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Add Alquiler</title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/img/car-icon.png" />
+    <link rel="stylesheet" href="/css/main.css">
+	<title>Add Alquiler</title>
 </head>
 <body>
-	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{alquiler-add}" th:object="${alquiler}" method="post">
-		<label for="idVehiculo" >Vehiculo</label>
-		<select name="idVehiculo" id="idVehiculo" th:field="*{idVehiculo}" required>
-			<option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula}"></option>
-		</select>
-		<br><br>
-		<label for="idCliente" >Cliente</label>
-		<select name="idCliente" id="idCliente" th:field="*{idCliente}" required>
-			<option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nombre}"></option>
-		</select>
-		<br><br>
-		<label for="fecha_inicio" >Fecha de inicio</label>
-		<input type="date" id="fecha_inicio" name="fecha_inicio" th:field="*{fecha_inicio}" required>
-		<br><br>
-		<label for="fecha_fin" >Fecha de fin</label>
-		<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}" required>
-		<br><br>
-		<label for="pago">Pago</label>
-		<input type="number"  id="pago" name="pago" th:field="*{pago}" step="0.01" required >
-		<br><br>
-		<label for="comentario">Comentario</label><br>
-		<textarea th:field="*{comentario}" name="comentario" rows="8" cols="40"></textarea>
-		<br><br>
-		<label for="estado" >Estado</label>
-		<select name="idCliente" id="estado" th:field="*{estado}" required>
-			<option  th:value="Reserva" th:text="Reserva"></option>
-			<option  th:value="Iniciado" th:text="Iniciado"></option>
-		</select>
-		<br><br>
-		<input type="submit" class="" value="ENVIAR" />
-	</form>
-
+	<header th:replace="fragments/parts::header"></header>	
+	<section th:replace="fragments/parts::portada"></section>	
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>
+		<main>
+			<form action="#" th:action="@{alquiler-add}" th:object="${alquiler}" method="post">
+				<label for="idVehiculo" >Vehiculo</label>
+				<select name="idVehiculo" id="idVehiculo" th:field="*{idVehiculo}" required>
+					<option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula}"></option>
+				</select>
+				<br><br>
+				<label for="idCliente" >Cliente</label>
+				<select name="idCliente" id="idCliente" th:field="*{idCliente}" required>
+				<option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nombre}"></option>
+				</select>
+				<br><br>
+				<label for="fecha_inicio" >Fecha de inicio</label>
+				<input type="date" id="fecha_inicio" name="fecha_inicio" th:field="*{fecha_inicio}" required>
+				<br><br>
+				<label for="fecha_fin" >Fecha de fin</label>
+				<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}" required>
+				<br><br>
+				<label for="pago">Pago</label>
+				<input type="number"  id="pago" name="pago" th:field="*{pago}" step="0.01" required >
+				<br><br>
+				<label for="comentario">Comentario</label><br>
+				<textarea th:field="*{comentario}" name="comentario" rows="8" cols="40"></textarea>
+				<br><br>
+				<label for="estado" >Estado</label>
+				<select name="idCliente" id="estado" th:field="*{estado}" required>
+					<option  th:value="Reserva" th:text="Reserva"></option>
+					<option  th:value="Iniciado" th:text="Iniciado"></option>
+				</select>
+				<br><br>
+				<input type="submit" class="" value="ENVIAR" />
+			</form>
+		</main> 
+	</div>	
+	<footer th:replace="fragments/parts::footer"></footer>
 </body>
 </html>

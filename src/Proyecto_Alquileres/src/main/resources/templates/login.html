@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<link rel="stylesheet" href="/css/main.css">
+	<title>Login</title>
 </head>
 <body>
-	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{/perform_login}" method="post">
-		<label for="username" >Email</label>
-		<input type="email"  id="username" name="username" required>
-		<br><br>
-		<label for="password" >Contraseña</label>
-		<input type="text"  id="password" name="password" required>
-		<br><br>
-		<input type="submit" class="" value="ENVIAR" />
-	</form>
-
+	<header th:replace="fragments/parts::header"></header>
+	<section th:replace="fragments/parts::portada"></section>
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>
+		<main>
+			<form action="#" th:action="@{/perform_login}" method="post">
+				<label for="username">Email</label>
+				<input type="email" id="username" name="username" required>
+				<br><br>
+				<label for="password">Contraseña</label>
+				<input type="text" id="password" name="password" required>
+				<br><br>
+				<input type="submit" class="" value="ENVIAR" />
+			</form>
+		</main>
+	</div>
+	<footer th:replace="fragments/parts::footer"></footer>
 </body>
 </html>

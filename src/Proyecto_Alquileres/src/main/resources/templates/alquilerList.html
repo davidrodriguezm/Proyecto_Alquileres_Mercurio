@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Lista Alquileres</title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<link rel="stylesheet" href="/css/main.css">
+	<title>Lista Alquileres</title>
 </head>
 <body>
-	<header th:insert="fragments/parts::menu"></header><br>
-	<table class="">
-		<thead class="">
-			<tr>
-				<th>ID</th>
-				<th>Cliente</th>
-				<th>Vehiculo</th>
-				<th>Fecha de inicio</th>
-				<th>Fecha de fin</th>
-				<th>Pago</th>
-				<th>Comentario</th>
-				<th>Estado</th>
-				<th>editar</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="a : ${alquileres}">
-				<td th:text="${a.id}"></td>
-				<td th:text="${a.cliente.nombre}"></td>
-				<td th:text="${a.vehiculo.matricula}"></td>
-				<td th:text="${a.getInicioFormato()}"></td>
-				<td th:text="${a.getFinFormato()}"></td>
-				<td th:text="${a.pago}"></td>
-				<td th:text="${a.comentario}"></td>
-				<td th:text="${a.estado}"></td>
-				<td><a th:href="@{|/alquiler-edit?id=${a.id}|}">Ir</a></td>
-			</tr>
-		</tbody>
-	</table>
-
+	<header th:replace="fragments/parts::header"></header>
+	<section th:replace="fragments/parts::portada"></section>
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>
+		<main>
+			<h1>
+				<a th:href="@{/alquiler-add}">Añade un Alquiler</a>
+			</h1>
+			<table class="">
+				<thead class="">
+					<tr>
+						<th>ID</th>
+						<th>Cliente</th>
+						<th>Vehiculo</th>
+						<th>Fecha de inicio</th>
+						<th>Fecha de fin</th>
+						<th>Pago</th>
+						<th>Comentario</th>
+						<th>Estado</th>
+						<th>editar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="a : ${alquileres}">
+						<td th:text="${a.id}"></td>
+						<td th:text="${a.cliente.nombre}"></td>
+						<td th:text="${a.vehiculo.matricula}"></td>
+						<td th:text="${a.getInicioFormato()}"></td>
+						<td th:text="${a.getFinFormato()}"></td>
+						<td th:text="${a.pago}"></td>
+						<td th:text="${a.comentario}"></td>
+						<td th:text="${a.estado}"></td>
+						<td><a th:href="@{|/alquiler-edit?id=${a.id}|}">Ir</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+	</div>
+	<footer th:replace="fragments/parts::footer"></footer>
 </body>
 </html>

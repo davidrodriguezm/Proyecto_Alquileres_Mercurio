@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Add Vehiculo</title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<link rel="stylesheet" href="/css/main.css">
+	<title>Editar Vehiculo</title>
 </head>
 <body>
-	<header th:insert="fragments/parts::menu"></header><br>
-	<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post">
-		<label for="id">Id</label>
-		<input type="number" id="id" name="id" th:field="*{id}" readonly required>
-		<br><br>
-		<label for="estado" >Estado</label>
-		<select name="estado" id="estado" th:field="*{estado}" required>
-			<option th:value="disponible" >Disponible</option>
-			<option th:value="Alquilado" >Alquilado</option>
-			<option th:value="Averiado" >Averiado</option>			
-			<option th:value="Revision" >Revisión</option>
-		</select>
-		<br><br>
-		<input type="submit" class="" value="ENVIAR" />
-	</form>
-
+	<header th:replace="fragments/parts::header"></header>
+	<section th:replace="fragments/parts::portada"></section>
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>
+		<main>
+			<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post">
+				<label for="id">Id</label>
+				<input type="number" id="id" name="id" th:field="*{id}" readonly required>
+				<br><br>
+				<label for="estado">Estado</label>
+				<select name="estado" id="estado" th:field="*{estado}" required>
+					<option th:value="disponible">Disponible</option>
+					<option th:value="Alquilado">Alquilado</option>
+					<option th:value="Averiado">Averiado</option>
+					<option th:value="Revision">Revisión</option>
+				</select>
+				<br><br>
+				<input type="submit" class="" value="ENVIAR" />
+			</form>
+		</main>
+	</div>
+	<footer th:replace="fragments/parts::footer"></footer>
+</body>
 </body>
 </html>
