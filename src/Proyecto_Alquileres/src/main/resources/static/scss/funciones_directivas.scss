@@ -1,0 +1,29 @@
+//// @access public
+//// @author DavidRM
+
+/// Calcula la anchura de los elementos y reduciendo un en un 10% el resultado
+/// @parameter {integer} $num_col Número de columnas
+/// @return {integer} Porcentaje de devolución
+/// @group funciones
+@function calcularAnchura($num_col) {
+    @return floor( ( 100 / $num_col ) * 0.9 );
+}
+
+@for $i from 1 through 5 {
+
+    @if $i == 1 {
+        article.ofertas :nth-child(#{$i}) {
+            margin-bottom: 25px;
+        }
+
+    } @else if $i == 5 {
+        article.ofertas :nth-child(#{$i}) {
+            margin-bottom: 15px;
+        }
+
+    } @else {
+        article.ofertas :nth-child(#{$i}) {
+            margin-bottom: 35px;
+        }
+    }
+}

@@ -1,20 +1,20 @@
-<nav th:fragment="menu">
-	<ul style="list-style: none; Display: flex;">
-		<li style="margin-left: 15px;"><a th:href="@{/}">Inicio</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/usuarios}">Lista de Usuarios</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/usuario-add}">Añade un Usuario</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/vehiculos}">Lista de Vehiculos</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/alquileres}">Lista de Alquileres</a></li>
-		<li style="margin-left: 15px;"><a th:href="@{/alquiler-add}">Añade un Alquiler</a></li>
-		<li style="margin-left: 15px;" sec:authorize="!isAuthenticated()" class="nav-item">
-			<a class="nav-link text-white" th:href="@{/login-user}">Login</a>
-		</li>
-		<li style="margin-left: 15px;" sec:authorize="isAuthenticated()" class="nav-item">
-			<a class="nav-link text-white" th:href="@{/logout-user}">Logout</a>
-		</li>
-	</ul>
-</nav>
+<!-- <nav th:fragment="menu"> -->
+<!-- 	<ul style="list-style: none; Display: flex;"> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/}">Inicio</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/usuarios}">Lista de Usuarios</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/usuario-add}">Añade un Usuario</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/vehiculos}">Lista de Vehiculos</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/alquileres}">Lista de Alquileres</a></li> -->
+<!-- 		<li style="margin-left: 15px;"><a th:href="@{/alquiler-add}">Añade un Alquiler</a></li> -->
+<!-- 		<li style="margin-left: 15px;" sec:authorize="!isAuthenticated()" class="nav-item"> -->
+<!-- 			<a class="nav-link text-white" th:href="@{/login-user}">Login</a> -->
+<!-- 		</li> -->
+<!-- 		<li style="margin-left: 15px;" sec:authorize="isAuthenticated()" class="nav-item"> -->
+<!-- 			<a class="nav-link text-white" th:href="@{/logout-user}">Logout</a> -->
+<!-- 		</li> -->
+<!-- 	</ul> -->
+<!-- </nav> -->
 
 <header th:fragment="header">
 	<a th:href="@{/}"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a>   
@@ -71,14 +71,14 @@
 					distancia o un traslado temporal en tu puesto de trabajo.
 				</p>
 		</article>
-		<article class="info bloque">
-			<h2 class="resaltado" >Movilidad para tu negocio:</h2>
-			<p>
-				Una amplia oferta de vehículos industriales y de transporte de mercancías: <b>furgonetas</b>, <b>furgones abiertos</b>, 
-				<b>mini camiones</b> y <b>coches</b>. Te ofrece mos lo que tu negocio necesita con la experiencia más de 
-				20 años de especialización en el sector del transporte por carretera.
-			</p>
-		</article>	
+<!-- 		<article class="info bloque"> -->
+<!-- 			<h2 class="resaltado" >Movilidad para tu negocio:</h2> -->
+<!-- 			<p> -->
+<!-- 				Una amplia oferta de vehículos industriales y de transporte de mercancías: <b>furgonetas</b>, <b>furgones abiertos</b>,  -->
+<!-- 				<b>mini camiones</b> y <b>coches</b>. Te ofrece mos lo que tu negocio necesita con la experiencia más de  -->
+<!-- 				20 años de especialización en el sector del transporte por carretera. -->
+<!-- 			</p> -->
+<!-- 		</article>	 -->
 	</section>
 </aside>
 

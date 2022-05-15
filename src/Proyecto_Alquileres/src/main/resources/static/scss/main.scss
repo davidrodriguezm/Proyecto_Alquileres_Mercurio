@@ -1,0 +1,102 @@
+@import "base.scss";
+
+article.vehiculo {
+    @include alinear;
+    width: $todo;
+    margin-top: 25px;
+
+    div.datos,
+    img {
+        width: #{calcularAnchura(2)}+'%';
+    }
+
+    div.datos {
+        @include alinear;
+        padding: 1rem;
+
+        h3,
+        h2,
+        p {
+            width: $todo;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+    }
+
+    img {
+        padding: 1.1rem;
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+    }
+}
+
+div.configura {
+    @include alinear_centrado;
+    margin: 30px auto;
+    width: 95%;
+    padding: 1.1rem;
+
+    h1 {
+        margin: 20px;
+        font-size: 2rem;
+    }
+}
+
+div.busquedas {
+    @include alinear_centrado;
+    margin-top: 15px;
+
+    div.caja {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 15px;
+        
+        img {
+            width: 120px; 
+            height: 90px;
+            border-radius: 10px;
+            margin: 15px;
+        }
+    }
+}
+
+@media screen and (min-width: $mediano) {
+    div.datos {
+        h2 {
+            font-size: 2.3rem !important;
+        }
+
+        h3 {
+            font-size: 1.5rem !important;
+        }
+    }
+
+    div.configura {
+        width: 90%;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: $grande) {
+    div.configura {
+        width: 85%;
+    }
+
+    div.busquedas {
+        flex-wrap: nowrap !important;
+    }
+}

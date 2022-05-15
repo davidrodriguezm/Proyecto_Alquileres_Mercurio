@@ -1,0 +1,231 @@
+@import "variables_mixins.scss";
+@import "funciones_directivas.scss";
+
+/* Animacion de iluminazion */
+@keyframes ilimina_animado {
+    0% {
+        box-shadow: 0 0px 10px 0 $iluminar, 0 0px 10px 0 $iluminar;
+    }
+
+    34% {
+        box-shadow: 0 0px 20px 0 $iluminar, 0 0px 20px 0 $iluminar;
+    }
+
+    68% {
+        box-shadow: 0 0px 30px 0 $iluminar, 0 0px 30px 0 $iluminar;
+    }
+
+    100% {
+        box-shadow: 0 0px 12px 0 $iluminar, 0 0px 12px 0 $iluminar;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Lucida Sans';
+}
+
+/* Cambios en el scroll */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: $negro;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $resaltado_btn;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $iluminar_scroll;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+p a:hover {
+    text-shadow: 0 0 5px $iluminar;
+}
+
+.enlace:hover {
+    text-shadow: 0 0 10px $iluminar;
+}
+
+body {
+    background-color: $fondo;
+}
+
+header {
+    @include tema;
+    @include alinear_separado;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    .logotipo {
+        width: 16rem;
+        height: 6.5rem;
+        margin-left: 10px;
+    }
+
+    nav {
+        @include alinear_separado;
+
+        h2 {
+            font-size: 1.3rem;
+            margin: 15px;
+        }
+    }
+}
+
+section.portada {
+    position: relative;
+
+    img {
+        width: $todo;
+    }
+
+    img.normal {
+        display: none;
+    }
+
+    h1 {
+        position: absolute;
+        color: $blanco;
+        font-weight: bold;
+        display: none;
+    }
+}
+
+div.contenido {
+    @include alinear;
+    width: $todo;
+    padding: 1rem;
+
+    main {
+        width: $todo;
+    }
+
+    aside {
+        display: none;
+
+        article {
+            padding: 1.1rem;
+            margin-top: 25px;
+
+            h2 {
+                border-bottom: 3px solid $resaltado;
+                padding-bottom: 5px;
+                font-size: 2rem;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    article.info {
+        :nth-child(1) {
+            margin-bottom: 25px;
+        }
+
+        :nth-last-child(1) {
+            margin-bottom: 15px;
+        }
+
+    } 
+
+    .bloque {
+        @include tema;
+        box-shadow: 0 10px 10px 0 $negro, 0 10px 10px 0 $negro;
+        border-radius: 14px;
+        -webkit-border-radius: 14px;
+        -moz-border-radius: 14px;
+        -ms-border-radius: 14px;
+        -o-border-radius: 14px;
+    }
+
+    .bloque:hover {
+        animation: ilimina_animado 3s infinite;
+        -webkit-animation: ilimina_animado 3s infinite;
+    }
+
+}
+
+footer {
+    @include alinear_separado;
+    @include tema;
+    margin-top: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    article {
+        margin: 20px;
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media screen and (min-width: $mediano) {
+    section.portada {
+        img.normal {
+            display: block;
+        }
+
+        img.reducida {
+            display: none;
+        }
+
+        h1 {
+            display: block;
+            left: 30px;
+            top: 50px;
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media screen and (min-width: $grande) {
+    section.portada h1 {
+        left: 60px;
+        top: 80px;
+        font-size: 2rem;
+    }
+
+    div.contenido {
+        aside {
+            display: block;
+            width: 25%;
+        }
+
+        main {
+            width: 65%;
+        }
+    }
+}

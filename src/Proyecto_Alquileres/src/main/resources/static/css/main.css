@@ -108,10 +108,10 @@ header a {
 header .resaltado {
   color: #ff9a3c;
 }
-header h1 {
-  margin: 20px;
-  font-size: 2.5rem;
-  display: flex;
+header .logotipo {
+  width: 16rem;
+  height: 6.5rem;
+  margin-left: 10px;
 }
 header nav {
   display: flex;
@@ -122,11 +122,6 @@ header nav {
 header nav h2 {
   font-size: 1.3rem;
   margin: 15px;
-}
-
-.logotipo {
-  width: 16rem;
-  height: 6rem;
 }
 
 section.portada {
@@ -251,7 +246,7 @@ footer article a:hover {
     width: 65%;
   }
 }
-article.permiso {
+article.vehiculo {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
@@ -259,29 +254,29 @@ article.permiso {
   width: 100%;
   margin-top: 25px;
 }
-article.permiso div.datos,
-article.permiso img {
+article.vehiculo div.datos,
+article.vehiculo img {
   width: 45%;
 }
-article.permiso div.datos {
+article.vehiculo div.datos {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: space-around;
   padding: 1rem;
 }
-article.permiso div.datos h3,
-article.permiso div.datos h2,
-article.permiso div.datos p {
+article.vehiculo div.datos h3,
+article.vehiculo div.datos h2,
+article.vehiculo div.datos p {
   width: 100%;
 }
-article.permiso div.datos h2 {
+article.vehiculo div.datos h2 {
   font-size: 1.8rem;
 }
-article.permiso div.datos h3 {
+article.vehiculo div.datos h3 {
   font-size: 1.3rem;
 }
-article.permiso img {
+article.vehiculo img {
   padding: 1.1rem;
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -290,12 +285,63 @@ article.permiso img {
   -o-border-radius: 30px;
 }
 
+div.configura {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 30px auto;
+  width: 95%;
+  padding: 1.1rem;
+}
+div.configura h1 {
+  margin: 20px;
+  font-size: 2rem;
+}
+
+div.busquedas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+div.busquedas div.caja {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 15px;
+}
+div.busquedas div.caja img {
+  width: 120px;
+  height: 90px;
+  border-radius: 10px;
+  margin: 15px;
+}
+
 @media screen and (min-width: 576px) {
   div.datos h2 {
     font-size: 2.3rem !important;
   }
   div.datos h3 {
     font-size: 1.5rem !important;
+  }
+
+  div.configura {
+    width: 90%;
+  }
+  div.configura h1 {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  div.configura {
+    width: 85%;
+  }
+
+  div.busquedas {
+    flex-wrap: nowrap !important;
   }
 }
 

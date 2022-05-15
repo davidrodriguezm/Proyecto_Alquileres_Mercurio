@@ -12,36 +12,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.davidrm.services.JPAUserDetailsService;
 
-/*
- * CLASE DONDE ESTABLECEREMOS LA CONFIGURACION DE
- * AUTENTIFICACION - CÓMO ACCEDO
- * AUTORIZACION - A QUÉ PUEDO ACCEDER
- * MÉTODO DE ENCRIPTACIÓN DE LAS CONTRASEÑAS
- */
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	/* Obtengo una refencia al SINGLENTON del userDetailsService	 * 
-	 */
+
 	@Autowired
 	JPAUserDetailsService userDetailsService;
 	
-	/* MÉTODO PARA AUTENTIFICAR LOS USUARIOS */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//La autentificación JPA no está incluido tenemos que configurarla nosotros
-		//Creando nuestro propio servicio que nos permita obtener la información del usuario
 		auth.userDetailsService(userDetailsService);
 	}
 
-	/*
-	 * MÉTODO PARA ESTABLECER AUTORIZACION - A QUÉ PUEDO ACCEDER
-	 */
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {					 
-			/* URL con información sobre ANT MATCHERS
-			 * https://www.baeldung.com/spring-security-expressions */
+	protected void configure(HttpSecurity http) throws Exception {
 			http
 			.csrf().disable()//logout con get
 			.authorizeRequests()

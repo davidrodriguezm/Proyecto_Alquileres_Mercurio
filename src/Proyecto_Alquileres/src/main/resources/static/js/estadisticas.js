@@ -56,3 +56,5 @@ function donutchart(jsonData) {
 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 	chart.draw(data, options);
 };
+
+document.getElementById("actualizar-datos").addEventListener("click", drawChart);

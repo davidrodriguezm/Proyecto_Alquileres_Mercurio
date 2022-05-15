@@ -1,0 +1,68 @@
+@import "base.scss";
+
+form {
+    @include alinear;
+    margin: 30px auto;
+    width: 95%;
+    padding: 1.1rem;
+
+    label {
+        width: 40%;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    input {
+        width: 55%;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        margin-left: 10px;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+}
+
+    input:focus {
+        border-color: $iluminar;
+    }
+
+    button {
+        width: 35%;
+        background-color: $resaltado_btn;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        font-size: 1.8rem;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+
+    button:hover {
+        background-color: $iluminar_scroll;
+    }
+
+    h2 {
+        width: 100%;
+        font-size: 2rem;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: $mediano) {
+    form {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: $grande) {
+    form {
+        width: 65%;
+    }
+}
