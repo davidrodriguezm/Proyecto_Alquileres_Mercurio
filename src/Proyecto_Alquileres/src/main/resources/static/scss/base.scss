@@ -22,7 +22,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Lucida Sans';
+    font-family: 'Lucida Sans' !important;
 }
 
 /* Cambios en el scroll */
@@ -126,7 +126,13 @@ div.contenido {
     padding: 1rem;
 
     main {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
         width: $todo;
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
     aside {

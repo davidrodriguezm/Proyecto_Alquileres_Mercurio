@@ -29,8 +29,8 @@ function piechart(jsonData) {
 
 	var options = { 
 		title: 'Tipos de Vehículos de la flota', 
-		width: 600, 
-		height: 400 
+		width: 500, 
+		height: 300
 	};
 	
 	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -49,8 +49,8 @@ function donutchart(jsonData) {
 	var options = { 
 		title: 'Estado de Vehículos en la flota', 
 		pieHole: 0.4,
-		width: 600, 
-		height: 400 
+		width: 500, 
+		height: 300
 	};
 		
 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));

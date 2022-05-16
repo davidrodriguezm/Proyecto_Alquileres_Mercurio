@@ -12,7 +12,7 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
-			<form action="#" th:action="@{alquiler-cliente-add}" th:object="${alquilerDTO}" method="post">
+			<form action="#" th:action="@{alquiler-cliente-add}" th:object="${alquilerDTO}" method="post" class="formulario bloque">
 				<label for="idCliente" >Cliente</label>
 				<input type="number" id="idCliente" name="idCliente" th:field="*{idCliente}" readonly required>
 				<br><br>
@@ -25,7 +25,7 @@
 				<label for="fecha_fin" >Fecha de fin</label>
 				<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}" required>
 				<br><br>
-				<input type="submit" class="" value="ENVIAR" />
+				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main>   	
 	</div>	

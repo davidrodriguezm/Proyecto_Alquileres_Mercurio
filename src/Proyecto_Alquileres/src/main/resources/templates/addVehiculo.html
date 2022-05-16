@@ -12,7 +12,7 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>	
 		<main>
-			<form action="#" th:action="@{/vehiculo-add}" th:object="${vehiculo}" method="post">
+			<form action="#" th:action="@{/vehiculo-add}" th:object="${vehiculo}" method="post" class="formulario bloque">
 				<label for="matricula" >Matricula</label> 
 				<input type="text" id="matricula" name="matricula" th:field="*{matricula}" required>
 				<br><br>
@@ -42,7 +42,7 @@
 					<option th:value="Revision" >Revisión</option>
 				</select>
 				<br><br>
-				<input type="submit" class="" value="ENVIAR" />
+				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main>   	
 	</div>	

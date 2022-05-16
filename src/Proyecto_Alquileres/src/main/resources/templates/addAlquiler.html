@@ -12,7 +12,7 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
-			<form action="#" th:action="@{alquiler-add}" th:object="${alquiler}" method="post">
+			<form action="#" th:action="@{alquiler-add}" th:object="${alquiler}" method="post" class="formulario bloque">
 				<label for="idVehiculo" >Vehiculo</label>
 				<select name="idVehiculo" id="idVehiculo" th:field="*{idVehiculo}" required>
 					<option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula}"></option>
@@ -41,7 +41,7 @@
 					<option  th:value="Iniciado" th:text="Iniciado"></option>
 				</select>
 				<br><br>
-				<input type="submit" class="" value="ENVIAR" />
+				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main> 
 	</div>	

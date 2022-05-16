@@ -12,7 +12,7 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>	
 		<main>
-			<form action="#" th:action="@{/usuario-add}" th:object="${usuario}" method="post">
+			<form action="#" th:action="@{/usuario-add}" th:object="${usuario}" method="post" class="formulario bloque">
 				<label for="nombre" >Nombre</label> 
 				<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
 				<br><br>
@@ -28,7 +28,7 @@
 				<label for="password" >Contraseña</label>
 				<input type="text"  id="password" name="password" th:field="*{password}" required>
 				<br><br>
-				<input type="submit" class="" value="ENVIAR" />
+				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main>   	
 	</div>	

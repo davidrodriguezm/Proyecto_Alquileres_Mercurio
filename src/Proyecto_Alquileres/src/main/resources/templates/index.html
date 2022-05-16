@@ -16,33 +16,41 @@
 		<main>
 <!-- 			<h1>Bienvenido <span sec:authentication="name"></span></h1> -->
 <!--     		<br><br> -->
-			<div class="configura bloque">
-				<h1 class="resaltado">Elige un tipo de Vehículo</h1>
-				<div class="busquedas">				
-					<div class="caja" >
-					<h2>Monovolumen</h2>
-						<a th:href="@{/vehiculos?tipo=Monovolumen}">
-							<img src="/img/monovolumen.png" alt="monovolumen">
-						</a>
-					</div>
-					<div class="caja" >
-						<h2>Furgoneta</h2>
-						<a th:href="@{/vehiculos?tipo=Furgoneta}">
-							<img src="/img/furgoneta.png" alt="furgoneta">
-						</a>
-					</div>
-					<div class="caja" >
-						<h2>Mini Camión</h2>
-						<a th:href="@{|/vehiculos?tipo=Mini Camión|}">
-							<img src="/img/miniCamion.png" alt="miniCamion">
-						</a>
-					</div>
-				</div>
-			</div>
+<!-- 			<div class="configura bloque"> -->
+<!-- 				<h1 class="resaltado">Elige un tipo de Vehículo</h1> -->
+<!-- 				<div class="busquedas">				 -->
+<!-- 					<div class="caja" > -->
+<!-- 					<h2>Monovolumen</h2> -->
+<!-- 						<a th:href="@{/vehiculos?tipo=Monovolumen}"> -->
+<!-- 							<img src="/img/monovolumen.png" alt="monovolumen"> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					<div class="caja" > -->
+<!-- 						<h2>Furgoneta</h2> -->
+<!-- 						<a th:href="@{/vehiculos?tipo=Furgoneta}"> -->
+<!-- 							<img src="/img/furgoneta.png" alt="furgoneta"> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					<div class="caja" > -->
+<!-- 						<h2>Mini Camión</h2> -->
+<!-- 						<a th:href="@{|/vehiculos?tipo=Mini Camión|}"> -->
+<!-- 							<img src="/img/miniCamion.png" alt="miniCamion"> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 <!--     		<br><br> -->
-<!--     		<button id="actualizar-datos">Actualizar datos</button> -->
-<!--     		<div id="piechart" style="width: 600px; height: 400px;"></div> -->
-<!--     		<div id="donutchart" style="width: 600px; height: 400px;"></div>		 -->
+			
+			<div class="bloque">
+				<button type="button" id="actualizar-datos" class="boton">Actualizar datos</button>
+			</div>	
+			<div class="configura bloque">
+    			<div id="piechart" class="estadistica"></div>
+    		</div>
+    		
+    		<div class="configura bloque">
+    			<div id="donutchart" class="estadistica"></div> 
+    		</div>		
 		</main>   	
 	</div>	
 	<footer th:replace="fragments/parts::footer"></footer>

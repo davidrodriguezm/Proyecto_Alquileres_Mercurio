@@ -35,7 +35,7 @@ article.ofertas :nth-child(5) {
 }
 * {
   box-sizing: border-box;
-  font-family: "Lucida Sans";
+  font-family: "Lucida Sans" !important;
 }
 
 /* Cambios en el scroll */
@@ -149,7 +149,13 @@ div.contenido {
   padding: 1rem;
 }
 div.contenido main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
   width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 div.contenido aside {
   display: none;
@@ -320,6 +326,69 @@ div.busquedas div.caja img {
   margin: 15px;
 }
 
+form.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  width: 95%;
+  padding: 1.1rem;
+}
+form.formulario label {
+  width: 40%;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+form.formulario input {
+  width: 55%;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+form.formulario input:focus {
+  border-color: #ffc93c;
+}
+form.formulario h2 {
+  width: 100%;
+  font-size: 2rem;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.boton {
+  background-color: #ff6f3c;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  margin: 30px;
+  padding: 10px;
+  font-size: 1.8rem;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.boton:hover {
+  background-color: #ff9a3c;
+}
+
+div.estadistica {
+  width: 400px;
+  height: 400px;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+}
+
 @media screen and (min-width: 576px) {
   div.datos h2 {
     font-size: 2.3rem !important;
@@ -334,9 +403,13 @@ div.busquedas div.caja img {
   div.configura h1 {
     font-size: 2.5rem;
   }
+
+  form.formulario {
+    width: 90%;
+  }
 }
 @media screen and (min-width: 992px) {
-  div.configura {
+  div.configura, form.formulario {
     width: 85%;
   }
 
