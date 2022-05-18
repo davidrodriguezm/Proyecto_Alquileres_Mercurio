@@ -27,10 +27,23 @@ function piechart(jsonData) {
 		['Mini camión', jsonData.miniCamion]
 	]);
 
-	var options = { 
-		title: 'Tipos de Vehículos de la flota', 
-		width: 500, 
-		height: 300
+	var options = {
+		backgroundColor: { fill:'transparent'},
+		legend:'none',
+		width: '100%', 
+		height: '100%',
+		chartArea: {
+            left: "3%",
+            top: "3%",
+            height: "94%",
+            width: "94%"
+        },
+        textStyle: {
+      		fontName: 'Lucida Sans',
+      			fontSize: 18,
+      			bold: true,
+      			color: '#ff9a3c'
+    	}
 	};
 	
 	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -47,10 +60,23 @@ function donutchart(jsonData) {
 	]);
 
 	var options = { 
-		title: 'Estado de Vehículos en la flota', 
 		pieHole: 0.4,
-		width: 500, 
-		height: 300
+		backgroundColor: { fill:'transparent'},
+		legend:'none',
+		width: '100%', 
+		height: '100%',
+		chartArea: {
+            left: "3%",
+            top: "3%",
+            height: "94%",
+            width: "94%"
+        },
+        textStyle: {
+      		fontName: 'Lucida Sans',
+      			fontSize: 18,
+      			bold: true,
+      			color: '#ff9a3c'
+    	}
 	};
 		
 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
