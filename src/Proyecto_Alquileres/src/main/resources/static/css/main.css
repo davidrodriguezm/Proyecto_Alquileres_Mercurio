@@ -97,9 +97,9 @@ header {
   background-color: #155263;
   color: #FFFFFF;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif !important;
 }
 header a {
@@ -115,12 +115,12 @@ header .logotipo {
 }
 header nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 header nav h2 {
-  font-size: 1.3rem;
+  font-size: 2rem;
   margin: 15px;
 }
 
@@ -143,8 +143,8 @@ section.portada h1 {
 div.contenido {
   display: flex;
   flex-wrap: wrap;
-  align-content: space-around;
   justify-content: space-around;
+  align-content: space-around;
   width: 100%;
   padding: 1rem;
 }
@@ -201,9 +201,9 @@ div.contenido .bloque:hover {
 
 footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   background-color: #155263;
   color: #FFFFFF;
   margin-top: 35px;
@@ -224,6 +224,10 @@ footer article a:hover {
 }
 
 @media screen and (min-width: 576px) {
+  nav h2 {
+    font-size: 1.4rem !important;
+  }
+
   section.portada img.normal {
     display: block;
   }
@@ -255,8 +259,8 @@ footer article a:hover {
 article.vehiculo {
   display: flex;
   flex-wrap: wrap;
-  align-content: space-around;
   justify-content: space-around;
+  align-content: space-around;
   width: 100%;
   margin-top: 25px;
 }
@@ -267,8 +271,8 @@ article.vehiculo img {
 article.vehiculo div.datos {
   display: flex;
   flex-wrap: wrap;
-  align-content: space-around;
   justify-content: space-around;
+  align-content: space-around;
   padding: 1rem;
 }
 article.vehiculo div.datos h3,
@@ -293,9 +297,9 @@ article.vehiculo img {
 
 div.configura {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin: 30px auto;
   width: 95%;
   padding: 1.1rem;
@@ -307,9 +311,9 @@ div.configura h1 {
 
 div.busquedas {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin-top: 15px;
 }
 div.busquedas div.caja {
@@ -326,11 +330,25 @@ div.busquedas div.caja img {
   margin: 15px;
 }
 
+@keyframes ilimina_input {
+  0% {
+    box-shadow: 0 0px 5px 0 #fcd165, 0 0px 5px 0 #fcd165;
+  }
+  34% {
+    box-shadow: 0 0px 10px 0 #fcd165, 0 0px 10px 0 #fcd165;
+  }
+  68% {
+    box-shadow: 0 0px 15px 0 #ffc93c, 0 0px 15px 0 #fcd165;
+  }
+  100% {
+    box-shadow: 0 0px 10px 0 #fcd165, 0 0px 10px 0 #fcd165;
+  }
+}
 form.formulario {
   display: flex;
   flex-wrap: wrap;
-  align-content: space-around;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   width: 95%;
   padding: 1.1rem;
 }
@@ -340,24 +358,33 @@ form.formulario label {
   margin-bottom: 30px;
 }
 form.formulario input {
-  width: 55%;
   font-size: 1.8rem;
   margin-bottom: 30px;
-  margin-left: 10px;
+}
+form.formulario input[type=text], form.formulario input[type=email], form.formulario input[type=password], form.formulario input[type=number],
+form.formulario select, form.formulario option {
+  width: 55%;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+form.formulario input[type=submit] {
+  width: 35%;
+  font-size: 1.8rem;
+}
 form.formulario input:focus {
-  border-color: #ffc93c;
+  outline: none !important;
+  border-color: #fcd165;
+  animation: ilimina_input 3s infinite;
+  -webkit-animation: ilimina_input 3s infinite;
 }
 form.formulario h2 {
   width: 100%;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-top: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   text-align: center;
 }
 
@@ -421,6 +448,9 @@ div.chart_wrap {
 
   form.formulario {
     width: 90%;
+  }
+  form.formulario input[type=submit] {
+    width: 30%;
   }
 }
 @media screen and (min-width: 992px) {

@@ -1,60 +1,27 @@
-//// @access public
-//// @author DavidRM
-
-
-/// Se usa como color de fondo del tema de la página
-/// @group colores
 $azul: #155263;
 
-/// Se usa para dar color al texto de la página
-/// @group colores
 $blanco: #FFFFFF;
 
-/// Se usa para dar un color a los elementos de texto que se quiere resaltar sobre los demás
-/// @group colores
 $resaltado: #ff9a3c;
 
-/// Se usa para dar un color a los elementos button
-/// @group colores
 $resaltado_btn:#ff6f3c;
 
-/// Se usa para dar un color de fondo al elemento div clase contenido
-/// @group colores
 $fondo: #F5F5F5;
 
-/// Se usa para dar un color a al sombreado de algunos elementos
-/// @group colores
 $negro: rgba(0, 0, 0, 0.2);
 
-/// Se usa para obtener un efecto de iluminación en animaciones y en enlaces mediante hover
-/// @group colores
 $iluminar:#ffc93c;
 
-/// Se usa para obtener un efecto de iluminación en el scroll mediante hover
-/// @group colores
 $iluminar_scroll: #ff9a3c;
 
-/// Se usa para indicar que el elemento ocupara toda la anchura del padre
-/// @group dimensiones
+$iluminar_input:#fcd165;
+
 $todo: 100%;
 
-/// Establece un breakpoint para la versión de tablet
-/// @group dimensiones
 $mediano: 576px;
 
-/// Establece un breakpoint para la versión de pc
-/// @group dimensiones
 $grande: 992px;
 
-/// Establece un breakpoint para la versión de pc
-/// @group dimensiones
-$grande: 992px;
-
-/// Proporciona el tema de la página
-/// @group colores
-/// @parameter {color} $azul
-/// @parameter {color} $blanco
-/// @parameter {color} $resaltado
 @mixin tema {
     background-color: $azul;
     color: $blanco;
@@ -68,27 +35,23 @@ $grande: 992px;
     }
 }
 
-/// Ajusta la posición de varios elementos con una configuración de flex ahorrándome repetir varias veces el mismo código
-/// @group dimensiones
 @mixin alinear {
     display: flex;
     flex-wrap: wrap;
-    align-content: space-around;
     justify-content: space-around;
+    align-content: space-around;    
 }
 
-/// Ajusta la posición de varios elementos con una configuración de flex ahorrándome repetir varias veces el mismo código
-/// @group dimensiones
 @mixin alinear_separado {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;    
 }
 
 @mixin alinear_centrado {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;   
 }

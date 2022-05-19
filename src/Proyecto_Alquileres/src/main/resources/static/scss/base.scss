@@ -95,7 +95,7 @@ header {
         @include alinear_separado;
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 2rem;
             margin: 15px;
         }
     }
@@ -199,6 +199,10 @@ footer {
 }
 
 @media screen and (min-width: $mediano) {
+    nav h2 {
+        font-size: 1.4rem !important;
+    }
+    
     section.portada {
         img.normal {
             display: block;

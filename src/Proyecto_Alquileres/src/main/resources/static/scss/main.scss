@@ -71,8 +71,26 @@ div.busquedas {
     }
 }
 
+@keyframes ilimina_input {
+    0% {
+        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
+    }
+
+    34% {
+        box-shadow: 0 0px 10px 0 $iluminar_input, 0 0px 10px 0 $iluminar_input;
+    }
+
+    68% {
+        box-shadow: 0 0px 15px 0 $iluminar, 0 0px 15px 0 $iluminar_input;
+    }
+
+    100% {
+        box-shadow: 0 0px 10px 0 $iluminar_input, 0 0px 10px 0 $iluminar_input;
+    }
+}
+
 form.formulario {
-    @include alinear;
+    @include alinear_centrado;
     width: 95%;
     padding: 1.1rem;
 
@@ -83,10 +101,13 @@ form.formulario {
     }
 
     input {
-        width: 55%;
         font-size: 1.8rem;
         margin-bottom: 30px;
-        margin-left: 10px;
+    }
+
+    input[type = text], input[type = email], input[type = password], input[type = number], 
+    select, option {
+        width: 55%;      
         border-radius: 8px;
         -webkit-border-radius: 8px;
         -moz-border-radius: 8px;
@@ -94,15 +115,24 @@ form.formulario {
         -o-border-radius: 8px;
     }
 
+    input[type = submit] {
+        width: 35%;
+        font-size: 1.8rem;
+    }
+
+
     input:focus {
-        border-color: $iluminar;
+        outline: none !important;
+        border-color: $iluminar_input;
+        animation: ilimina_input 3s infinite;
+        -webkit-animation: ilimina_input 3s infinite;
     }
 
     h2 {
         width: 100%;
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-top: 15px;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
         text-align: center;
     }
 }
@@ -171,6 +201,10 @@ div.chart_wrap {
 
     form.formulario {
         width: 90%;
+
+        input[type = submit] {
+            width: 30%;
+        }
     }
 }
 
