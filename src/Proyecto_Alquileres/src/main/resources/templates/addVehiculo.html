@@ -13,6 +13,7 @@
 		<aside th:replace="fragments/parts::aside"></aside>	
 		<main>
 			<form action="#" th:action="@{/vehiculo-add}" th:object="${vehiculo}" method="post" class="formulario bloque">
+				<h2 class="resaltado">Añade un Vehículo</h2>
 				<label for="matricula" >Matricula</label> 
 				<input type="text" id="matricula" name="matricula" th:field="*{matricula}" required>
 				<br><br>

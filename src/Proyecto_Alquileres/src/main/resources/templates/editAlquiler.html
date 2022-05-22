@@ -13,6 +13,7 @@
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
 			<form action="#" th:action="@{/alquiler-edit}" th:object="${alquilerDTO}" method="post" class="formulario bloque">
+				<h2 class="resaltado">Edita un Alquiler</h2>
 				<label for="id">Id</label> 
 				<input type="number" id="id" name="id" th:field="*{id}" readonly required>
 				<label for="fecha_fin">Fecha de fin</label> 

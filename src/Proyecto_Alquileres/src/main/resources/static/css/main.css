@@ -34,7 +34,7 @@ article.ofertas :nth-child(5) {
   }
 }
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: "Lucida Sans" !important;
 }
 
@@ -154,15 +154,12 @@ div.contenido main {
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
 div.contenido aside {
   display: none;
 }
 div.contenido aside article {
   padding: 1.1rem;
-  margin-top: 25px;
 }
 div.contenido aside article h2 {
   border-bottom: 3px solid #ff9a3c;
@@ -187,6 +184,7 @@ div.contenido .bloque {
   -moz-border-radius: 14px;
   -ms-border-radius: 14px;
   -o-border-radius: 14px;
+  margin-top: 30px;
 }
 div.contenido .bloque a {
   color: #FFFFFF;
@@ -262,7 +260,7 @@ article.vehiculo {
   justify-content: space-around;
   align-content: space-around;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 article.vehiculo div.datos,
 article.vehiculo img {
@@ -351,18 +349,19 @@ form.formulario {
   align-items: center;
   width: 95%;
   padding: 1.1rem;
+  margin: 30px auto;
 }
 form.formulario label {
   width: 40%;
   font-size: 1.8rem;
   margin-bottom: 30px;
 }
-form.formulario input {
+form.formulario input, form.formulario textarea, form.formulario select, form.formulario option {
   font-size: 1.8rem;
   margin-bottom: 30px;
 }
 form.formulario input[type=text], form.formulario input[type=email], form.formulario input[type=password], form.formulario input[type=number],
-form.formulario select, form.formulario option {
+form.formulario select, form.formulario option, form.formulario textarea, form.formulario input[type=date] {
   width: 55%;
   border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -374,7 +373,7 @@ form.formulario input[type=submit] {
   width: 35%;
   font-size: 1.8rem;
 }
-form.formulario input:focus {
+form.formulario input:focus, form.formulario textarea:focus, form.formulario select:focus {
   outline: none !important;
   border-color: #fcd165;
   animation: ilimina_input 3s infinite;

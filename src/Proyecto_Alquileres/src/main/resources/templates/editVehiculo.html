@@ -13,6 +13,7 @@
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
 			<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post" class="formulario bloque">
+				<h2 class="resaltado">Edita el Vehiculo</h2>
 				<label for="id">Id</label>
 				<input type="number" id="id" name="id" th:field="*{id}" readonly required>
 				<br><br>

@@ -1,9 +1,10 @@
 @import "base.scss";
 
+
 article.vehiculo {
     @include alinear;
     width: $todo;
-    margin-top: 25px;
+    margin-top: 30px;
 
     div.datos,
     img {
@@ -93,6 +94,7 @@ form.formulario {
     @include alinear_centrado;
     width: 95%;
     padding: 1.1rem;
+    margin: 30px auto;
 
     label {
         width: 40%;
@@ -100,13 +102,13 @@ form.formulario {
         margin-bottom: 30px;
     }
 
-    input {
+    input, textarea, select, option {
         font-size: 1.8rem;
         margin-bottom: 30px;
     }
 
     input[type = text], input[type = email], input[type = password], input[type = number], 
-    select, option {
+    select, option, textarea, input[type = date] {
         width: 55%;      
         border-radius: 8px;
         -webkit-border-radius: 8px;
@@ -121,7 +123,7 @@ form.formulario {
     }
 
 
-    input:focus {
+    input:focus, textarea:focus, select:focus{
         outline: none !important;
         border-color: $iluminar_input;
         animation: ilimina_input 3s infinite;
