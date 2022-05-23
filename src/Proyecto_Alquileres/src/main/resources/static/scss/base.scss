@@ -1,3 +1,4 @@
+@import "../bootstrap/scss/bootstrap";
 @import "variables_mixins.scss";
 @import "funciones_directivas.scss";
 
@@ -68,12 +69,13 @@ a {
     text-decoration: none;
 }
 
-p a:hover {
-    text-shadow: 0 0 5px $iluminar;
+a:hover {
+    color: $iluminar !important;
 }
 
-.enlace:hover {
-    text-shadow: 0 0 10px $iluminar;
+a.enlace:hover {
+    text-shadow: 0 0 8px $iluminar;
+    text-decoration: underline;
 }
 
 body {
@@ -129,8 +131,9 @@ div.contenido {
         display: flex;
         justify-content: center;
         align-items: flex-start;
+        align-content: flex-start;
         flex-wrap: wrap;
-        width: $todo;
+        width: $todo;      
     }
 
     aside {
@@ -143,10 +146,6 @@ div.contenido {
                 border-bottom: 3px solid $resaltado;
                 padding-bottom: 5px;
                 font-size: 2rem;
-            }
-
-            a:hover {
-                text-decoration: underline;
             }
         }
     }

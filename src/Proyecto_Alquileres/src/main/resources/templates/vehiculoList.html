@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
 	<link rel="stylesheet" href="/css/main.css">
+	<script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<title>Lista vehiculos</title>
 </head>
 <body>
@@ -13,36 +14,40 @@
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
 			<div class="bloque">
-				<button type="button" id="actualizar-datos" class="boton"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></button>
+				<button type="button" class="boton">
+					<a th:href="@{/vehiculo-add}">Añade un Vehiculo</a>
+				</button>
 			</div>
-			<table class="">
-				<thead class="">
-					<tr>
-						<th>ID</th>
-						<th>Matricula</th>
-						<th>Modelo</th>
-						<th>Tipo</th>
-						<th>Consumo</th>
-						<th>Estado</th>
-						<th>Alquilar</th>
-						<th>Eliminar</th>
-						<th>Editar</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="v : ${vehiculos}">
-						<td th:text="${v.id}"></td>
-						<td th:text="${v.matricula}"></td>
-						<td th:text="${v.modelo}"></td>
-						<td th:text="${v.tipo}"></td>
-						<td th:text="${v.consumo}"></td>
-						<td th:text="${v.estado}"></td>
-						<td><a th:href="@{|/alquiler-cliente-add?id=${v.id}|}">Ir</a></td>
-						<td><a th:href="@{|/vehiculo-delete?id=${v.id}|}">Borrar</a></td>
-						<td><a th:href="@{|/vehiculo-edit?id=${v.id}|}">Editar</a></td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="bloque tabla">
+				<table class="table table-stripped tabla">
+					<thead class="resaltado">
+						<tr>
+							<th>ID</th>
+							<th>Matricula</th>
+							<th>Modelo</th>
+							<th>Tipo</th>
+							<th>Consumo</th>
+							<th>Estado</th>
+							<th>Alquilar</th>
+							<th>Eliminar</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="v : ${vehiculos}">
+							<td th:text="${v.id}"></td>
+							<td th:text="${v.matricula}"></td>
+							<td th:text="${v.modelo}"></td>
+							<td th:text="${v.tipo}"></td>
+							<td th:text="${v.consumo}"></td>
+							<td th:text="${v.estado}"></td>
+							<td><a th:href="@{|/alquiler-cliente-add?id=${v.id}|}" class="enlace">Ir</a></td>
+							<td><a th:href="@{|/vehiculo-delete?id=${v.id}|}" class="enlace">Borrar</a></td>
+							<td><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</main>
 	</div>
 	<footer th:replace="fragments/parts::footer"></footer>

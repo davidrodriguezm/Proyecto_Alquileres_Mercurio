@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
 	<link rel="stylesheet" href="/css/main.css">
+	<script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<title>Lista Usuarios</title>
 </head>
 <body>
@@ -12,30 +13,32 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
-			<table class="">
-				<thead class="">
-					<tr>
-						<th>ID</th>
-						<th>DNI</th>
-						<th>Nombre</th>
-						<th>Telefono</th>
-						<th>Rol</th>
-						<th>Email</th>
-						<th>editar</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="u : ${usuarios}">
-						<td th:text="${u.id}"></td>
-						<td th:text="${u.dni}"></td>
-						<td th:text="${u.nombre}"></td>
-						<td th:text="${u.telefono}"></td>
-						<td th:text="${u.role}"></td>
-						<td th:text="${u.email}"></td>
-						<td><a th:href="@{|/usuario-edit?id=${u.id}|}">Editar</a></td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="bloque tabla">
+				<table class="table table-stripped tabla">
+					<thead class="resaltado">
+						<tr>
+							<th>ID</th>
+							<th>DNI</th>
+							<th>Nombre</th>
+							<th>Telefono</th>
+							<th>Rol</th>
+							<th>Email</th>
+							<th>editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="u : ${usuarios}">
+							<td th:text="${u.id}"></td>
+							<td th:text="${u.dni}"></td>
+							<td th:text="${u.nombre}"></td>
+							<td th:text="${u.telefono}"></td>
+							<td th:text="${u.role}"></td>
+							<td th:text="${u.email}"></td>
+							<td><a th:href="@{|/usuario-edit?id=${u.id}|}" class="enlace">Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</main>
 	</div>
 	<footer th:replace="fragments/parts::footer"></footer>

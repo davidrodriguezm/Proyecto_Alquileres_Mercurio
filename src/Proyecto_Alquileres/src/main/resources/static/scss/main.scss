@@ -74,19 +74,19 @@ div.busquedas {
 
 @keyframes ilimina_input {
     0% {
-        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
+        box-shadow: 0 0px 1px 0 $iluminar_input, 0 0px 1px 0 $iluminar_input;
     }
 
     34% {
-        box-shadow: 0 0px 10px 0 $iluminar_input, 0 0px 10px 0 $iluminar_input;
+        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
     }
 
     68% {
-        box-shadow: 0 0px 15px 0 $iluminar, 0 0px 15px 0 $iluminar_input;
+        box-shadow: 0 0px 9px 0 $iluminar, 0 0px 9px 0 $iluminar_input;
     }
 
     100% {
-        box-shadow: 0 0px 10px 0 $iluminar_input, 0 0px 10px 0 $iluminar_input;
+        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
     }
 }
 
@@ -134,7 +134,7 @@ form.formulario {
         width: 100%;
         font-size: 2.5rem;
         margin-top: 15px;
-        margin-bottom: 35px;
+        margin-bottom: 45px;
         text-align: center;
     }
 }
@@ -145,7 +145,7 @@ form.formulario {
     color: $blanco;
     margin: 30px;
     padding: 10px;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -178,6 +178,27 @@ div.chart_wrap {
     overflow:hidden;
 }
 
+div.tabla {
+    width: $todo;
+    padding: 1.1rem;
+    overflow-x:auto;
+}
+
+table.tabla {
+    border-collapse: collapse;
+    width: $todo;
+
+    thead th {
+        border-bottom: 3px solid $resaltado;
+        font-size: 1.2rem;
+    }
+
+    tbody td {
+        color: $blanco;
+        font-size: 0.9rem;
+    }
+}
+
 @media screen and (min-width: $mediano) {
     div.datos {
         h2 {
@@ -189,24 +210,24 @@ div.chart_wrap {
         }
     }
 
-    div.configura {
+    div.configura, form.formulario {
         width: 90%;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-        }
+    div.configura h1 {
+        font-size: 2.5rem;
     }
 
     h2.estadistica {
         font-size: 2.3rem;
     }
 
-    form.formulario {
-        width: 90%;
+    form.formulario input[type = submit] {
+        width: 30%;
+    }
 
-        input[type = submit] {
-            width: 30%;
-        }
+    .boton {
+        font-size: 1.8rem;
     }
 }
 

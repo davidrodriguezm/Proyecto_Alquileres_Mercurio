@@ -1,40 +1,22 @@
-<!-- <nav th:fragment="menu"> -->
-<!-- 	<ul style="list-style: none; Display: flex;"> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/}">Inicio</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/usuarios}">Lista de Usuarios</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/usuario-add}">Añade un Usuario</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/vehiculos}">Lista de Vehiculos</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/vehiculo-add}">Añade un Vehiculo</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/alquileres}">Lista de Alquileres</a></li> -->
-<!-- 		<li style="margin-left: 15px;"><a th:href="@{/alquiler-add}">Añade un Alquiler</a></li> -->
-<!-- 		<li style="margin-left: 15px;" sec:authorize="!isAuthenticated()" class="nav-item"> -->
-<!-- 			<a class="nav-link text-white" th:href="@{/login-user}">Login</a> -->
-<!-- 		</li> -->
-<!-- 		<li style="margin-left: 15px;" sec:authorize="isAuthenticated()" class="nav-item"> -->
-<!-- 			<a class="nav-link text-white" th:href="@{/logout-user}">Logout</a> -->
-<!-- 		</li> -->
-<!-- 	</ul> -->
-<!-- </nav> -->
-
 <header th:fragment="header">
 	<a th:href="@{/}"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a>   
     <nav>
-    	<h2 class="enlace">
+    	<h2 class="">
         	<a th:href="@{/vehiculos}">Vehículos</a>
         </h2>
-        <h2 class="enlace">
+        <h2 class="">
         	<a th:href="@{/alquileres}">Alquileres</a>
         </h2>
-        <h2 class="enlace">
+        <h2 class="">
         	<a th:href="@{/usuarios}">Usuarios</a>
         </h2>
-		<h2 class="enlace">
+		<h2 class="">
         	<a th:href="@{/usuario-add}">Registrarse</a>
         </h2>
-		<h2 class="enlace" sec:authorize="!isAuthenticated()">
+		<h2 class="" sec:authorize="!isAuthenticated()">
         	<a th:href="@{/login-user}">Login</a>
         </h2>
-        <h2 class="enlace" sec:authorize="isAuthenticated()">
+        <h2 class="" sec:authorize="isAuthenticated()">
         	<a th:href="@{/logout-user}">Logout</a>
         </h2>
 	</nav>
@@ -88,7 +70,7 @@
 		<p> <span class="resaltado" >Correo:</span> AlquileresMercurio@hotmail.com</p>
 		<p>
 			<span class="resaltado" >Punto de recogida:</span> Sevilla, calle León, número 13, 
-			<a href="https://www.google.com/maps/@37.389276,-5.9767151,15.19z" target="_blank">
+			<a href="https://www.google.com/maps/@37.389276,-5.9767151,15.19z" target="_blank" class="enlace">
 			<b>ubicación</b></a>
         </p>
 	</article>
