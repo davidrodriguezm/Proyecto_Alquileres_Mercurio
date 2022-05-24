@@ -2,14 +2,37 @@ package com.davidrm.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 
 public class UsuarioDTO implements Serializable {
 	private Long id;
+	
+	@NotNull(message="El campo DNI no puede ser nulo")
+	@NotEmpty(message="El campo DNI no puede estar vacío")
+	@Pattern(regexp="[0-9]{8}[A-Z]{1}",message="El campo DNI 8 digitos y 1 letra mayuscula")
 	private String dni;
+	
+	@NotNull(message="El campo email no puede ser nulo")
+	@NotEmpty(message="El campo email no puede estar vacío")
+	@Email(message="No es un formato email")
 	private String email;
+	
+	@NotNull(message="El campo nombre no puede ser nulo")
+	@NotEmpty(message="El campo nombre no puede estar vacío")
 	private String nombre;
+	
 	private String role;
+	
+	@NotNull(message="El campo telefono no puede ser nulo")
+	@NotEmpty(message="El campo telefono no puede estar vacío")
     private String telefono;
+	
+	@NotNull(message="El campo contraseña no puede ser nulo")
+	@NotEmpty(message="El campo contraseña no puede estar vacío")
 	private String password;
 		
 	public UsuarioDTO() {}	

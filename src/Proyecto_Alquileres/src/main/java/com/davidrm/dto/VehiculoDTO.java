@@ -2,13 +2,31 @@ package com.davidrm.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 
 public class VehiculoDTO implements Serializable {
 	private Long id;
+	
+	@NotNull(message="El campo matricula no puede ser nulo")
+	@NotEmpty(message="El campo matricula no puede estar vacío")
 	private String matricula;
+	
+	@NotNull(message="El campo modelo no puede ser nulo")
+	@NotEmpty(message="El campo modelo no puede estar vacío")
 	private String modelo;
+	
+	@NotNull(message="El campo tipo no puede ser nulo")
+	@NotEmpty(message="El campo tipo no puede estar vacío")
 	private String tipo;
+	
+	@NotNull(message="El campo consumo no puede ser nulo")
+	@NotEmpty(message="El campo consumo no puede estar vacío")
 	private String consumo;
+	
+	@NotNull(message="El campo estado no puede ser nulo")
+	@NotEmpty(message="El campo estado no puede estar vacío")
 	private String estado;
 	
 	public VehiculoDTO() {}

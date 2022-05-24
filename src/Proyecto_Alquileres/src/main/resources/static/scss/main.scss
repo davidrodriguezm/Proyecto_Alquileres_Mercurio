@@ -1,6 +1,5 @@
 @import "base.scss";
 
-
 article.vehiculo {
     @include alinear;
     width: $todo;
@@ -196,6 +195,10 @@ table.tabla {
     tbody td {
         color: $blanco;
         font-size: 0.9rem;
+
+        a:hover {
+            color: $iluminar !important;
+        }
     }
 }
 

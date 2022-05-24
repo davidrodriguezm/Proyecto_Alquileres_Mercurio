@@ -69,10 +69,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: $iluminar !important;
-}
-
 a.enlace:hover {
     text-shadow: 0 0 8px $iluminar;
     text-decoration: underline;
@@ -87,6 +83,10 @@ header {
     @include alinear_separado;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
 
+    a:hover {
+        color: $iluminar !important;
+    }
+    
     .logotipo {
         width: 16rem;
         height: 6.5rem;
@@ -190,7 +190,7 @@ footer {
         margin: 20px;
         
         a:hover {
-            text-decoration: underline;
+            color: $iluminar !important;
         }
     }
 }

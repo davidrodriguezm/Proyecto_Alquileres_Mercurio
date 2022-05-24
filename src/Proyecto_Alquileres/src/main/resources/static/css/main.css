@@ -10618,10 +10618,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #ffc93c !important;
-}
-
 a.enlace:hover {
   text-shadow: 0 0 8px #ffc93c;
   text-decoration: underline;
@@ -10645,6 +10641,9 @@ header a {
 }
 header .resaltado {
   color: #ff9a3c;
+}
+header a:hover {
+  color: #ffc93c !important;
 }
 header .logotipo {
   width: 16rem;
@@ -10754,7 +10753,7 @@ footer article {
   margin: 20px;
 }
 footer article a:hover {
-  text-decoration: underline;
+  color: #ffc93c !important;
 }
 
 @media screen and (min-width: 576px) {
@@ -10979,6 +10978,9 @@ table.tabla thead th {
 table.tabla tbody td {
   color: #FFFFFF;
   font-size: 0.9rem;
+}
+table.tabla tbody td a:hover {
+  color: #ffc93c !important;
 }
 
 @media screen and (min-width: 576px) {
