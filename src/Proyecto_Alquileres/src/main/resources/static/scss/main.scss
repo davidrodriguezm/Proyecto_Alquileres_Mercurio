@@ -95,10 +95,20 @@ form.formulario {
     padding: 1.1rem;
     margin: 30px auto;
 
+    div.grupoForm {
+        width: $todo;
+        margin-bottom: 30px;
+        @include alinear_separado;
+
+        input, textarea, select, option, label {
+            margin-bottom: 0px !important;
+        }
+    }
+
     label {
         width: 40%;
         font-size: 1.8rem;
-        margin-bottom: 30px;
+        margin-bottom: 30px;   
     }
 
     input, textarea, select, option {
@@ -121,12 +131,15 @@ form.formulario {
         font-size: 1.8rem;
     }
 
-
     input:focus, textarea:focus, select:focus{
         outline: none !important;
         border-color: $iluminar_input;
         animation: ilimina_input 3s infinite;
         -webkit-animation: ilimina_input 3s infinite;
+    }
+
+    textarea {
+        resize: none;
     }
 
     h2 {
@@ -135,6 +148,10 @@ form.formulario {
         margin-top: 15px;
         margin-bottom: 45px;
         text-align: center;
+    }
+
+    p {
+        width: 100%;
     }
 }
 

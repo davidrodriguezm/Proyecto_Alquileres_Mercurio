@@ -3,6 +3,7 @@ package com.davidrm.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,7 @@ public class AlquilerDTO implements Serializable {
 	
 	@NotNull(message="El campo fecha de fin no puede ser nulo")
 	@NotEmpty(message="El campo fecha de fin no puede estar vacío")
-	@FutureOrPresent(message = "La fecha de fin no puede ser anterior a la actual")
+	@Future(message = "La fecha de fin no puede ser anterior a la actual")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_fin;
 	

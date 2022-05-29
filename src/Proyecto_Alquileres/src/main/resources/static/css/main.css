@@ -10886,6 +10886,17 @@ form.formulario {
   padding: 1.1rem;
   margin: 30px auto;
 }
+form.formulario div.grupoForm {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+form.formulario div.grupoForm input, form.formulario div.grupoForm textarea, form.formulario div.grupoForm select, form.formulario div.grupoForm option, form.formulario div.grupoForm label {
+  margin-bottom: 0px !important;
+}
 form.formulario label {
   width: 40%;
   font-size: 1.8rem;
@@ -10914,12 +10925,18 @@ form.formulario input:focus, form.formulario textarea:focus, form.formulario sel
   animation: ilimina_input 3s infinite;
   -webkit-animation: ilimina_input 3s infinite;
 }
+form.formulario textarea {
+  resize: none;
+}
 form.formulario h2 {
   width: 100%;
   font-size: 2.5rem;
   margin-top: 15px;
   margin-bottom: 45px;
   text-align: center;
+}
+form.formulario p {
+  width: 100%;
 }
 
 .boton {
