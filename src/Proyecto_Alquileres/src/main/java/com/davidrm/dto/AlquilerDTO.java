@@ -11,25 +11,20 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-
 public class AlquilerDTO implements Serializable {
 	private Long id;
 	
 	@NotNull(message="El campo Id Cliente no puede ser nulo")
-	@NotEmpty(message="El campo Id Cliente no puede estar vacío")
 	private Long idCliente;
 	
 	@NotNull(message="El campo Id Vehiculo no puede ser nulo")
-	@NotEmpty(message="El campo Id Vehiculo no puede estar vacío")
 	private Long idVehiculo;
 	
 	@NotNull(message="El campo fecha de inicio no puede ser nulo")
-	@NotEmpty(message="El campo fecha de inicio no puede estar vacío")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_inicio;
 	
 	@NotNull(message="El campo fecha de fin no puede ser nulo")
-	@NotEmpty(message="El campo fecha de fin no puede estar vacío")
 	@Future(message = "La fecha de fin no puede ser anterior a la actual")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_fin;

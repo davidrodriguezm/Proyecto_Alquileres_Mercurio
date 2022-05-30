@@ -40,6 +40,7 @@ public class UsuarioController {
 	public String addUsuarioGet(Model model) {
 		model.addAttribute("errores", new HashMap<>());
 		model.addAttribute("usuario", new UsuarioDTO());
+		
 		return "addUsuario";
 	}
 	
@@ -91,7 +92,8 @@ public class UsuarioController {
 	
 	@GetMapping("/usuario-edit")
 	public String editUsuarioGet(@RequestParam(required=false, name="id") Long id, Model model) {
-		String dirige = "redirect:/usuarios";	
+		String dirige = "redirect:/usuarios";
+		
 		if (id != null && usuarioSer.findUsuarioById(id) != null) {
 			model.addAttribute("usuario", new UsuarioDTO(id));
 			dirige = "editUsuario";

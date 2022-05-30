@@ -14,35 +14,45 @@
 		<main>
 			<form action="#" th:action="@{/vehiculo-add}" th:object="${vehiculo}" method="post" class="formulario bloque">
 				<h2 class="resaltado">Añade un Vehículo</h2>
-				<label for="matricula" >Matricula</label> 
-				<input type="text" id="matricula" name="matricula" th:field="*{matricula}" required>
-				<br><br>
-				<label for="modelo" >Modelo</label>
-				<input type="text"  id="modelo" name="modelo" th:field="*{modelo}" required>
-				<br><br>
-				<label for="tipo">Tipo</label>
-				<select name="tipo" id="tipo" th:field="*{tipo}" required>
-					<option th:value="Monovolumen" >Monovolumen</option>
-					<option th:value="Furgoneta" >Furgoneta</option>
-					<option th:value="MiniCamion" >Mini Camión</option>
-				</select>
-				<br><br>
-				<label for="consumo" >Consumo</label>
-				<select name="idPropietario" id="consumo" th:field="*{consumo}" required>
-					<option th:value="Gasolina" >Gasolina</option>
-					<option th:value="Diesel" >Diesel</option>
-					<option th:value="Hibrido" >Hibrido</option>
-					<option th:value="Electrico" >Eléctrico</option>
-				</select>
-				<br><br>
-				<label for="estado" >Estado</label>
-				<select name="estado" id="estado" th:field="*{estado}" required>
-					<option th:value="disponible" >Disponible</option>
-					<option th:value="Alquilado" >Alquilado</option>
-					<option th:value="Averiado" >Averiado</option>			
-					<option th:value="Revision" >Revisión</option>
-				</select>
-				<br><br>
+				<div class="grupoForm">
+					<label for="matricula" >Matricula</label> 
+					<input type="text" id="matricula" name="matricula" th:field="*{matricula}" required>
+					<p class="resaltado" th:each="e : ${errores.get('matricula')}" th:text="${e}"></p>
+				</div>
+				<div class="grupoForm">
+					<label for="modelo" >Modelo</label>
+					<input type="text"  id="modelo" name="modelo" th:field="*{modelo}" required>
+					<p class="resaltado" th:each="e : ${errores.get('modelo')}" th:text="${e}"></p>
+				</div>
+				<div class="grupoForm">
+					<label for="tipo">Tipo</label>
+					<select name="tipo" id="tipo" th:field="*{tipo}" required>
+						<option th:value="Monovolumen" >Monovolumen</option>
+						<option th:value="Furgoneta" >Furgoneta</option>
+						<option th:value="MiniCamion" >Mini Camión</option>
+					</select>
+					<p class="resaltado" th:each="e : ${errores.get('tipo')}" th:text="${e}"></p>
+				</div>
+				<div class="grupoForm">
+					<label for="consumo" >Consumo</label>
+					<select name="idPropietario" id="consumo" th:field="*{consumo}" required>
+						<option th:value="Gasolina" >Gasolina</option>
+						<option th:value="Diesel" >Diesel</option>
+						<option th:value="Hibrido" >Hibrido</option>
+						<option th:value="Electrico" >Eléctrico</option>
+					</select>
+					<p class="resaltado" th:each="e : ${errores.get('consumo')}" th:text="${e}"></p>
+				</div>
+				<div class="grupoForm">
+					<label for="estado" >Estado</label>
+					<select name="estado" id="estado" th:field="*{estado}" required>
+						<option th:value="disponible" >Disponible</option>
+						<option th:value="Alquilado" >Alquilado</option>
+						<option th:value="Averiado" >Averiado</option>			
+						<option th:value="Revision" >Revisión</option>
+					</select>
+					<p class="resaltado" th:each="e : ${errores.get('estado')}" th:text="${e}"></p>
+				</div>
 				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main>   	

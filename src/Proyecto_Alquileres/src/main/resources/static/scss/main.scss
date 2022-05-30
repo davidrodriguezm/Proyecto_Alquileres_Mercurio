@@ -96,12 +96,17 @@ form.formulario {
     margin: 30px auto;
 
     div.grupoForm {
-        width: $todo;
+        width: 95%;
         margin-bottom: 30px;
         @include alinear_separado;
 
         input, textarea, select, option, label {
             margin-bottom: 0px !important;
+        }
+
+        p {
+            width: 100%;
+            margin-top: 5px;
         }
     }
 
@@ -148,10 +153,6 @@ form.formulario {
         margin-top: 15px;
         margin-bottom: 45px;
         text-align: center;
-    }
-
-    p {
-        width: 100%;
     }
 }
 

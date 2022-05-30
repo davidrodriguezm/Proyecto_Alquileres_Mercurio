@@ -1,8 +1,17 @@
 package com.davidrm.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,16 +67,42 @@ public class VehiculoController {
 	
 	@GetMapping("/vehiculo-add")
 	public String addVehiculoGet(Model model) {
+		model.addAttribute("errores", new HashMap<>());
 		model.addAttribute("vehiculo", new VehiculoDTO());
+		
 		return "addVehiculo";
 	}
 	
 	
 	@PostMapping("/vehiculo-add")
-	public String addVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
+	public String addVehiculoPost(@Valid @ModelAttribute("vehiDTO") VehiculoDTO vehiDTO, BindingResult validacion,
+			Model model) {
+		
 		String dirige = "redirect:/vehiculo-add";
 		
-		if (vehiDTO != null) {
+		Map<String,List<String>> errores = new HashMap<>();		
+		errores.put("matricula", new ArrayList<>());
+		errores.put("modelo", new ArrayList<>());
+		errores.put("tipo", new ArrayList<>());
+		errores.put("consumo", new ArrayList<>());
+		errores.put("estado", new ArrayList<>());
+		
+		boolean matriculaRepe = false;
+		
+		if (vehiDTO.getMatricula() != null && vehiculoSer.findVehiculoByMatricula(vehiDTO.getMatricula()) != null) {
+			matriculaRepe = true;
+			errores.get("matricula").add("Ya existe un Vehículo con esa matricula");
+		}
+		
+		if (validacion.hasErrors() || matriculaRepe) {
+			
+			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
+			
+			model.addAttribute("errores", errores);		
+			model.addAttribute("vehiculo", vehiDTO);		
+			dirige = "addVehiculo";
+			
+		} else if (vehiDTO != null) {
 			Vehiculo vehiculo = new Vehiculo(vehiDTO.getMatricula(), vehiDTO.getModelo(),
 							vehiDTO.getTipo(), vehiDTO.getConsumo(), vehiDTO.getEstado());
 			

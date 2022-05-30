@@ -1,10 +1,19 @@
 package com.davidrm.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,15 +52,36 @@ public class AlquilerController {
 		model.addAttribute("alquiler", new AlquilerDTO());
 		model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
 		model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
+		model.addAttribute("errores", new HashMap<>());
+		
 		return "addAlquiler";
 	}
 	
 	
 	@PostMapping("/alquiler-add")
-	public String addAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
+	public String addAlquilerPost(@Valid @ModelAttribute("alqDTO") AlquilerDTO alqDTO, BindingResult validacion, 
+			Model model) {
+		
 		String dirige = "redirect:/alquiler-add";
 		
-		if (alqDTO != null) {
+		Map<String,List<String>> errores = new HashMap<>();		
+		errores.put("idVehiculo", new ArrayList<>());
+		errores.put("idCliente", new ArrayList<>());
+		errores.put("fecha_inicio", new ArrayList<>());
+		errores.put("fecha_fin", new ArrayList<>());
+		errores.put("estado", new ArrayList<>());
+		
+		if (validacion.hasErrors()) {
+			
+			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
+			
+			model.addAttribute("errores", errores);
+			model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
+			model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
+			model.addAttribute("alquiler", alqDTO);		
+			dirige = "addAlquiler";
+			
+		} else if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
 			
