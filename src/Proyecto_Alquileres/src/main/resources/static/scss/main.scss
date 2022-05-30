@@ -103,11 +103,6 @@ form.formulario {
         input, textarea, select, option, label {
             margin-bottom: 0px !important;
         }
-
-        p {
-            width: 100%;
-            margin-top: 5px;
-        }
     }
 
     label {
@@ -153,6 +148,11 @@ form.formulario {
         margin-top: 15px;
         margin-bottom: 45px;
         text-align: center;
+    }
+
+    p {
+        width: 100%;
+        margin-top: 5px;
     }
 }
 

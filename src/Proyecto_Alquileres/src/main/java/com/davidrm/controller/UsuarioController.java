@@ -95,7 +95,9 @@ public class UsuarioController {
 		String dirige = "redirect:/usuarios";
 		
 		if (id != null && usuarioSer.findUsuarioById(id) != null) {
+			model.addAttribute("errores", new HashMap<>());
 			model.addAttribute("usuario", new UsuarioDTO(id));
+			
 			dirige = "editUsuario";
 		}	
 		return dirige;
@@ -106,7 +108,22 @@ public class UsuarioController {
 	public String editUsuarioPost(@ModelAttribute UsuarioDTO usuDTO, Model model) {		
 		String dirige = "redirect:/usuario-edit";
 		
-		if (usuDTO != null) {
+
+		if (usuDTO != null && usuDTO.getId() == null || usuDTO.getPassword() == null || usuDTO.getTelefono() == null) {
+			Map<String,String> errores = new HashMap<>();
+			
+			if (usuDTO.getId() == null) errores.put("id","Falta el ID");
+			
+			if (usuDTO.getPassword() == null) errores.put("password","Falta la contraseña");
+			
+			if (usuDTO.getTelefono() == null) errores.put("telefono","Falta el telefono");
+			
+			model.addAttribute("errores", errores);		
+			model.addAttribute("usuario", usuDTO);
+			
+			dirige = "editUsuario";
+			
+		} else if(usuDTO != null) {
 			Usuario usuario = usuarioSer.findUsuarioById(usuDTO.getId());
 			usuario.setPassword(new BCryptPasswordEncoder(15).encode(usuDTO.getPassword()));
 			usuario.setTelefono(usuDTO.getTelefono());

@@ -1,5 +1,6 @@
 package com.davidrm.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,9 +102,22 @@ public class AlquilerController {
 	@GetMapping("/alquiler-edit")
 	public String editAlquilerGet(Model model,@RequestParam(required=false,name="id") Long id) {
 		String dirige = "redirect:/alquileres";
+		Alquiler alquiler = alquilerSer.findAlquilerById(id);
 		
-		if (id != null && alquilerSer.findAlquilerById(id) != null) {
-			model.addAttribute("alquilerDTO", new AlquilerDTO(id));
+		if (id != null && alquiler != null) {
+			AlquilerDTO alquilerDTO = new AlquilerDTO(alquiler.getId());
+			
+			if (alquiler.getEstado() != null) alquilerDTO.setEstado(alquiler.getEstado());
+			
+			if (alquiler.getFecha_fin() != null) alquilerDTO.setFecha_fin(alquiler.getFecha_fin());
+			
+			if (alquiler.getPago() != null) alquilerDTO.setPago(alquiler.getPago());
+			
+			if (alquiler.getComentario() != null) alquilerDTO.setComentario(alquiler.getComentario());
+			
+			model.addAttribute("errores", new HashMap<>());
+			model.addAttribute("alquiler", alquilerDTO);
+			
 			dirige = "editAlquiler";
 		}
 		return dirige;
@@ -112,9 +126,23 @@ public class AlquilerController {
 	
 	@PostMapping("/alquiler-edit")
 	public String editAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
-		String dirige = "redirect:/alquiler-editr";
+		String dirige = "redirect:/alquiler-edit";
 		
-		if (alqDTO != null) {			
+		if (alqDTO != null && alqDTO.getId() == null || alqDTO.getEstado() == null || alqDTO.getFecha_fin() == null) {
+			Map<String,String> errores = new HashMap<>();
+			
+			if (alqDTO.getId() == null) errores.put("id","Falta el ID");
+			
+			if (alqDTO.getEstado() == null) errores.put("estado","Falta el estado");
+			
+			if (alqDTO.getFecha_fin() == null) errores.put("fecha_fin","Falta la fecha de fin");
+			
+			model.addAttribute("errores", errores);		
+			model.addAttribute("alquiler", alqDTO);
+			
+			dirige = "editAlquiler";
+			
+		} else if (alqDTO != null) {			
 			Alquiler alquiler = alquilerSer.findAlquilerById(alqDTO.getId());
 			
 			alquiler.setComentario(alqDTO.getComentario());
@@ -143,7 +171,8 @@ public class AlquilerController {
 				alquilerDTO.setIdVehiculo(idVehiculo);
 				alquilerDTO.setIdCliente(usuario.getId());
 				
-				model.addAttribute("alquilerDTO", alquilerDTO);
+				model.addAttribute("errores", new HashMap<>());
+				model.addAttribute("alquiler", alquilerDTO);
 				dirige = "addAlquilerCliente";
 			}
 		} else dirige = "redirect:/";

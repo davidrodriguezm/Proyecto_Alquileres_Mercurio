@@ -39,32 +39,6 @@ public class VehiculoController {
 	}
 	
 	
-	@GetMapping("/vehiculo-edit")
-	public String editVehiculoGet(@RequestParam(required=false, name="id") Long id, Model model) {
-		String dirige = "redirect:/vehiculos";
-		
-		if (id != null && vehiculoSer.findVehiculoById(id) != null) {
-			model.addAttribute("vehiculo", new VehiculoDTO(id));
-			dirige = "editVehiculo";
-		}	
-		return dirige;
-	}
-	
-	
-	@PostMapping("/vehiculo-edit")
-	public String editVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
-		String dirige = "redirect:/vehiculo-edit";
-		
-		if (vehiDTO != null) {
-			Vehiculo vehiculo = vehiculoSer.findVehiculoById(vehiDTO.getId());
-			vehiculo.setEstado(vehiDTO.getEstado());
-			vehiculoSer.actualizarVehiculo(vehiculo);
-			dirige = "redirect:/vehiculos";
-		}
-		return dirige;
-	}
-	
-	
 	@GetMapping("/vehiculo-add")
 	public String addVehiculoGet(Model model) {
 		model.addAttribute("errores", new HashMap<>());
@@ -113,10 +87,53 @@ public class VehiculoController {
 	}
 	
 	
+	@GetMapping("/vehiculo-edit")
+	public String editVehiculoGet(@RequestParam(required=false, name="id") Long id, Model model) {
+		String dirige = "redirect:/vehiculos";
+		
+		if (id != null && vehiculoSer.findVehiculoById(id) != null) {			
+			model.addAttribute("errores", new HashMap<>());
+			model.addAttribute("vehiculo", new VehiculoDTO(id));
+			
+			dirige = "editVehiculo";
+		}	
+		return dirige;
+	}
+	
+	
+	@PostMapping("/vehiculo-edit")
+	public String editVehiculoPost(@ModelAttribute VehiculoDTO vehiDTO, Model model) {		
+		String dirige = "redirect:/vehiculo-edit";		
+		
+		if (vehiDTO != null && vehiDTO.getId() == null || vehiDTO.getEstado() == null) {
+			Map<String,String> errores = new HashMap<>();
+			
+			if (vehiDTO.getId() == null) errores.put("id","Falta el ID");
+			
+			if (vehiDTO.getEstado() == null) errores.put("estado","Falta el estado");
+			
+			model.addAttribute("errores", errores);		
+			model.addAttribute("vehiculo", vehiDTO);
+			
+			dirige = "editVehiculo";
+			
+		} else if(vehiDTO != null) {
+			Vehiculo vehiculo = vehiculoSer.findVehiculoById(vehiDTO.getId());
+			
+			vehiculo.setEstado(vehiDTO.getEstado());
+			vehiculoSer.actualizarVehiculo(vehiculo);
+			
+			dirige = "redirect:/vehiculos";
+		}
+		return dirige;
+	}
+	
+	
 	@GetMapping("/vehiculo-delete")
 	public String deleteVehiculoGet(@RequestParam(required=false, name="id") Long id, Model model) {
 		Vehiculo vehiculo = vehiculoSer.findVehiculoById(id);
 		vehiculoSer.borrarVehiculo(vehiculo);
+		
 		return "redirect:/vehiculos";
 	}
 }

@@ -14,15 +14,21 @@
 		<main>
 			<form action="#" th:action="@{/vehiculo-edit}" th:object="${vehiculo}" method="post" class="formulario bloque">
 				<h2 class="resaltado">Edita el Vehiculo</h2>
-				<label for="id">Id</label>
-				<input type="number" id="id" name="id" th:field="*{id}" readonly required>
-				<label for="estado">Estado</label>
-				<select name="estado" id="estado" th:field="*{estado}" required>
-					<option th:value="disponible">Disponible</option>
-					<option th:value="Alquilado">Alquilado</option>
-					<option th:value="Averiado">Averiado</option>
-					<option th:value="Revision">Revisión</option>
-				</select>
+				<div class="grupoForm">
+					<label for="id">Id</label>
+					<input type="number" id="id" name="id" th:field="*{id}" readonly required>
+					<p class="resaltado" th:if="${errores.get('id') != null}" th:text="${errores.get('id')}"></p>
+				</div>
+				<div class="grupoForm">
+					<label for="estado">Estado</label>
+					<select name="estado" id="estado" th:field="*{estado}" required>
+						<option th:value="disponible">Disponible</option>
+						<option th:value="Alquilado">Alquilado</option>
+						<option th:value="Averiado">Averiado</option>
+						<option th:value="Revision">Revisión</option>
+					</select>
+					<p class="resaltado" th:if="${errores.get('estado') != null}" th:text="${errores.get('estado')}"></p>
+				</div>
 				<input type="submit" class="boton" value="ENVIAR" />
 			</form>
 		</main>
