@@ -20,6 +20,11 @@
 					<p class="resaltado" th:if="${errores.get('id') != null}" th:text="${errores.get('id')}"></p>
 				</div>
 				<div class="grupoForm">
+					<label for="fecha_inicio" >Fecha de inicio</label>
+					<input type="date" id="fecha_inicio" name="fecha_inicio" th:field="*{fecha_inicio}" readonly required>
+					<p class="resaltado" th:if="${errores.get('fecha_inicio') != null}" th:text="${errores.get('fecha_inicio')}"></p>
+				</div>
+				<div class="grupoForm">
 					<label for="fecha_fin">Fecha de fin</label> 
 					<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}">
 					<p class="resaltado" th:if="${errores.get('fecha_fin') != null}" th:text="${errores.get('fecha_fin')}"></p>

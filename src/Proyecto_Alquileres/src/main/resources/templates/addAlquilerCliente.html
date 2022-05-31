@@ -17,18 +17,22 @@
 				<div class="grupoForm">
 					<label for="idCliente" >Cliente</label>
 					<input type="number" id="idCliente" name="idCliente" th:field="*{idCliente}" readonly required>
+					<p class="resaltado" th:each="e : ${errores.get('idCliente')}" th:text="${e}"></p>
 				</div>
 				<div class="grupoForm">
 					<label for="idVehiculo" >Vehiculo</label>
 					<input type="number" id="idVehiculo" name="idVehiculo" th:field="*{idVehiculo}" readonly required>
+					<p class="resaltado" th:each="e : ${errores.get('idVehiculo')}" th:text="${e}"></p>
 				</div>
 				<div class="grupoForm">
 					<label for="fecha_inicio" >Fecha de inicio</label>
 					<input type="date" id="fecha_inicio" name="fecha_inicio" th:field="*{fecha_inicio}" required>
+					<p class="resaltado" th:each="e : ${errores.get('fecha_inicio')}" th:text="${e}"></p>
 				</div>
 				<div class="grupoForm">
 					<label for="fecha_fin" >Fecha de fin</label>
 					<input type="date" id="fecha_fin" name="fecha_fin" th:field="*{fecha_fin}" required>
+					<p class="resaltado" th:each="e : ${errores.get('fecha_fin')}" th:text="${e}"></p>
 				</div>
 				<input type="submit" class="boton" value="ENVIAR" />
 			</form>

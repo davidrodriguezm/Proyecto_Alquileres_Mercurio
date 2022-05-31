@@ -218,6 +218,10 @@ table.tabla {
             color: $iluminar !important;
         }
     }
+
+    tbody tr:hover {
+        background-color: #114352;
+    }
 }
 
 @media screen and (min-width: $mediano) {

@@ -21,6 +21,7 @@ public class AlquilerDTO implements Serializable {
 	private Long idVehiculo;
 	
 	@NotNull(message="El campo fecha de inicio no puede ser nulo")
+	@FutureOrPresent(message = "La fecha de inicio no puede ser anterior a la actual")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_inicio;
 	

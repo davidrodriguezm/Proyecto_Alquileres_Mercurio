@@ -72,8 +72,16 @@ public class AlquilerController {
 		errores.put("fecha_fin", new ArrayList<>());
 		errores.put("estado", new ArrayList<>());
 		
-		if (validacion.hasErrors()) {
-			
+		boolean errorFecha = false;
+		
+		if (alqDTO.getFecha_inicio() != null && alqDTO.getFecha_fin() != null && 
+				!alqDTO.getFecha_fin().isAfter(alqDTO.getFecha_inicio())) {
+			errores.get("fecha_fin").add("La fecha de fin debe ser posterior a la de inicio");
+			errorFecha = true;
+		}
+		
+		if (validacion.hasErrors() || errorFecha) {
+						
 			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
 			
 			model.addAttribute("errores", errores);
@@ -109,6 +117,8 @@ public class AlquilerController {
 			
 			if (alquiler.getEstado() != null) alquilerDTO.setEstado(alquiler.getEstado());
 			
+			if (alquiler.getFecha_inicio() != null) alquilerDTO.setFecha_inicio(alquiler.getFecha_inicio());
+			
 			if (alquiler.getFecha_fin() != null) alquilerDTO.setFecha_fin(alquiler.getFecha_fin());
 			
 			if (alquiler.getPago() != null) alquilerDTO.setPago(alquiler.getPago());
@@ -128,21 +138,30 @@ public class AlquilerController {
 	public String editAlquilerPost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
 		String dirige = "redirect:/alquiler-edit";
 		
-		if (alqDTO != null && alqDTO.getId() == null || alqDTO.getEstado() == null || alqDTO.getFecha_fin() == null) {
-			Map<String,String> errores = new HashMap<>();
+		Map<String,String> errores = new HashMap<>();		
+		boolean errorFecha = false;
+		
+		if (alqDTO.getFecha_inicio() != null && alqDTO.getFecha_fin() != null && 
+				!alqDTO.getFecha_fin().isAfter(alqDTO.getFecha_inicio())) {
+			errores.put("fecha_fin","La fecha de fin debe ser posterior a la de inicio");
+			errorFecha = true;
+		}
+		
+		if (alqDTO != null && alqDTO.getId() == null || alqDTO.getEstado() == null || alqDTO.getFecha_inicio() == null 
+				|| errorFecha) {		
 			
 			if (alqDTO.getId() == null) errores.put("id","Falta el ID");
 			
-			if (alqDTO.getEstado() == null) errores.put("estado","Falta el estado");
+			if (alqDTO.getFecha_inicio() == null) errores.put("estado","Falta la fecha de inicio");
 			
-			if (alqDTO.getFecha_fin() == null) errores.put("fecha_fin","Falta la fecha de fin");
+			if (alqDTO.getEstado() == null) errores.put("estado","Falta el estado");
 			
 			model.addAttribute("errores", errores);		
 			model.addAttribute("alquiler", alqDTO);
 			
 			dirige = "editAlquiler";
 			
-		} else if (alqDTO != null) {			
+		} else if (alqDTO != null) {
 			Alquiler alquiler = alquilerSer.findAlquilerById(alqDTO.getId());
 			
 			alquiler.setComentario(alqDTO.getComentario());
@@ -182,15 +201,43 @@ public class AlquilerController {
 	
 	
 	@PostMapping("/alquiler-cliente-add")
-	public String addAlquilerClientePost(@ModelAttribute AlquilerDTO alqDTO, Model model) {		
+	public String addAlquilerClientePost(@Valid @ModelAttribute("alqDTO") AlquilerDTO alqDTO, BindingResult validacion,
+			Model model) {		
 		String dirige = "redirect:/alquiler-cliente-add";
 		
-		if (alqDTO != null) {
+		if (alqDTO != null) alqDTO.setEstado("Reserva");
+		
+		Map<String,List<String>> errores = new HashMap<>();		
+		errores.put("idVehiculo", new ArrayList<>());
+		errores.put("idCliente", new ArrayList<>());
+		errores.put("fecha_inicio", new ArrayList<>());
+		errores.put("fecha_fin", new ArrayList<>());
+		errores.put("estado", new ArrayList<>());
+		
+		boolean errorFecha = false;
+		
+		if (alqDTO.getFecha_inicio() != null && alqDTO.getFecha_fin() != null && 
+				!alqDTO.getFecha_fin().isAfter(alqDTO.getFecha_inicio())) {
+			errores.get("fecha_fin").add("La fecha de fin debe ser posterior a la de inicio");
+			errorFecha = true;
+		}
+		
+		if (validacion.hasErrors() || errorFecha) {
+			
+			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
+			
+			model.addAttribute("errores", errores);
+			model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
+			model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
+			model.addAttribute("alquiler", alqDTO);		
+			dirige = "addAlquilerCliente";
+			
+		} else if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
 			
 			Alquiler alquiler = new Alquiler(cliente, vehiculo, alqDTO.getFecha_inicio(),alqDTO.getFecha_fin(),
-					"Reserva");
+					alqDTO.getEstado());
 				
 			vehiculo.addAlquiler(alquiler);
 			cliente.addAlquiler(alquiler);

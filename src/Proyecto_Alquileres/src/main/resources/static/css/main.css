@@ -11000,6 +11000,9 @@ table.tabla tbody td {
 table.tabla tbody td a:hover {
   color: #ffc93c !important;
 }
+table.tabla tbody tr:hover {
+  background-color: #114352;
+}
 
 @media screen and (min-width: 576px) {
   div.datos h2 {
