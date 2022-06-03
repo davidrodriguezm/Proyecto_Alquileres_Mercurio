@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
 	<link rel="stylesheet" href="/css/main.css">
-	<script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script defer src="/js/bootstrap.min.js"></script>
 	<title>Lista vehiculos</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
 	<div class="contenido">
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
-			<div class="bloque">
+			<div class="bloque" sec:authorize="hasRole('ADMIN')">
 				<button type="button" class="boton">
 					<a th:href="@{/vehiculo-add}">Añade un Vehiculo</a>
 				</button>
@@ -22,28 +22,31 @@
 				<table class="table table-stripped tabla">
 					<thead class="resaltado">
 						<tr>
-							<th>ID</th>
+							<th sec:authorize="hasRole('ADMIN')">ID</th>
 							<th>Matricula</th>
 							<th>Modelo</th>
 							<th>Tipo</th>
 							<th>Consumo</th>
 							<th>Estado</th>
 							<th>Alquilar</th>
-							<th>Eliminar</th>
-							<th>Editar</th>
+							<th sec:authorize="hasRole('ADMIN')">Eliminar</th>
+							<th sec:authorize="hasRole('ADMIN')">Editar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="v : ${vehiculos}">
-							<td th:text="${v.id}"></td>
+							<td th:text="${v.id}" sec:authorize="hasRole('ADMIN')"></td>
 							<td th:text="${v.matricula}"></td>
 							<td th:text="${v.modelo}"></td>
 							<td th:text="${v.tipo}"></td>
 							<td th:text="${v.consumo}"></td>
 							<td th:text="${v.estado}"></td>
-							<td><a th:href="@{|/alquiler-cliente-add?id=${v.id}|}" class="enlace">Ir</a></td>
-							<td><a th:href="@{|/vehiculo-delete?id=${v.id}|}" class="enlace">Borrar</a></td>
-							<td><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Editar</a></td>
+							<td>
+								<a th:href="@{|/alquiler-cliente-add?id=${v.id}|}" class="enlace" sec:authorize="isAuthenticated()">Ir</a>
+								<a th:href="@{/login-user}" sec:authorize="!isAuthenticated()">Ir</a>
+							</td>
+							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-delete?id=${v.id}|}" class="enlace">Borrar</a></td>
+							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Editar</a></td>
 						</tr>
 					</tbody>
 				</table>

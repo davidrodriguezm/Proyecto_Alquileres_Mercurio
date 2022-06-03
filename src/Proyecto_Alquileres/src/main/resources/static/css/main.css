@@ -10988,6 +10988,8 @@ div.tabla {
 table.tabla {
   border-collapse: collapse;
   width: 100%;
+  text-align: center !important;
+  vertical-align: middle !important;
 }
 table.tabla thead th {
   border-bottom: 3px solid #ff9a3c;

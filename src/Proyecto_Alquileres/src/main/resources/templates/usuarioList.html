@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<script defer src="/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/main.css">
-	<script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<title>Lista Usuarios</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
 							<th>Telefono</th>
 							<th>Rol</th>
 							<th>Email</th>
-							<th>editar</th>
+							<th>Activo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,7 +34,7 @@
 							<td th:text="${u.telefono}"></td>
 							<td th:text="${u.role}"></td>
 							<td th:text="${u.email}"></td>
-							<td><a th:href="@{|/usuario-edit?id=${u.id}|}" class="enlace">Editar</a></td>
+							<td th:text="${u.activo ? 'Si' : 'No'}"></td>
 						</tr>
 					</tbody>
 				</table>

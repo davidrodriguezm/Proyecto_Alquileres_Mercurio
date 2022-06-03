@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script defer src="/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script defer src="/js/estadisticas.js"></script>
+    <link rel="shortcut icon" href="/img/car-icon.png" />
+    <link rel="stylesheet" href="/css/main.css">
+	<title>Inicio Admin</title>
+</head>
+<body>
+	<header th:replace="fragments/parts::header"></header>	
+	<section th:replace="fragments/parts::portada"></section>	
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>	
+		<main>			
+			<div class="bloque">
+				<button type="button" id="actualizar-datos" class="boton">Actualizar datos</button>
+			</div>	
+			<div class="configura bloque">
+				<h2 class="resaltado estadistica">Tipos de Vehículos de la flota</h2> 
+				<div class="chart_wrap">
+    				<div id="piechart" class="estadistica"></div>
+    			</div>
+    		</div>
+    		
+    		<div class="configura bloque">
+    			<h2 class="resaltado estadistica">Estado de Vehículos en la flota</h2>
+    			<div class="chart_wrap">
+    				<div id="donutchart" class="estadistica"></div>
+    			</div>
+    		</div>		
+		</main>   	
+	</div>	
+	<footer th:replace="fragments/parts::footer"></footer>
+</body>
+</html>

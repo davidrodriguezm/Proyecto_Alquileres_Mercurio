@@ -2,9 +2,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <script defer type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script defer src="/js/estadisticas.js"></script>
     <link rel="shortcut icon" href="/img/car-icon.png" />
+    <script defer src="/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
 	<title>Inicio</title>
 </head>
@@ -37,25 +36,7 @@
 						</a>
 					</div>
 				</div>
-			</div>
-    		<br><br>
-			
-			<div class="bloque">
-				<button type="button" id="actualizar-datos" class="boton">Actualizar datos</button>
-			</div>	
-			<div class="configura bloque">
-				<h2 class="resaltado estadistica">Tipos de Vehículos de la flota</h2> 
-				<div class="chart_wrap">
-    				<div id="piechart" class="estadistica"></div>
-    			</div>
-    		</div>
-    		
-    		<div class="configura bloque">
-    			<h2 class="resaltado estadistica">Estado de Vehículos en la flota</h2>
-    			<div class="chart_wrap">
-    				<div id="donutchart" class="estadistica"></div>
-    			</div>
-    		</div>		
+			</div>			
 		</main>   	
 	</div>	
 	<footer th:replace="fragments/parts::footer"></footer>

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<script defer src="/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/main.css">
 	<title>Login</title>
 </head>
@@ -13,11 +14,11 @@
 		<aside th:replace="fragments/parts::aside"></aside>
 		<main>
 			<form action="#" th:action="@{/perform_login}" method="post" class="formulario bloque">
-				<h2 class="resaltado">Inicia Sesión</h2>
+				<h2 class="resaltado">Iniciar Sesión</h2>
 				<label for="username">Email</label>
 				<input type="email" id="username" name="username" required>
 				<label for="password">Contraseña</label>
-				<input type="text" id="password" name="password" required>
+				<input type="password" id="password" name="password" required>
 				<input type="submit" class="boton" value="Enviar"/>
 			</form>
 		</main>

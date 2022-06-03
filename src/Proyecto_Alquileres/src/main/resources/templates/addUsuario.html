@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="/img/car-icon.png" />
+	<script defer src="/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
 	<title>Add Usuario</title>
 </head>
@@ -13,7 +14,7 @@
 		<aside th:replace="fragments/parts::aside"></aside>	
 		<main>
 			<form action="#" th:action="@{/usuario-add}" th:object="${usuario}" method="post" class="formulario bloque">
-				<h2 class="resaltado">Registrate</h2>
+				<h2 class="resaltado">Registrate como Usuario</h2>
 				<div class="grupoForm">
 					<label for="nombre" >Nombre</label> 
 					<input type="text" id="nombre" name="nombre" th:field="*{nombre}" required>
@@ -36,7 +37,7 @@
 				</div>
 				<div class="grupoForm">
 					<label for="password" >Contraseña</label>
-					<input type="text"  id="password" name="password" th:field="*{password}" required>
+					<input type="password"  id="password" name="password" th:field="*{password}" required>
 					<p class="resaltado" th:each="e : ${errores.get('password')}" th:text="${e}"></p>
 				</div>
 				<input type="submit" class="boton" value="Enviar" />

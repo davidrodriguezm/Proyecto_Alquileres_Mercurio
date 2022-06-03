@@ -28,11 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 			http
-			.csrf().disable()//logout con get
+			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/*").permitAll()
-			.antMatchers("/admin").hasRole("ADMIN")
-			.antMatchers("/user").hasRole("USER")
+			.antMatchers("/","/login-user","/usuario-add","/vehiculos").permitAll()
+			.antMatchers("/alquileres","/alquiler-add","/alquiler-edit","/vehiculo-add","/vehiculo-edit","/vehiculo-delete","/usuarios").hasRole("ADMIN")
+			.antMatchers("/alquiler-cliente-add").hasRole("USER")
+			.antMatchers("/logout-user","/usuario-edit").authenticated()
 			.and()
 			.formLogin()
 				.loginPage("/login-user")

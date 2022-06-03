@@ -1,17 +1,21 @@
+<meta charset="UTF-8">
 <header th:fragment="header">
 	<a th:href="@{/}"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a>   
     <nav>
     	<h2 class="">
         	<a th:href="@{/vehiculos}">Vehículos</a>
         </h2>
-        <h2 class="">
+        <h2 class="" sec:authorize="hasRole('ADMIN')">
         	<a th:href="@{/alquileres}">Alquileres</a>
         </h2>
-        <h2 class="">
+        <h2 class="" sec:authorize="hasRole('ADMIN')">
         	<a th:href="@{/usuarios}">Usuarios</a>
         </h2>
 		<h2 class="">
         	<a th:href="@{/usuario-add}">Registrarse</a>
+        </h2>
+        <h2 class="" sec:authorize="isAuthenticated()">
+        	<a th:href="@{/usuario-edit}">Editar perfil</a>
         </h2>
 		<h2 class="" sec:authorize="!isAuthenticated()">
         	<a th:href="@{/login-user}">Login</a>
@@ -19,7 +23,40 @@
         <h2 class="" sec:authorize="isAuthenticated()">
         	<a th:href="@{/logout-user}">Logout</a>
         </h2>
-	</nav>
+	</nav> <!--
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  		<div class="container-fluid">
+  			<a th:href="@{/}" class="navbar-brand"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a> 
+    		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      			<span class="navbar-toggler-icon"></span>
+    		</button>
+    		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      			<div class="navbar-nav">
+      			<h2 class="">
+        	<a th:href="@{/vehiculos}">Vehículos</a>
+        </h2>
+        <h2 class="" sec:authorize="hasRole('ADMIN')">
+        	<a th:href="@{/alquileres}">Alquileres</a>
+        </h2>
+        <h2 class="" sec:authorize="hasRole('ADMIN')">
+        	<a th:href="@{/usuarios}">Usuarios</a>
+        </h2>
+		<h2 class="">
+        	<a th:href="@{/usuario-add}">Registrarse</a>
+        </h2>
+        <h2 class="" sec:authorize="isAuthenticated()">
+        	<a th:href="@{/usuario-edit}">Editar perfil</a>
+        </h2>
+		<h2 class="" sec:authorize="!isAuthenticated()">
+        	<a th:href="@{/login-user}">Login</a>
+        </h2>
+        <h2 class="" sec:authorize="isAuthenticated()">
+        	<a th:href="@{/logout-user}">Logout</a>
+        </h2>
+
+    		</div>
+  		</div>
+	</nav> -->
 </header>
 
 <section class="portada" th:fragment="portada">
@@ -53,14 +90,6 @@
 					distancia o un traslado temporal en tu puesto de trabajo.
 				</p>
 		</article>
-<!-- 		<article class="info bloque"> -->
-<!-- 			<h2 class="resaltado" >Movilidad para tu negocio:</h2> -->
-<!-- 			<p> -->
-<!-- 				Una amplia oferta de vehículos industriales y de transporte de mercancías: <b>furgonetas</b>, <b>furgones abiertos</b>,  -->
-<!-- 				<b>mini camiones</b> y <b>coches</b>. Te ofrece mos lo que tu negocio necesita con la experiencia más de  -->
-<!-- 				20 años de especialización en el sector del transporte por carretera. -->
-<!-- 			</p> -->
-<!-- 		</article>	 -->
 	</section>
 </aside>
 

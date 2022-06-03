@@ -204,6 +204,8 @@ div.tabla {
 table.tabla {
     border-collapse: collapse;
     width: $todo;
+    text-align: center !important;
+    vertical-align: middle !important;
 
     thead th {
         border-bottom: 3px solid $resaltado;

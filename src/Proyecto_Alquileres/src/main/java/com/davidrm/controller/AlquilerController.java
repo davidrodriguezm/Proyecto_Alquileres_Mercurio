@@ -181,40 +181,42 @@ public class AlquilerController {
 	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
 		String dirige = "redirect:/vehiculos";
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Usuario usuario = usuarioSer.findUsuarioByEmail(auth.getName());
-		
-		if (usuario != null) {
-			if (idVehiculo != null && vehiculoSer.findVehiculoById(idVehiculo) != null) {
-				AlquilerDTO alquilerDTO = new AlquilerDTO();
-				alquilerDTO.setIdVehiculo(idVehiculo);
-				alquilerDTO.setIdCliente(usuario.getId());
-				
-				model.addAttribute("errores", new HashMap<>());
-				model.addAttribute("alquiler", alquilerDTO);
-				dirige = "addAlquilerCliente";
-			}
-		} else dirige = "redirect:/";
+		Vehiculo vehiculo = vehiculoSer.findVehiculoById(idVehiculo);
+
+		if (idVehiculo != null && vehiculo != null) {
+			AlquilerDTO alquilerDTO = new AlquilerDTO();
+			alquilerDTO.setIdVehiculo(vehiculo.getId());
+			
+			model.addAttribute("modelvehiculo", vehiculo.getModelo());	
+			model.addAttribute("errores", new HashMap<>());
+			model.addAttribute("alquiler", alquilerDTO);
+			dirige = "addAlquilerCliente";
+		} else 
+			dirige = "redirect:/";
 		
 		return dirige;
 	}
 	
 	
 	@PostMapping("/alquiler-cliente-add")
-	public String addAlquilerClientePost(@Valid @ModelAttribute("alqDTO") AlquilerDTO alqDTO, BindingResult validacion,
-			Model model) {		
+	public String addAlquilerClientePost(@ModelAttribute("alqDTO") AlquilerDTO alqDTO, Model model) {
+		
 		String dirige = "redirect:/alquiler-cliente-add";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioSer.findUsuarioByEmail(auth.getName());
 		
-		if (alqDTO != null) alqDTO.setEstado("Reserva");
-		
+		if (alqDTO != null) {
+			alqDTO.setEstado("Reserva");
+			alqDTO.setIdCliente(usuario.getId());
+		}
+				
 		Map<String,List<String>> errores = new HashMap<>();		
 		errores.put("idVehiculo", new ArrayList<>());
-		errores.put("idCliente", new ArrayList<>());
 		errores.put("fecha_inicio", new ArrayList<>());
 		errores.put("fecha_fin", new ArrayList<>());
-		errores.put("estado", new ArrayList<>());
 		
 		boolean errorFecha = false;
+		LocalDate actual = LocalDate.now();
 		
 		if (alqDTO.getFecha_inicio() != null && alqDTO.getFecha_fin() != null && 
 				!alqDTO.getFecha_fin().isAfter(alqDTO.getFecha_inicio())) {
@@ -222,14 +224,29 @@ public class AlquilerController {
 			errorFecha = true;
 		}
 		
-		if (validacion.hasErrors() || errorFecha) {
+		if (alqDTO.getFecha_fin() != null && !alqDTO.getFecha_fin().isAfter(actual)) {
+			errores.get("fecha_fin").add("La fecha de fin debe ser posterior a la actual");
+			errorFecha = true;
+		}
+		
+		if (alqDTO.getFecha_inicio() != null && alqDTO.getFecha_inicio().isBefore(actual)) {
+			errores.get("fecha_inicio").add("La fecha de inicio no puede ser anterior a la actual");
+			errorFecha = true;
+		}
+		
+		if (alqDTO.getFecha_inicio() == null || alqDTO.getFecha_fin() == null || alqDTO.getIdVehiculo() == null || errorFecha) {
 			
-			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
+			if (alqDTO.getFecha_inicio() == null) errores.get("fecha_inicio").add("El campo fecha de inicio no puede ser nulo");
+			
+			if (alqDTO.getFecha_fin() == null) errores.get("fecha_fin").add("El campo fecha de fin no puede ser nulo");
+			
+			if (alqDTO.getIdVehiculo() == null) errores.get("fecha_fin").add("El campo Id Vehiculo no puede ser nulo");
 			
 			model.addAttribute("errores", errores);
 			model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
 			model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
-			model.addAttribute("alquiler", alqDTO);		
+			model.addAttribute("alquiler", alqDTO);
+			
 			dirige = "addAlquilerCliente";
 			
 		} else if (alqDTO != null) {
@@ -243,7 +260,7 @@ public class AlquilerController {
 			cliente.addAlquiler(alquiler);
 			
 			alquilerSer.insertarAlquiler(alquiler);
-			dirige = "redirect:/alquileres";
+			dirige = "redirect:/";
 		}
 		return dirige;
 	}

@@ -26,7 +26,7 @@ public class AlquilerDTO implements Serializable {
 	private LocalDate fecha_inicio;
 	
 	@NotNull(message="El campo fecha de fin no puede ser nulo")
-	@Future(message = "La fecha de fin no puede ser anterior a la actual")
+	@Future(message = "La fecha de fin debe ser posterior a la actual")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha_fin;
 	

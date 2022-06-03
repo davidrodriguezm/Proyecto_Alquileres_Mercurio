@@ -6,9 +6,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 public class UsuarioDTO implements Serializable {
+	
 	private Long id;
 	
 	@NotNull(message="El campo DNI no puede ser nulo")
@@ -33,6 +35,7 @@ public class UsuarioDTO implements Serializable {
 	
 	@NotNull(message="El campo contraseña no puede ser nulo")
 	@NotEmpty(message="El campo contraseña no puede estar vacío")
+	@Size(min = 5, message = "Minimo debe tener entre 5 caracteres")
 	private String password;
 		
 	public UsuarioDTO() {}	
