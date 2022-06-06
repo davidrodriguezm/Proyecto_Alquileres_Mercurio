@@ -57,7 +57,7 @@ public class RestControllerVehiculo {
 		respuesta.put("revision", revision);
 		respuesta.put("averiado", averiado);
 				
-		return new ResponseEntity(respuesta, HttpStatus.OK);	
+		return new ResponseEntity<Object>(respuesta, HttpStatus.OK);	
 	}
 	
 	@GetMapping("/tipos-vehiculo")
@@ -81,7 +81,7 @@ public class RestControllerVehiculo {
 		respuesta.put("furgoneta", furgo);
 		respuesta.put("monovolumen", mono);
 				
-		return new ResponseEntity(respuesta, HttpStatus.OK);	
+		return new ResponseEntity<Object>(respuesta, HttpStatus.OK);	
 	}
 
 	@GetMapping("/vehiculos")
@@ -94,7 +94,7 @@ public class RestControllerVehiculo {
 			vreturn.add(vc);
 		});
 		
-		return new ResponseEntity(vreturn, HttpStatus.OK);	
+		return new ResponseEntity<Object>(vreturn, HttpStatus.OK);	
 	}
 	
 	@GetMapping("/vehiculo/{id}")

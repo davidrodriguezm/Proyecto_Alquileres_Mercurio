@@ -42,7 +42,7 @@ public class AlquilerController {
 	
 	
 	@GetMapping("/alquileres")
-	public String alquilerList(Model model){
+	public String alquilerList(Model model) {
 		model.addAttribute("alquileres", alquilerSer.getAllAlquileres());
 		return "alquilerList";	
 	}
@@ -179,10 +179,10 @@ public class AlquilerController {
 	
 	@GetMapping("/alquiler-cliente-add")
 	public String addAlquilerClienteGet(Model model,@RequestParam(required=false,name="id") Long idVehiculo) {
-		String dirige = "redirect:/vehiculos";
-		
+		String dirige = "redirect:/vehiculos";	
 		Vehiculo vehiculo = vehiculoSer.findVehiculoById(idVehiculo);
 
+		
 		if (idVehiculo != null && vehiculo != null) {
 			AlquilerDTO alquilerDTO = new AlquilerDTO();
 			alquilerDTO.setIdVehiculo(vehiculo.getId());
@@ -192,7 +192,7 @@ public class AlquilerController {
 			model.addAttribute("alquiler", alquilerDTO);
 			dirige = "addAlquilerCliente";
 		} else 
-			dirige = "redirect:/";
+			dirige = "redirect:/vehiculos";
 		
 		return dirige;
 	}
@@ -260,7 +260,7 @@ public class AlquilerController {
 			cliente.addAlquiler(alquiler);
 			
 			alquilerSer.insertarAlquiler(alquiler);
-			dirige = "redirect:/";
+			dirige = "redirect:/vehiculos";
 		}
 		return dirige;
 	}

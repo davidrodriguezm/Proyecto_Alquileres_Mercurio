@@ -31,7 +31,7 @@ public class VehiculoController {
 	@GetMapping("/vehiculos")
 	public String vehiculoList(@RequestParam(required=false, name="tipo") String tipo, Model model) {		
 		if (tipo != null) 
-			model.addAttribute("vehiculos", vehiculoSer.findVehiculosByTipo(tipo));		
+			model.addAttribute("vehiculos", vehiculoSer.findByTipo(tipo));		
 		else 
 			model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
 		
@@ -63,7 +63,7 @@ public class VehiculoController {
 		
 		boolean matriculaRepe = false;
 		
-		if (vehiDTO.getMatricula() != null && vehiculoSer.findVehiculoByMatricula(vehiDTO.getMatricula()) != null) {
+		if (vehiDTO.getMatricula() != null && vehiculoSer.findByMatricula(vehiDTO.getMatricula()) != null) {
 			matriculaRepe = true;
 			errores.get("matricula").add("Ya existe un Vehículo con esa matricula");
 		}

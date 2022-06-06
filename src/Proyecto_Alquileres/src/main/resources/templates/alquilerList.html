@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="/img/car-icon.png" />
-	<link rel="stylesheet" href="/css/main.css">
-	<script defer src="/js/bootstrap.min.js"></script>
-	<script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<title>Lista Alquileres</title>
-</head>
+<head th:replace="fragments/parts::head(title='Lista Alquileres')"></head>
 <body>
 	<header th:replace="fragments/parts::header"></header>
 	<section th:replace="fragments/parts::portada"></section>
@@ -37,7 +30,7 @@
 					<tbody>
 						<tr th:each="a : ${alquileres}">
 							<td th:text="${a.id}"></td>
-							<td th:text="${a.cliente.nombre}"></td>
+							<td th:text="${a.cliente.dni}"></td>
 							<td th:text="${a.vehiculo.matricula}"></td>
 							<td th:text="${a.getInicioFormato()}"></td>
 							<td th:text="${a.getFinFormato()}"></td>

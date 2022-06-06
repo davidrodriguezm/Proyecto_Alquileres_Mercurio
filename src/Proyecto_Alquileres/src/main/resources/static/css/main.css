@@ -10536,23 +10536,23 @@ textarea.form-control-lg {
   }
 }
 article.ofertas :nth-child(1) {
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
 }
 
 article.ofertas :nth-child(2) {
-  margin-bottom: 35px;
+  margin-bottom: 2.2rem;
 }
 
 article.ofertas :nth-child(3) {
-  margin-bottom: 35px;
+  margin-bottom: 2.2rem;
 }
 
 article.ofertas :nth-child(4) {
-  margin-bottom: 35px;
+  margin-bottom: 2.2rem;
 }
 
 article.ofertas :nth-child(5) {
-  margin-bottom: 15px;
+  margin-bottom: 0.9rem;
 }
 
 /* Animacion de iluminazion */
@@ -10577,25 +10577,25 @@ article.ofertas :nth-child(5) {
 
 /* Cambios en el scroll */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 1rem;
 }
 
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #ff6f3c;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -10645,20 +10645,29 @@ header .resaltado {
 header a:hover {
   color: #ffc93c !important;
 }
-header .logotipo {
+header img.logotipo {
   width: 16rem;
   height: 6.5rem;
-  margin-left: 10px;
+  margin-left: 0.4rem;
 }
 header nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  padding: 0px !important;
+}
+header nav .navbar-brand {
+  padding: 0px !important;
+}
+header nav div.logotipo {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: center;
 }
 header nav h2 {
   font-size: 2rem;
-  margin: 15px;
+  margin: 0.7rem;
 }
 
 section.portada {
@@ -10705,21 +10714,21 @@ div.contenido aside article h2 {
   font-size: 2rem;
 }
 div.contenido article.info :nth-child(1) {
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
 }
 div.contenido article.info :nth-last-child(1) {
-  margin-bottom: 15px;
+  margin-bottom: 0.9rem;
 }
 div.contenido .bloque {
   background-color: #155263;
   color: #FFFFFF;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 14px;
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  -ms-border-radius: 14px;
-  -o-border-radius: 14px;
-  margin-top: 30px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  margin-top: 2.5rem;
 }
 div.contenido .bloque a {
   color: #FFFFFF;
@@ -10947,11 +10956,11 @@ form.formulario p {
   margin: 30px;
   padding: 10px;
   font-size: 1.4rem;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 .boton:hover {
@@ -10992,7 +11001,7 @@ table.tabla {
   vertical-align: middle !important;
 }
 table.tabla thead th {
-  border-bottom: 3px solid #ff9a3c;
+  border-bottom: 0.2rem solid #ff9a3c;
   font-size: 1.2rem;
 }
 table.tabla tbody td {

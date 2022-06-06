@@ -30,10 +30,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			http
 			.csrf().disable()
 			.authorizeRequests()
+			
 			.antMatchers("/","/login-user","/usuario-add","/vehiculos").permitAll()
-			.antMatchers("/alquileres","/alquiler-add","/alquiler-edit","/vehiculo-add","/vehiculo-edit","/vehiculo-delete","/usuarios").hasRole("ADMIN")
+			
+			.antMatchers("/alquileres","/alquiler-add","/alquiler-edit","/vehiculo-add","/vehiculo-edit",
+					"/vehiculo-delete","/usuarios","/usuarios-activo").hasRole("ADMIN")
+			
 			.antMatchers("/alquiler-cliente-add").hasRole("USER")
+			
 			.antMatchers("/logout-user","/usuario-edit").authenticated()
+			
 			.and()
 			.formLogin()
 				.loginPage("/login-user")

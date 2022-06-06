@@ -6,17 +6,17 @@
 
     @if $i == 1 {
         article.ofertas :nth-child(#{$i}) {
-            margin-bottom: 25px;
+            margin-bottom: 1.5rem;
         }
 
     } @else if $i == 5 {
         article.ofertas :nth-child(#{$i}) {
-            margin-bottom: 15px;
+            margin-bottom: 0.9rem;
         }
 
     } @else {
         article.ofertas :nth-child(#{$i}) {
-            margin-bottom: 35px;
+            margin-bottom: 2.2rem;
         }
     }
 }

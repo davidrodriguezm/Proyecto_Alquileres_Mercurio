@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="/img/car-icon.png" />
-	<link rel="stylesheet" href="/css/main.css">
-	<script defer src="/js/bootstrap.min.js"></script>
-	<title>Lista vehiculos</title>
-</head>
+<head th:replace="fragments/parts::head(title='Lista vehiculos')"></head>
 <body>
 	<header th:replace="fragments/parts::header"></header>
 	<section th:replace="fragments/parts::portada"></section>
@@ -28,7 +22,7 @@
 							<th>Tipo</th>
 							<th>Consumo</th>
 							<th>Estado</th>
-							<th>Alquilar</th>
+							<th sec:authorize="!hasRole('ADMIN')">Reservar</th>
 							<th sec:authorize="hasRole('ADMIN')">Eliminar</th>
 							<th sec:authorize="hasRole('ADMIN')">Editar</th>
 						</tr>
@@ -41,9 +35,9 @@
 							<td th:text="${v.tipo}"></td>
 							<td th:text="${v.consumo}"></td>
 							<td th:text="${v.estado}"></td>
-							<td>
+							<td sec:authorize="!hasRole('ADMIN')">
 								<a th:href="@{|/alquiler-cliente-add?id=${v.id}|}" class="enlace" sec:authorize="isAuthenticated()">Ir</a>
-								<a th:href="@{/login-user}" sec:authorize="!isAuthenticated()">Ir</a>
+								<a th:href="@{/login-user}" sec:authorize="!isAuthenticated()" class="enlace">Ir</a>
 							</td>
 							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-delete?id=${v.id}|}" class="enlace">Borrar</a></td>
 							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Editar</a></td>

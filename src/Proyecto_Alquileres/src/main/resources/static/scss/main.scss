@@ -163,11 +163,11 @@ form.formulario {
     margin: 30px;
     padding: 10px;
     font-size: 1.4rem;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
 }
 
 .boton:hover {
@@ -208,7 +208,7 @@ table.tabla {
     vertical-align: middle !important;
 
     thead th {
-        border-bottom: 3px solid $resaltado;
+        border-bottom: 0.2rem solid $resaltado;
         font-size: 1.2rem;
     }
 

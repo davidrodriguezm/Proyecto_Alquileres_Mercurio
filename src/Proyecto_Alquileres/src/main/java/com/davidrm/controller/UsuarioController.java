@@ -196,4 +196,19 @@ public class UsuarioController {
 			
 		return dirige;
 	}
+	
+	
+	@GetMapping("/usuarios-activo")
+	public String usuarioActivo(@RequestParam(required=false, name="id") Long id, Model model) {		
+		Usuario usuario = null;
+		
+		if (id != null) usuario = usuarioSer.findUsuarioById(id);
+		
+		if (usuario != null) {
+			usuario.setActivo(usuario.isActivo() ? false : true);
+			usuarioSer.actualizarUsuario(usuario);
+		}
+
+		return "redirect:/usuarios";	
+	}
 }
