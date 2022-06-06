@@ -3361,7 +3361,7 @@ textarea.form-control-lg {
   display: flex;
   flex-wrap: inherit;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start !important;
 }
 .navbar-brand {
   padding-top: 0.3125rem;
@@ -10628,8 +10628,8 @@ body {
 }
 
 header {
-  background-color: #155263;
-  color: #FFFFFF;
+  background-color: #155263 !important;
+  color: #FFFFFF !important;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -10637,10 +10637,10 @@ header {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif !important;
 }
 header a {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 header .resaltado {
-  color: #ff9a3c;
+  color: #ff9a3c !important;
 }
 header a:hover {
   color: #ffc93c !important;
@@ -10657,9 +10657,6 @@ header nav {
   align-items: center;
   padding: 0px !important;
 }
-header nav .navbar-brand {
-  padding: 0px !important;
-}
 header nav div.logotipo {
   display: flex;
   justify-content: flex-start !important;
@@ -10668,6 +10665,36 @@ header nav div.logotipo {
 header nav h2 {
   font-size: 2rem;
   margin: 0.7rem;
+}
+header nav div.modal-content {
+  background-color: #155263 !important;
+  color: #FFFFFF !important;
+}
+header nav div.modal-content a {
+  color: #FFFFFF !important;
+}
+header nav div.modal-content .resaltado {
+  color: #ff9a3c !important;
+}
+header nav div.modal-content div.titulo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+}
+header nav div.modal-content div.titulo h2.resaltado {
+  padding-bottom: 1rem;
+  font-size: 2.5rem !important;
+}
+header nav div.modal-content div.cuerpo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+header nav div.modal-content .boton {
+  width: 15%;
 }
 
 section.portada {
@@ -10709,7 +10736,7 @@ div.contenido aside article {
   padding: 1.1rem;
 }
 div.contenido aside article h2 {
-  border-bottom: 3px solid #ff9a3c;
+  border-bottom: 0.25rem solid #ff9a3c;
   padding-bottom: 5px;
   font-size: 2rem;
 }
@@ -10720,8 +10747,8 @@ div.contenido article.info :nth-last-child(1) {
   margin-bottom: 0.9rem;
 }
 div.contenido .bloque {
-  background-color: #155263;
-  color: #FFFFFF;
+  background-color: #155263 !important;
+  color: #FFFFFF !important;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
@@ -10731,10 +10758,10 @@ div.contenido .bloque {
   margin-top: 2.5rem;
 }
 div.contenido .bloque a {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 div.contenido .bloque .resaltado {
-  color: #ff9a3c;
+  color: #ff9a3c !important;
 }
 div.contenido .bloque:hover {
   animation: ilimina_animado 3s infinite;
@@ -10746,17 +10773,17 @@ footer {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #155263;
-  color: #FFFFFF;
+  background-color: #155263 !important;
+  color: #FFFFFF !important;
   margin-top: 35px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 footer a {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 footer .resaltado {
-  color: #ff9a3c;
+  color: #ff9a3c !important;
 }
 footer article {
   margin: 20px;

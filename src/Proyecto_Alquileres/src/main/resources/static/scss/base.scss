@@ -97,10 +97,6 @@ header {
         @include alinear_separado;
         padding: 0px !important;
 
-        .navbar-brand {
-            padding: 0px !important;
-        }
-
         div.logotipo {
             display: flex;
             justify-content: flex-start !important;
@@ -110,6 +106,28 @@ header {
         h2 {
             font-size: 2rem;
             margin: 0.7rem;
+        }
+
+        div.modal-content {
+            @include tema;
+
+            div.titulo {
+                @include alinear_centrado;
+                padding: 2.5rem;
+
+                h2.resaltado {
+                    padding-bottom: 1rem;
+                    font-size: 2.5rem !important;
+                }
+            }
+
+            div.cuerpo {
+                @include alinear_centrado;
+            }
+
+            .boton {
+                width: 15%;
+            }           
         }
     }
 }
@@ -154,7 +172,7 @@ div.contenido {
             padding: 1.1rem;
 
             h2 {
-                border-bottom: 3px solid $resaltado;
+                border-bottom: 0.25rem solid $resaltado;
                 padding-bottom: 5px;
                 font-size: 2rem;
             }

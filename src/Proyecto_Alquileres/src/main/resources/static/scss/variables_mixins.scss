@@ -23,15 +23,15 @@ $mediano: 576px;
 $grande: 992px;
 
 @mixin tema {
-    background-color: $azul;
-    color: $blanco;
+    background-color: $azul !important;
+    color: $blanco !important;
 
     a {
-        color: $blanco;
+        color: $blanco !important;
     }
 
     .resaltado {
-        color: $resaltado;
+        color: $resaltado !important;
     }
 }
 

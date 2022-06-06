@@ -12,7 +12,9 @@
 <header th:fragment="header">	
 	<nav class="navbar navbar-expand-lg navbar-dark bg-light">
   		<div class="logotipo">
-  			<a th:href="@{/}" class="navbar-brand"><img src="/img/logo.png" alt="logotipo" class="logotipo"></a> 
+  			<a th:href="@{/}">
+  				<img src="/img/logo.png" alt="logotipo" class="logotipo">
+  			</a> 
     		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       			<span class="navbar-toggler-icon"></span>
     		</button>
@@ -38,7 +40,22 @@
         			<a th:href="@{/login-user}">Login</a>
         		</h2>
         		<h2 class="" sec:authorize="isAuthenticated()">
-        			<a th:href="@{/logout-user}">Logout</a>
+        			<a data-bs-toggle="modal" href="#cerrarSesion" role="button">Logout</a>
+        			<div class="modal fade" id="cerrarSesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  						<div class="modal-dialog">
+    						<div class="modal-content">
+    							<div class="titulo">  							
+      								<h2 class="resaltado">Cerrar Sesión</h2>
+      							</div>
+      							<div class="cuerpo">
+      								<button type="button" class="boton" data-bs-dismiss="modal">No</button>
+      								<button type="button" id="actualizar-datos" class="boton">
+      									<a th:href="@{/logout-user}">Si</a>
+      								</button>
+      							</div>    							
+    						</div>
+  						</div>
+					</div>
         		</h2>
     		</div>
   		</div>
