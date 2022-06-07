@@ -1,91 +1,52 @@
 @import "base.scss";
 
-article.vehiculo {
-    @include alinear;
-    width: $todo;
-    margin-top: 30px;
-
-    div.datos,
-    img {
-        width: #{calcularAnchura(2)}+'%';
-    }
-
-    div.datos {
-        @include alinear;
-        padding: 1rem;
-
-        h3,
-        h2,
-        p {
-            width: $todo;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-        }
-    }
-
-    img {
-        padding: 1.1rem;
-        border-radius: 30px;
-        -webkit-border-radius: 30px;
-        -moz-border-radius: 30px;
-        -ms-border-radius: 30px;
-        -o-border-radius: 30px;
-    }
-}
-
 div.configura {
     @include alinear_centrado;
-    margin: 30px auto;
+    margin: 2.5rem auto;
     width: 95%;
     padding: 1.1rem;
 
     h1 {
-        margin: 20px;
+        margin: 1.5rem;
         font-size: 2rem;
     }
 }
 
 div.busquedas {
     @include alinear_centrado;
-    margin-top: 15px;
+    margin-top: 0.6rem;
 
     div.caja {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         justify-content: center;
-        margin: 15px;
+        margin: 0.5rem;
         
         img {
-            width: 120px; 
-            height: 90px;
-            border-radius: 10px;
-            margin: 15px;
+            width: 8.5rem; 
+            height: 5.7rem;
+            border-radius: 0.4rem;
+            margin: 1rem;
         }
     }
 }
 
 @keyframes ilimina_input {
     0% {
-        box-shadow: 0 0px 1px 0 $iluminar_input, 0 0px 1px 0 $iluminar_input;
+        box-shadow: 0 0px 0.08rem 0 $iluminar_input, 0 0px 0.08rem 0 $iluminar_input;
     }
 
     34% {
-        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
+        box-shadow: 0 0px 0.35rem 0 $iluminar_input, 0 0px 0.35rem 0 $iluminar_input;
     }
 
     68% {
-        box-shadow: 0 0px 9px 0 $iluminar, 0 0px 9px 0 $iluminar_input;
+        box-shadow: 0 0px 0.5rem 0 $iluminar, 0 0px 0.5rem 0 $iluminar_input;
     }
 
     100% {
-        box-shadow: 0 0px 5px 0 $iluminar_input, 0 0px 5px 0 $iluminar_input;
+        box-shadow: 0 0px 0.3rem 0 $iluminar_input, 0 0px 0.3rem 0 $iluminar_input;
     }
 }
 
@@ -93,11 +54,11 @@ form.formulario {
     @include alinear_centrado;
     width: 95%;
     padding: 1.1rem;
-    margin: 30px auto;
+    margin: 2.5rem auto;
 
     div.grupoForm {
         width: 95%;
-        margin-bottom: 30px;
+        margin-bottom: 2.5rem;
         @include alinear_separado;
 
         input, textarea, select, option, label {
@@ -108,22 +69,22 @@ form.formulario {
     label {
         width: 40%;
         font-size: 1.8rem;
-        margin-bottom: 30px;   
+        margin-bottom: 2.5rem;   
     }
 
     input, textarea, select, option {
         font-size: 1.8rem;
-        margin-bottom: 30px;
+        margin-bottom: 2.5rem;
     }
 
     input[type = text], input[type = email], input[type = password], input[type = number], 
     select, option, textarea, input[type = date] {
         width: 55%;      
-        border-radius: 8px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -o-border-radius: 8px;
+        border-radius: 0.2rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
     }
 
     input[type = submit] {
@@ -145,14 +106,14 @@ form.formulario {
     h2 {
         width: 100%;
         font-size: 2.5rem;
-        margin-top: 15px;
-        margin-bottom: 45px;
+        margin-top: 1rem;
+        margin-bottom: 3.5rem;
         text-align: center;
     }
 
     p {
         width: 100%;
-        margin-top: 5px;
+        margin-top: 0.45rem;
     }
 }
 
@@ -160,8 +121,8 @@ form.formulario {
     background-color: $resaltado_btn;
     border-color: $blanco;
     color: $blanco;
-    margin: 30px;
-    padding: 10px;
+    margin: 2rem;
+    padding: 1rem;
     font-size: 1.4rem;
     border-radius: 1rem;
     -webkit-border-radius: 1rem;
@@ -222,7 +183,7 @@ table.tabla {
     }
 
     tbody tr:hover {
-        background-color: #114352;
+        background-color: $azul_tabla_hover;
     }
 }
 

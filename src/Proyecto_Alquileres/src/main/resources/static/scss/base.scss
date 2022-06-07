@@ -5,19 +5,19 @@
 /* Animacion de iluminazion */
 @keyframes ilimina_animado {
     0% {
-        box-shadow: 0 0px 10px 0 $iluminar, 0 0px 10px 0 $iluminar;
+        box-shadow: 0 0px 0.6rem 0 $iluminar, 0 0px 0.6rem 0 $iluminar;
     }
 
     34% {
-        box-shadow: 0 0px 20px 0 $iluminar, 0 0px 20px 0 $iluminar;
+        box-shadow: 0 0px 0.9rem 0 $iluminar, 0 0px 0.9rem 0 $iluminar;
     }
 
     68% {
-        box-shadow: 0 0px 30px 0 $iluminar, 0 0px 30px 0 $iluminar;
+        box-shadow: 0 0px 1.2rem 0 $iluminar, 0 0px 1.2rem 0 $iluminar;
     }
 
     100% {
-        box-shadow: 0 0px 12px 0 $iluminar, 0 0px 12px 0 $iluminar;
+        box-shadow: 0 0px 0.9rem 0 $iluminar, 0 0px 0.9rem 0 $iluminar;
     }
 }
 
@@ -33,20 +33,20 @@
 
 ::-webkit-scrollbar-track {
     background: $negro;
-    border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
+    border-radius: 1.2rem;
+    -webkit-border-radius: 1.2rem;
+    -moz-border-radius: 1.2rem;
+    -ms-border-radius: 1.2rem;
+    -o-border-radius: 1.2rem;
 }
 
 ::-webkit-scrollbar-thumb {
     background: $resaltado_btn;
-    border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
+    border-radius: 1.2rem;
+    -webkit-border-radius: 1.2rem;
+    -moz-border-radius: 1.2rem;
+    -ms-border-radius: 1.2rem;
+    -o-border-radius: 1.2rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -70,7 +70,7 @@ a {
 }
 
 a.enlace:hover {
-    text-shadow: 0 0 8px $iluminar;
+    text-shadow: 0 0 0.5rem $iluminar;
     text-decoration: underline;
 }
 
@@ -81,7 +81,7 @@ body {
 header {
     @include tema;
     @include alinear_separado;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    font-family: $fuente_portada !important;
 
     a:hover {
         color: $iluminar !important;
@@ -144,8 +144,9 @@ section.portada {
     }
 
     h1 {
+        font-family: $fuente_portada !important;
         position: absolute;
-        color: $blanco;
+        color: $resaltado;
         font-weight: bold;
         display: none;
     }
@@ -173,7 +174,7 @@ div.contenido {
 
             h2 {
                 border-bottom: 0.25rem solid $resaltado;
-                padding-bottom: 5px;
+                padding-bottom: 0.3rem;
                 font-size: 2rem;
             }
         }
@@ -192,12 +193,12 @@ div.contenido {
 
     .bloque {
         @include tema;
-        box-shadow: 0 10px 10px 0 $negro, 0 10px 10px 0 $negro;
-        border-radius: 1rem;
-        -webkit-border-radius: 1rem;
-        -moz-border-radius: 1rem;
-        -ms-border-radius: 1rem;
-        -o-border-radius: 1rem;
+        box-shadow: 0 0.6rem 0.6rem 0 $negro, 0 0.6rem 0.6rem 0 $negro;
+        border-radius: 0.8rem;
+        -webkit-border-radius: 0.8rem;
+        -moz-border-radius: 0.8rem;
+        -ms-border-radius: 0.8rem;
+        -o-border-radius: 0.8rem;
         margin-top: 2.5rem;
     }
 
@@ -211,12 +212,12 @@ div.contenido {
 footer {
     @include alinear_separado;
     @include tema;
-    margin-top: 35px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    margin-top: 2rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 
     article {
-        margin: 20px;
+        margin: 1.5rem;
         
         a:hover {
             color: $iluminar !important;
@@ -240,8 +241,8 @@ footer {
 
         h1 {
             display: block;
-            left: 30px;
-            top: 50px;
+            left: 2.5rem;
+            top: 2rem;
             font-size: 1.4rem;
         }
     }
@@ -249,8 +250,8 @@ footer {
 
 @media screen and (min-width: $grande) {
     section.portada h1 {
-        left: 60px;
-        top: 80px;
+        left: 3.5rem;
+        top: 5.5rem;
         font-size: 2rem;
     }
 

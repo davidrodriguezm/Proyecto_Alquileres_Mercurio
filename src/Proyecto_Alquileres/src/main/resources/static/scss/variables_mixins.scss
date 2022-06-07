@@ -16,11 +16,15 @@ $iluminar_scroll: #ff9a3c;
 
 $iluminar_input:#fcd165;
 
+$azul_tabla_hover: #114352;
+
 $todo: 100%;
 
 $mediano: 576px;
 
 $grande: 992px;
+
+$fuente_portada: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 @mixin tema {
     background-color: $azul !important;

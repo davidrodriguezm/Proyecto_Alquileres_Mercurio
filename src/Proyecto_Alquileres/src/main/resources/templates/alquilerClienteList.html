@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/parts::head(title='Alquileres Cliente')"></head>
+<body>
+	<header th:replace="fragments/parts::header"></header>
+	<section th:replace="fragments/parts::portada"></section>
+	<div class="contenido">
+		<aside th:replace="fragments/parts::aside"></aside>
+		<main>
+			<div class="bloque tabla">
+				<table class="table table-stripped tabla">
+					<thead class="resaltado">
+						<tr>
+							<th>Vehiculo</th>
+							<th>Modelo</th>
+							<th>Inicio</th>
+							<th>Fin</th>
+							<th>Pago</th>
+							<th>Estado</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="a : ${alquileres}">
+							<td th:text="${a.vehiculo.matricula}"></td>
+							<td th:text="${a.vehiculo.modelo}"></td>
+							<td th:text="${a.getInicioFormato()}"></td>
+							<td th:text="${a.getFinFormato()}"></td>
+							<td th:text="${a.pago}"></td>
+							<td th:text="${a.estado}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</div>
+	<footer th:replace="fragments/parts::footer"></footer>
+</body>
+</html>

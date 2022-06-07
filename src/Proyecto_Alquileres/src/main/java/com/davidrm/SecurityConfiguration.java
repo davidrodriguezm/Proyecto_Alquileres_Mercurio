@@ -33,12 +33,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			
 			.antMatchers("/","/login-user","/usuario-add","/vehiculos").permitAll()
 			
-			.antMatchers("/alquileres","/alquiler-add","/alquiler-edit","/vehiculo-add","/vehiculo-edit",
+			.antMatchers("/alquiler-add","/alquiler-edit","/vehiculo-add","/vehiculo-edit",
 					"/vehiculo-delete","/usuarios","/usuarios-activo").hasRole("ADMIN")
 			
 			.antMatchers("/alquiler-cliente-add").hasRole("USER")
 			
-			.antMatchers("/logout-user","/usuario-edit").authenticated()
+			.antMatchers("/logout-user","/usuario-edit","/alquileres").authenticated()
 			
 			.and()
 			.formLogin()

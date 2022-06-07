@@ -24,7 +24,7 @@
       			<h2 class="">
         			<a th:href="@{/vehiculos}">Vehículos</a>
         		</h2>
-        		<h2 class="" sec:authorize="hasRole('ADMIN')">
+        		<h2 class="" sec:authorize="isAuthenticated()">
         			<a th:href="@{/alquileres}">Alquileres</a>
         		</h2>
         		<h2 class="" sec:authorize="hasRole('ADMIN')">

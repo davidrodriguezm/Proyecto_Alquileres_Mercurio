@@ -43,8 +43,18 @@ public class AlquilerController {
 	
 	@GetMapping("/alquileres")
 	public String alquilerList(Model model) {
-		model.addAttribute("alquileres", alquilerSer.getAllAlquileres());
-		return "alquilerList";	
+		String dirige = "alquilerClienteList";
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Usuario usuario = usuarioSer.findUsuarioByEmail(auth.getName());
+		
+		if (usuario.getRole().equals("ROLE_ADMIN")) {		
+			dirige = "alquilerList";
+			model.addAttribute("alquileres", alquilerSer.getAllAlquileres());
+			
+		} else model.addAttribute("alquileres", usuario.getAlquileres());
+				
+		return dirige;	
 	}
 	
 	
@@ -199,9 +209,9 @@ public class AlquilerController {
 	
 	
 	@PostMapping("/alquiler-cliente-add")
-	public String addAlquilerClientePost(@ModelAttribute("alqDTO") AlquilerDTO alqDTO, Model model) {
-		
+	public String addAlquilerClientePost(@ModelAttribute("alqDTO") AlquilerDTO alqDTO, Model model) {		
 		String dirige = "redirect:/alquiler-cliente-add";
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Usuario usuario = usuarioSer.findUsuarioByEmail(auth.getName());
 		
@@ -211,7 +221,6 @@ public class AlquilerController {
 		}
 				
 		Map<String,List<String>> errores = new HashMap<>();		
-		errores.put("idVehiculo", new ArrayList<>());
 		errores.put("fecha_inicio", new ArrayList<>());
 		errores.put("fecha_fin", new ArrayList<>());
 		
@@ -240,15 +249,16 @@ public class AlquilerController {
 			
 			if (alqDTO.getFecha_fin() == null) errores.get("fecha_fin").add("El campo fecha de fin no puede ser nulo");
 			
-			if (alqDTO.getIdVehiculo() == null) errores.get("fecha_fin").add("El campo Id Vehiculo no puede ser nulo");
-			
-			model.addAttribute("errores", errores);
-			model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
-			model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
-			model.addAttribute("alquiler", alqDTO);
-			
-			dirige = "addAlquilerCliente";
-			
+			if (alqDTO.getIdVehiculo() != null) {
+				model.addAttribute("errores", errores);
+				model.addAttribute("vehiculos", vehiculoSer.getAllVehiculos());
+				model.addAttribute("usuarios", usuarioSer.getAllUsuarios());
+				model.addAttribute("alquiler", alqDTO);
+				
+				dirige = "addAlquilerCliente";
+				
+			} else dirige = "redirect:/vehiculos";
+					
 		} else if (alqDTO != null) {
 			Vehiculo vehiculo = vehiculoSer.findVehiculoById(alqDTO.getIdVehiculo());
 			Usuario cliente = usuarioSer.findUsuarioById(alqDTO.getIdCliente());
@@ -260,7 +270,7 @@ public class AlquilerController {
 			cliente.addAlquiler(alquiler);
 			
 			alquilerSer.insertarAlquiler(alquiler);
-			dirige = "redirect:/vehiculos";
+			dirige = "redirect:/alquileres";
 		}
 		return dirige;
 	}

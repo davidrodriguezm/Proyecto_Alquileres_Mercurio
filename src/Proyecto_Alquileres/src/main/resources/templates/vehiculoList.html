@@ -21,7 +21,7 @@
 							<th>Modelo</th>
 							<th>Tipo</th>
 							<th>Consumo</th>
-							<th>Estado</th>
+							<th sec:authorize="hasRole('ADMIN')">Estado</th>
 							<th sec:authorize="!hasRole('ADMIN')">Reservar</th>
 							<th sec:authorize="hasRole('ADMIN')">Eliminar</th>
 							<th sec:authorize="hasRole('ADMIN')">Editar</th>
@@ -34,7 +34,7 @@
 							<td th:text="${v.modelo}"></td>
 							<td th:text="${v.tipo}"></td>
 							<td th:text="${v.consumo}"></td>
-							<td th:text="${v.estado}"></td>
+							<td th:text="${v.estado}" sec:authorize="hasRole('ADMIN')"></td>
 							<td sec:authorize="!hasRole('ADMIN')">
 								<a th:href="@{|/alquiler-cliente-add?id=${v.id}|}" class="enlace" sec:authorize="isAuthenticated()">Ir</a>
 								<a th:href="@{/login-user}" sec:authorize="!isAuthenticated()" class="enlace">Ir</a>
