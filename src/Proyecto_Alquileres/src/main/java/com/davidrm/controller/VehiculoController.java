@@ -72,11 +72,13 @@ public class VehiculoController {
 			
 			for (FieldError e : validacion.getFieldErrors()) errores.get(e.getField()).add(e.getDefaultMessage());
 			
-			model.addAttribute("errores", errores);		
+			model.addAttribute("errores", errores);
 			model.addAttribute("vehiculo", vehiDTO);		
 			dirige = "addVehiculo";
 			
 		} else if (vehiDTO != null) {
+			if (vehiDTO.getTipo().equalsIgnoreCase("MiniCamion")) vehiDTO.setTipo("Mini Camión");
+				
 			Vehiculo vehiculo = new Vehiculo(vehiDTO.getMatricula(), vehiDTO.getModelo(),
 							vehiDTO.getTipo(), vehiDTO.getConsumo(), vehiDTO.getEstado());
 			

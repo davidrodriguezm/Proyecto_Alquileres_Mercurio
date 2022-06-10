@@ -19,7 +19,7 @@
 				<div class="grupoForm">
 					<label for="idCliente" >Cliente</label>
 					<select name="idCliente" id="idCliente" th:field="*{idCliente}" required>
-						<option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nombre}"></option>
+						<option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.dni}"></option>
 					</select>
 					<p class="resaltado" th:each="e : ${errores.get('idCliente')}" th:text="${e}"></p>
 				</div>

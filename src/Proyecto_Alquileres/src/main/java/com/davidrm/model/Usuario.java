@@ -51,7 +51,6 @@ public class Usuario implements Serializable {
 
 	public Usuario(Long id, String dni, String email, String nombre, String role, String telefono, String password,
 			boolean activo) {
-		super();
 		this.id = id;
 		this.dni = dni;
 		this.email = email;
@@ -64,7 +63,6 @@ public class Usuario implements Serializable {
 
 	public Usuario(String dni, String email, String nombre, String role, String telefono, String password,
 			boolean activo) {
-		super();
 		this.dni = dni;
 		this.email = email;
 		this.nombre = nombre;

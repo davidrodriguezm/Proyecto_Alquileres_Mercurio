@@ -37,7 +37,9 @@
 							<td th:text="${a.pago}"></td>
 							<td th:text="${a.comentario}"></td>
 							<td th:text="${a.estado}"></td>
-							<td><a th:href="@{|/alquiler-edit?id=${a.id}|}" class="enlace">Ir</a></td>
+							<td>
+								<a th:href="@{|/alquiler-edit?id=${a.id}|}" class="enlace">Modificar</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

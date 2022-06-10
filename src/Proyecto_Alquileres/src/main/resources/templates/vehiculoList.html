@@ -40,7 +40,7 @@
 								<a th:href="@{/login-user}" sec:authorize="!isAuthenticated()" class="enlace">Ir</a>
 							</td>
 							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-delete?id=${v.id}|}" class="enlace">Borrar</a></td>
-							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Editar</a></td>
+							<td sec:authorize="hasRole('ADMIN')"><a th:href="@{|/vehiculo-edit?id=${v.id}|}" class="enlace">Modificar</a></td>
 						</tr>
 					</tbody>
 				</table>
